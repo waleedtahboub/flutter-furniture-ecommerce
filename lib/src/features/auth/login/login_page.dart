@@ -38,13 +38,6 @@ class _LoginPageState extends State<LoginPage> {
                       text: 'Email',
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
-
-                    TextSpan(
-                      text: '*',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -62,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const InputDecoration(
                   hintText: 'Enter your email',
                   prefixIcon: Icon(Icons.email_outlined),
+                  prefixIconColor: AppColor.iconColor,
                 ),
               ),
               const SizedBox(height: 24),
@@ -72,13 +66,6 @@ class _LoginPageState extends State<LoginPage> {
                     TextSpan(
                       text: 'Password',
                       style: Theme.of(context).textTheme.labelLarge,
-                    ),
-
-                    TextSpan(
-                      text: '*',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
                     ),
                   ],
                 ),
@@ -97,6 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: showPassword,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
+                  prefixIconColor: AppColor.iconColor,
+                  suffixIconColor: AppColor.iconColor,
                   prefixIcon: const Icon(Icons.lock_outlined),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -110,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 10),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -117,14 +107,16 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('Forget password?'),
                 ),
               ),
-
+              SizedBox(height: 10),
               RichText(
+                
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
                       text: '*By continuing, you agree to our',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
+
                     const TextSpan(
                       text: 'Terms of Service ',
                       style: TextStyle(color: AppColor.link),
@@ -141,21 +133,22 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              const SizedBox(height: 52),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // all fields valid — proceed
                   }
                 },
-                child: const Text('Create Account'),
+                child: const Text('Login'),
               ),
               const SizedBox(height: 20),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Text(
                   'Or using other method',
                   textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
 
