@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/app/theme/app_metrics.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 
 class AppTheme {
+  // fontFamily is defined once on `light` ThemeData — no need to repeat it here.
   static ThemeData text = ThemeData(
-    fontFamily: 'Poppins',
     textTheme: const TextTheme(
       // Display — hero numbers, welcome screens
       displayLarge: TextStyle(
         fontSize: 40,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w700,
         color: AppColor.onPrimary,
       ),
       displayMedium: TextStyle(
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: FontWeight.w600,
         color: AppColor.onPrimary,
       ),
 
-      // Headline — page titles, major sections
+      // Headline — section headers
       headlineSmall: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
         color: AppColor.onSurface,
       ),
 
       // Title — AppBars, card headers, sub-section titles
       titleLarge: TextStyle(
         fontSize: 18,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w900,
         color: AppColor.onSurface,
       ),
       titleMedium: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
         color: Color.fromARGB(255, 26, 26, 26),
       ),
       titleSmall: TextStyle(
@@ -40,6 +41,7 @@ class AppTheme {
         fontWeight: FontWeight.w500,
         color: AppColor.onSurface,
       ),
+
       // Body — reading text, descriptions, paragraphs
       bodyMedium: TextStyle(
         fontSize: 12,
@@ -56,10 +58,10 @@ class AppTheme {
       labelMedium: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: AppColor.onSurface,
+        color: AppColor.iconColor,
       ),
       labelSmall: TextStyle(
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: FontWeight.w400,
         color: AppColor.onSurface,
       ),
@@ -68,14 +70,14 @@ class AppTheme {
 
   static ThemeData appBar = ThemeData(
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColor.appBarBackground,
+      backgroundColor: AppColor.surface,
       elevation: 0,
       centerTitle: true,
 
-      iconTheme: IconThemeData(color: AppColor.appBarIcon, size: 20),
+      iconTheme: IconThemeData(color: AppColor.onSurface, size: 20),
 
       titleTextStyle: TextStyle(
-        color: AppColor.appBarTitle,
+        color: AppColor.onSurface,
         fontSize: 18,
         fontWeight: FontWeight.w600,
       ),
@@ -105,11 +107,10 @@ class AppTheme {
         minimumSize: const WidgetStatePropertyAll(Size(335, 48)),
         backgroundColor: const WidgetStatePropertyAll(AppColor.primary),
         foregroundColor: const WidgetStatePropertyAll(AppColor.onPrimary),
-        padding: const WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 40),
-        ),
-        shape: WidgetStatePropertyAll(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        textStyle: WidgetStatePropertyAll(text.textTheme.displayMedium),
+        padding: const WidgetStatePropertyAll(AppMetrics.buttonPadding),
+        shape: const WidgetStatePropertyAll(
+          RoundedRectangleBorder(borderRadius: AppMetrics.buttonBorderRadius),
         ),
       ),
     ),
@@ -117,19 +118,19 @@ class AppTheme {
   static ThemeData bottomNav = ThemeData(
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColor.surface,
-      selectedItemColor: AppColor.appBarIcon,
+      selectedItemColor: AppColor.onSurface,
       unselectedItemColor: AppColor.outline,
       selectedLabelStyle: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
-        color: AppColor.appBarTitle,
+        color: AppColor.onSurface,
       ),
       unselectedLabelStyle: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColor.outline,
       ),
-      selectedIconTheme: IconThemeData(size: 25, color: AppColor.appBarIcon),
+      selectedIconTheme: IconThemeData(size: 25, color: AppColor.onSurface),
       unselectedIconTheme: IconThemeData(size: 23, color: AppColor.outline),
       showSelectedLabels: true,
       showUnselectedLabels: true,
@@ -139,24 +140,24 @@ class AppTheme {
   );
 
   static ThemeData textField = ThemeData(
-    inputDecorationTheme: InputDecorationTheme(
-      contentPadding: const EdgeInsets.symmetric(vertical: 13, horizontal: 16),
+    inputDecorationTheme: const InputDecorationTheme(
+      contentPadding: AppMetrics.textFieldPadding,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: AppMetrics.textFieldBorderRadius,
 
-        borderSide: const BorderSide(color: AppColor.outline, width: 1),
+        borderSide: BorderSide(color: AppColor.outline, width: 1),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppColor.outline, width: 1),
+        borderRadius: AppMetrics.textFieldBorderRadius,
+        borderSide: BorderSide(color: AppColor.outline, width: 1),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppColor.primary, width: 1),
+        borderRadius: AppMetrics.textFieldBorderRadius,
+        borderSide: BorderSide(color: AppColor.primary, width: 1),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppColor.error, width: 1),
+        borderRadius: AppMetrics.textFieldBorderRadius,
+        borderSide: BorderSide(color: AppColor.error, width: 1),
       ),
     ),
   );

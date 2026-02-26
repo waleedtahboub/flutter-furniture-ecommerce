@@ -15,14 +15,13 @@ class AppColor {
 
   // Surface
   static const Color surface = Colors.white;
-  static const Color onSurface = Color(0xff1A1A1A);
+  static const Color onSurface = Color(0xff000000);
 
   // Outline
   static const Color outline = Color(0xff646464);
 
   // AppBar
-  static const Color appBarBackground = Colors.white;
-  static const Color appBarIcon = Color(0xff1A1A1A);
-  static const Color appBarTitle = Color(0xff1A1A1A);
+  static const Color iconColor = Color(0xff72777A);
+
   static const Color link = Color(0xff6B4EFF);
 }

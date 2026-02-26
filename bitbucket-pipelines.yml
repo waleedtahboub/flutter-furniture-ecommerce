@@ -1,0 +1,25 @@
+definitions:
+  caches:
+    flutter: $HOME/.pub-cache
+
+pipelines:
+  pull-requests:
+    "**":
+      - step:
+          name: 🚀 Analyze App
+          image: ghcr.io/cirruslabs/flutter:3.35.7
+          caches:
+            - flutter
+          condition:
+            changesets:
+              includePaths:
+                - "lib/**"
+                - "test/**"
+                - "pubspec.yaml"
+                - "pubspec.lock"
+          script:
+            - flutter packages get
+            - dart format --set-exit-if-changed $(find lib -name '*.dart' ! -name 'app_localizations.dart')
+            - flutter packages get
+            - cd ../..
+            - flutter analyze .

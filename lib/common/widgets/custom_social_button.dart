@@ -26,7 +26,7 @@ class CustomSocialButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(24),
         ),
-        side: BorderSide(width: 1, color: AppColor.iconColor),
+        side: const BorderSide(width: 1, color: AppColor.iconColor),
       ),
       onPressed: onPressed,
 

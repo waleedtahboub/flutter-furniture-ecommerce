@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -107,9 +107,8 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('Forget password?'),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               RichText(
-                
                 text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
