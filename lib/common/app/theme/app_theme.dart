@@ -13,7 +13,7 @@ class AppTheme {
         color: AppColor.onPrimary,
       ),
       displayMedium: TextStyle(
-        fontSize: 32,
+        fontSize: 18,
         fontWeight: FontWeight.w600,
         color: AppColor.onPrimary,
       ),
@@ -54,6 +54,11 @@ class AppTheme {
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: AppColor.onSurface,
+      ),
+      labelMedium: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppColor.iconColor,
       ),
       labelSmall: TextStyle(
         fontSize: 11,
@@ -102,6 +107,7 @@ class AppTheme {
         minimumSize: const WidgetStatePropertyAll(Size(335, 48)),
         backgroundColor: const WidgetStatePropertyAll(AppColor.primary),
         foregroundColor: const WidgetStatePropertyAll(AppColor.onPrimary),
+        textStyle: WidgetStatePropertyAll(text.textTheme.displayMedium),
         padding: const WidgetStatePropertyAll(AppMetrics.buttonPadding),
         shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(borderRadius: AppMetrics.buttonBorderRadius),
@@ -134,22 +140,22 @@ class AppTheme {
   );
 
   static ThemeData textField = ThemeData(
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       contentPadding: AppMetrics.textFieldPadding,
-      border: const OutlineInputBorder(
+      border: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
 
         borderSide: BorderSide(color: AppColor.outline, width: 1),
       ),
-      enabledBorder: const OutlineInputBorder(
+      enabledBorder: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
         borderSide: BorderSide(color: AppColor.outline, width: 1),
       ),
-      focusedBorder: const OutlineInputBorder(
+      focusedBorder: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
         borderSide: BorderSide(color: AppColor.primary, width: 1),
       ),
-      errorBorder: const OutlineInputBorder(
+      errorBorder: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
         borderSide: BorderSide(color: AppColor.error, width: 1),
       ),
