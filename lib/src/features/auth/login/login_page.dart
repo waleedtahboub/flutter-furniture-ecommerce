@@ -110,8 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 185),
+              Align(
+                alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {},
                   child: const Text('Forget password?'),
@@ -151,21 +151,33 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text('Create Account'),
               ),
               const SizedBox(height: 20),
-              const Text('Or using other method'),
+              const SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'Or using other method',
+                  textAlign: TextAlign.center,
+                ),
+              ),
 
               const SizedBox(height: 22),
 
-              CustomSocialButton(
-                label: 'Sign In with Google ',
-                onPressed: () {},
-                icon: Image.asset('assets/icons/google.png'),
+              SizedBox(
+                width: double.infinity,
+                child: CustomSocialButton(
+                  label: 'Sign In with Google ',
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/google.png'),
+                ),
               ),
               const SizedBox(height: 22),
 
-              CustomSocialButton(
-                label: 'Sign In with Facebook ',
-                onPressed: () {},
-                icon: Image.asset('assets/icons/facebook_icon.png'),
+              SizedBox(
+                width: double.infinity,
+                child: CustomSocialButton(
+                  label: 'Sign In with Facebook ',
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/facebook_icon.png'),
+                ),
               ),
             ],
           ),
