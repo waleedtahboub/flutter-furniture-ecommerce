@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               RichText(
                 textAlign: TextAlign.start,
                 text: TextSpan(
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: showPassword,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
-                  prefixIcon: Icon(Icons.lock_outlined),
+                  prefixIcon: const Icon(Icons.lock_outlined),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
@@ -105,8 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                     icon: showPassword
-                        ? Icon(Icons.remove_red_eye_outlined)
-                        : Icon(Icons.remove_red_eye),
+                        ? const Icon(Icons.remove_red_eye_outlined)
+                        : const Icon(Icons.remove_red_eye),
                   ),
                 ),
               ),
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(left: 185),
                 child: TextButton(
                   onPressed: () {},
-                  child: Text('Forget password?'),
+                  child: const Text('Forget password?'),
                 ),
               ),
 
@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                       text: '*By continuing, you agree to our',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: 'Terms of Service ',
                       style: TextStyle(color: AppColor.link),
                     ),
@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                       text: 'and ',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: 'Privacy Policy',
                       style: TextStyle(color: AppColor.link),
                     ),
@@ -141,26 +141,26 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              SizedBox(height: 52),
+              const SizedBox(height: 52),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // all fields valid — proceed
                   }
                 },
-                child: Text('Create Account'),
+                child: const Text('Create Account'),
               ),
-              SizedBox(height: 20),
-              Text('Or using other method'),
+              const SizedBox(height: 20),
+              const Text('Or using other method'),
 
-              SizedBox(height: 22),
+              const SizedBox(height: 22),
 
               CustomSocialButton(
                 label: 'Sign In with Google ',
                 onPressed: () {},
                 icon: Image.asset('assets/icons/google.png'),
               ),
-              SizedBox(height: 22),
+              const SizedBox(height: 22),
 
               CustomSocialButton(
                 label: 'Sign In with Facebook ',

@@ -43,12 +43,6 @@ import 'package:flutter/material.dart';
 // }
 
 class CustomSocialButton extends StatelessWidget {
-  final String label;
-  final VoidCallback onPressed;
-  final Widget icon;
-  final double iconWidth;
-  final double iconHight;
-
   const CustomSocialButton({
     super.key,
     required this.label,
@@ -58,11 +52,17 @@ class CustomSocialButton extends StatelessWidget {
     this.iconHight = 24,
   });
 
+  final String label;
+  final VoidCallback onPressed;
+  final Widget icon;
+  final double iconWidth;
+  final double iconHight;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        fixedSize: Size(335, 48),
+        fixedSize: const Size(335, 48),
 
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(24),

@@ -102,10 +102,10 @@ class AppTheme {
   static ThemeData elevatedButton = ThemeData(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        minimumSize: WidgetStatePropertyAll(Size(335, 48)),
-        backgroundColor: WidgetStatePropertyAll(AppColor.primary),
-        foregroundColor: WidgetStatePropertyAll(AppColor.onPrimary),
-        padding: WidgetStatePropertyAll(
+        minimumSize: const WidgetStatePropertyAll(Size(335, 48)),
+        backgroundColor: const WidgetStatePropertyAll(AppColor.primary),
+        foregroundColor: const WidgetStatePropertyAll(AppColor.onPrimary),
+        padding: const WidgetStatePropertyAll(
           EdgeInsets.symmetric(vertical: 12, horizontal: 40),
         ),
         shape: WidgetStatePropertyAll(
@@ -115,28 +115,22 @@ class AppTheme {
     ),
   );
   static ThemeData bottomNav = ThemeData(
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColor.surface,
       selectedItemColor: AppColor.appBarIcon,
       unselectedItemColor: AppColor.outline,
-      selectedLabelStyle: const TextStyle(
+      selectedLabelStyle: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColor.appBarTitle,
       ),
-      unselectedLabelStyle: const TextStyle(
+      unselectedLabelStyle: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColor.outline,
       ),
-      selectedIconTheme: const IconThemeData(
-        size: 25,
-        color: AppColor.appBarIcon,
-      ),
-      unselectedIconTheme: const IconThemeData(
-        size: 23,
-        color: AppColor.outline,
-      ),
+      selectedIconTheme: IconThemeData(size: 25, color: AppColor.appBarIcon),
+      unselectedIconTheme: IconThemeData(size: 23, color: AppColor.outline),
       showSelectedLabels: true,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
