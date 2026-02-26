@@ -24,4 +24,5 @@ class AppColor {
   static const Color appBarBackground = Colors.white;
   static const Color appBarIcon = Color(0xff1A1A1A);
   static const Color appBarTitle = Color(0xff1A1A1A);
+  static const Color link = Color(0xff6B4EFF);
 }

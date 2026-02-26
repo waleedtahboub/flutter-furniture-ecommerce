@@ -25,6 +25,16 @@ class AppTheme {
       ),
 
       // Title — AppBars, card headers, sub-section titles
+      titleLarge: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: AppColor.onSurface,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: Color.fromARGB(255, 26, 26, 26),
+      ),
       titleSmall: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w500,
@@ -32,7 +42,7 @@ class AppTheme {
       ),
       // Body — reading text, descriptions, paragraphs
       bodyMedium: TextStyle(
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColor.onSurface,
       ),
@@ -56,19 +66,25 @@ class AppTheme {
     ),
   );
 
-  static ThemeData light = ThemeData(
-    fontFamily: 'Poppins',
+  static ThemeData appBar = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColor.appBarBackground,
       elevation: 0,
       centerTitle: true,
-      iconTheme: IconThemeData(color: AppColor.appBarIcon),
+
+      iconTheme: IconThemeData(color: AppColor.appBarIcon, size: 20),
+
       titleTextStyle: TextStyle(
         color: AppColor.appBarTitle,
         fontSize: 18,
         fontWeight: FontWeight.w600,
       ),
     ),
+  );
+
+  static ThemeData light = ThemeData(
+    fontFamily: 'Poppins',
+    textTheme: text.textTheme,
     colorScheme: const ColorScheme.light(
       brightness: Brightness.light,
       primary: AppColor.primary,
@@ -86,9 +102,10 @@ class AppTheme {
   static ThemeData elevatedButton = ThemeData(
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: WidgetStatePropertyAll(AppColor.primary),
-        textStyle: WidgetStatePropertyAll(TextStyle(color: AppColor.onPrimary)),
-        padding: WidgetStatePropertyAll(
+        minimumSize: const WidgetStatePropertyAll(Size(335, 48)),
+        backgroundColor: const WidgetStatePropertyAll(AppColor.primary),
+        foregroundColor: const WidgetStatePropertyAll(AppColor.onPrimary),
+        padding: const WidgetStatePropertyAll(
           EdgeInsets.symmetric(vertical: 12, horizontal: 40),
         ),
         shape: WidgetStatePropertyAll(
@@ -98,28 +115,22 @@ class AppTheme {
     ),
   );
   static ThemeData bottomNav = ThemeData(
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColor.surface,
       selectedItemColor: AppColor.appBarIcon,
       unselectedItemColor: AppColor.outline,
-      selectedLabelStyle: const TextStyle(
+      selectedLabelStyle: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColor.appBarTitle,
       ),
-      unselectedLabelStyle: const TextStyle(
+      unselectedLabelStyle: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColor.outline,
       ),
-      selectedIconTheme: const IconThemeData(
-        size: 25,
-        color: AppColor.appBarIcon,
-      ),
-      unselectedIconTheme: const IconThemeData(
-        size: 23,
-        color: AppColor.outline,
-      ),
+      selectedIconTheme: IconThemeData(size: 25, color: AppColor.appBarIcon),
+      unselectedIconTheme: IconThemeData(size: 23, color: AppColor.outline),
       showSelectedLabels: true,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
@@ -132,6 +143,7 @@ class AppTheme {
       contentPadding: const EdgeInsets.symmetric(vertical: 13, horizontal: 16),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
+
         borderSide: const BorderSide(color: AppColor.outline, width: 1),
       ),
       enabledBorder: OutlineInputBorder(
@@ -146,13 +158,13 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColor.error, width: 1),
       ),
-      constraints: const BoxConstraints(minHeight: 48, maxHeight: 48),
     ),
   );
 
-  static ThemeData bottomNavigationBar = ThemeData(
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      unselectedIconTheme: IconThemeData(),
-    ),
+  static ThemeData get theme => light.copyWith(
+    appBarTheme: appBar.appBarTheme,
+    elevatedButtonTheme: elevatedButton.elevatedButtonTheme,
+    inputDecorationTheme: textField.inputDecorationTheme,
+    bottomNavigationBarTheme: bottomNav.bottomNavigationBarTheme,
   );
 }

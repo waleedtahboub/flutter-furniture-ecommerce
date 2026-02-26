@@ -7,9 +7,6 @@ class AppMaterial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.light,
-      home: HomePage(),
-    );
+    return MaterialApp(theme: AppTheme.light, home: const HomePage());
   }
 }
