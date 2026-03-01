@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
@@ -13,6 +14,29 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
+  late TapGestureRecognizer _termsRecognizer;
+  late TapGestureRecognizer _privacyRecognizer;
+
+  @override
+  void dispose() {
+    _termsRecognizer.dispose();
+    _privacyRecognizer.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _termsRecognizer = TapGestureRecognizer()
+      ..onTap = () {
+        print('t');
+      };
+    _privacyRecognizer = TapGestureRecognizer()
+      ..onTap = () {
+        print('p');
+      };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,24 +133,22 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 10),
               RichText(
+                textAlign: TextAlign.justify,
                 text: TextSpan(
+                  style: Theme.of(context).textTheme.bodyMedium,
                   children: <TextSpan>[
-                    TextSpan(
-                      text: '*By continuing, you agree to our',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+                    const TextSpan(text: '  *By continuing, you agree to our '),
 
-                    const TextSpan(
-                      text: 'Terms of Service ',
-                      style: TextStyle(color: AppColor.link),
-                    ),
                     TextSpan(
-                      text: 'and ',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      text: 'Terms of Service ',
+                      style: const TextStyle(color: AppColor.link),
+                      recognizer: _termsRecognizer,
                     ),
-                    const TextSpan(
-                      text: 'Privacy Policy',
-                      style: TextStyle(color: AppColor.link),
+                    const TextSpan(text: 'and '),
+                    TextSpan(
+                      text: ' Privacy Policy',
+                      style: const TextStyle(color: AppColor.link),
+                      recognizer: _privacyRecognizer,
                     ),
                   ],
                 ),
