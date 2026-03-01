@@ -27,14 +27,8 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   void initState() {
     super.initState();
-    _termsRecognizer = TapGestureRecognizer()
-      ..onTap = () {
-   
-      };
-    _privacyRecognizer = TapGestureRecognizer()
-      ..onTap = () {
-
-      };
+    _termsRecognizer = TapGestureRecognizer()..onTap = () {};
+    _privacyRecognizer = TapGestureRecognizer()..onTap = () {};
   }
 
   @override

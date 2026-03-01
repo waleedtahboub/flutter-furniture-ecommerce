@@ -27,14 +27,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    _termsRecognizer = TapGestureRecognizer()
-      ..onTap = () {
-        print('t');
-      };
-    _privacyRecognizer = TapGestureRecognizer()
-      ..onTap = () {
-        print('p');
-      };
+    _termsRecognizer = TapGestureRecognizer()..onTap = () {};
+    _privacyRecognizer = TapGestureRecognizer()..onTap = () {};
   }
 
   @override
