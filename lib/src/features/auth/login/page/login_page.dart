@@ -1,11 +1,13 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/common/resources/assets.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
+import 'package:furniture_store_app/common/widgets/coustom_Terms_And_privacy_richText.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+  static const String routePath = '/';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -14,28 +16,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
-  late TapGestureRecognizer _termsRecognizer;
-  late TapGestureRecognizer _privacyRecognizer;
-
-  @override
-  void dispose() {
-    _termsRecognizer.dispose();
-    _privacyRecognizer.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _termsRecognizer = TapGestureRecognizer()..onTap = () {};
-    _privacyRecognizer = TapGestureRecognizer()..onTap = () {};
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('login', style: Theme.of(context).textTheme.titleLarge),
+        title: Text('Login', style: Theme.of(context).textTheme.titleLarge),
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -126,27 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              RichText(
-                textAlign: TextAlign.justify,
-                text: TextSpan(
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  children: <TextSpan>[
-                    const TextSpan(text: '  *By continuing, you agree to our '),
-
-                    TextSpan(
-                      text: 'Terms of Service ',
-                      style: const TextStyle(color: AppColor.link),
-                      recognizer: _termsRecognizer,
-                    ),
-                    const TextSpan(text: 'and '),
-                    TextSpan(
-                      text: ' Privacy Policy',
-                      style: const TextStyle(color: AppColor.link),
-                      recognizer: _privacyRecognizer,
-                    ),
-                  ],
-                ),
-              ),
+              const CustomTermsAndPrivacyRichText(),
 
               const SizedBox(height: 20),
               ElevatedButton(
@@ -174,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: CustomSocialButton(
                   label: 'Sign In with Google ',
                   onPressed: () {},
-                  icon: Image.asset('assets/icons/google.png'),
+                  icon: Image.asset(AppImages.googleIcon),
                 ),
               ),
               const SizedBox(height: 22),
@@ -184,7 +150,27 @@ class _LoginPageState extends State<LoginPage> {
                 child: CustomSocialButton(
                   label: 'Sign In with Facebook ',
                   onPressed: () {},
-                  icon: Image.asset('assets/icons/facebook_icon.png'),
+                  icon: Image.asset(AppImages.facebookIcon),
+                ),
+              ),
+              const SizedBox(height: 22),
+
+              InkWell(
+                child: Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: const <TextSpan>[
+                        TextSpan(text: '  Don\'t have an account '),
+
+                        TextSpan(
+                          text: 'Sign Up ',
+                          style: TextStyle(color: AppColor.primary),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],

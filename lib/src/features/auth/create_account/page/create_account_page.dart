@@ -1,11 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
+import 'package:furniture_store_app/common/widgets/coustom_Terms_And_privacy_richText.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
+  static const String routePath = '/CreateAccount';
 
   @override
   State<CreateAccount> createState() => _CreateAccountState();
@@ -14,22 +15,6 @@ class CreateAccount extends StatefulWidget {
 class _CreateAccountState extends State<CreateAccount> {
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
-  late TapGestureRecognizer _termsRecognizer;
-  late TapGestureRecognizer _privacyRecognizer;
-
-  @override
-  void dispose() {
-    _termsRecognizer.dispose();
-    _privacyRecognizer.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _termsRecognizer = TapGestureRecognizer()..onTap = () {};
-    _privacyRecognizer = TapGestureRecognizer()..onTap = () {};
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,27 +141,8 @@ class _CreateAccountState extends State<CreateAccount> {
                 ),
               ),
               const SizedBox(height: 10),
-              RichText(
-                textAlign: TextAlign.justify,
-                text: TextSpan(
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  children: <TextSpan>[
-                    const TextSpan(text: '  *By continuing, you agree to our '),
 
-                    TextSpan(
-                      text: 'Terms of Service ',
-                      style: const TextStyle(color: AppColor.link),
-                      recognizer: _termsRecognizer,
-                    ),
-                    const TextSpan(text: 'and '),
-                    TextSpan(
-                      text: ' Privacy Policy',
-                      style: const TextStyle(color: AppColor.link),
-                      recognizer: _privacyRecognizer,
-                    ),
-                  ],
-                ),
-              ),
+              const CustomTermsAndPrivacyRichText(),
 
               const SizedBox(height: 20),
               ElevatedButton(
@@ -217,6 +183,30 @@ class _CreateAccountState extends State<CreateAccount> {
                   icon: Image.asset('assets/icons/facebook_icon.png'),
                 ),
               ),
+              const SizedBox(height: 22),
+
+              InkWell(
+                child: Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: const <TextSpan>[
+                        TextSpan(text: 'Already have an account? '),
+
+                        TextSpan(
+                          text: 'Log In ',
+                          style: TextStyle(color: AppColor.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              // BottomNavigationBar(
+              //   items: const [BottomNavigationBarItem(icon: Icon(Icons.home))],
+              // ),
             ],
           ),
         ),
