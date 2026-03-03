@@ -4,10 +4,13 @@ import 'package:furniture_store_app/common/resources/assets.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
+import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
+import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-  static const String routePath = '/';
+  static const String routePath = '/Login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -113,13 +116,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 10),
               const CustomTermsAndPrivacyRichText(),
-
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // all fields valid — proceed
                   }
+                  context.go(HomePage.routePath);
                 },
                 child: const Text('Login'),
               ),
@@ -156,6 +159,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 22),
 
               InkWell(
+                onTap: () => context.go(CreateAccount.routePath),
                 child: Center(
                   child: RichText(
                     textAlign: TextAlign.center,
