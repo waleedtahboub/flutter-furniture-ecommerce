@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+  static const String routePath = '/';
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(backgroundColor: Colors.white);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: () => context.go(LoginPage.routePath),
+              child: const Text('click me to go to login page'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

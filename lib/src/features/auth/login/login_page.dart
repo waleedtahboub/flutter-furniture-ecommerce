@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
+import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
+import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+  static const String routePath = '/Login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -108,36 +112,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: '*By continuing, you agree to our',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-
-                    const TextSpan(
-                      text: 'Terms of Service ',
-                      style: TextStyle(color: AppColor.link),
-                    ),
-                    TextSpan(
-                      text: 'and ',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    const TextSpan(
-                      text: 'Privacy Policy',
-                      style: TextStyle(color: AppColor.link),
-                    ),
-                  ],
-                ),
-              ),
-
+              const CustomTermsAndPrivacyRichText(),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // all fields valid — proceed
                   }
+                  context.go(HomePage.routePath);
                 },
                 child: const Text('Login'),
               ),
@@ -168,7 +150,28 @@ class _LoginPageState extends State<LoginPage> {
                 child: CustomSocialButton(
                   label: 'Sign In with Facebook ',
                   onPressed: () {},
-                  icon: Image.asset('assets/icons/facebook_icon.png'),
+                  icon: Image.asset(AppImages.facebookIcon),
+                ),
+              ),
+              const SizedBox(height: 22),
+
+              InkWell(
+                onTap: () => context.go(CreateAccount.routePath),
+                child: Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: const <TextSpan>[
+                        TextSpan(text: '  Don\'t have an account '),
+
+                        TextSpan(
+                          text: 'Sign Up ',
+                          style: TextStyle(color: AppColor.primary),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
