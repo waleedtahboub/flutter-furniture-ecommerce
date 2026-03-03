@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
+import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class CreateAccount extends StatefulWidget {
+  const CreateAccount({super.key});
+  static const String routePath = '/CreateAccount';
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CreateAccount> createState() => _CreateAccountState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CreateAccountState extends State<CreateAccount> {
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('login', style: Theme.of(context).textTheme.titleLarge),
+        title: Text(
+          'Create Account',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -30,6 +36,33 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Username',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
+                ),
+              ),
+
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Username is required';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  hintText: 'Create your username',
+                  prefixIcon: Icon(Icons.email_outlined),
+                  prefixIconColor: AppColor.iconColor,
+                ),
+              ),
+              const SizedBox(height: 24),
+
               RichText(
                 textAlign: TextAlign.start,
                 text: TextSpan(
@@ -108,29 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: '*By continuing, you agree to our',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
 
-                    const TextSpan(
-                      text: 'Terms of Service ',
-                      style: TextStyle(color: AppColor.link),
-                    ),
-                    TextSpan(
-                      text: 'and ',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    const TextSpan(
-                      text: 'Privacy Policy',
-                      style: TextStyle(color: AppColor.link),
-                    ),
-                  ],
-                ),
-              ),
+              const CustomTermsAndPrivacyRichText(),
 
               const SizedBox(height: 20),
               ElevatedButton(
@@ -171,6 +183,30 @@ class _LoginPageState extends State<LoginPage> {
                   icon: Image.asset('assets/icons/facebook_icon.png'),
                 ),
               ),
+              const SizedBox(height: 22),
+
+              InkWell(
+                child: Center(
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: const <TextSpan>[
+                        TextSpan(text: 'Already have an account? '),
+
+                        TextSpan(
+                          text: 'Log In ',
+                          style: TextStyle(color: AppColor.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              // BottomNavigationBar(
+              //   items: const [BottomNavigationBarItem(icon: Icon(Icons.home))],
+              // ),
             ],
           ),
         ),
