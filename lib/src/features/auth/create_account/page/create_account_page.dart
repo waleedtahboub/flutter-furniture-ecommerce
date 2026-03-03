@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
-import 'package:furniture_store_app/common/widgets/coustom_Terms_And_privacy_richText.dart';
+import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 
 class CreateAccount extends StatefulWidget {

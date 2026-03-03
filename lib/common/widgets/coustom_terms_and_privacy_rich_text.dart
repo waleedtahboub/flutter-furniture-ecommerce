@@ -1,11 +1,8 @@
-// ignore_for_file: file_names
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
-// import 'package:furniture_store_app/common/resources/constants.dart';
-// import 'package:url_launcher/url_launcher.dart';
 
 class CustomTermsAndPrivacyRichText extends StatefulWidget {
   const CustomTermsAndPrivacyRichText({super.key});
@@ -17,18 +14,19 @@ class CustomTermsAndPrivacyRichText extends StatefulWidget {
 
 class _CustomTermsAndPrivacyRichtextState
     extends State<CustomTermsAndPrivacyRichText> {
-  final Uri privacyUrl = Uri.parse(Constants.privacy);
-  final Uri termsAndConditionsUrl = Uri.parse(Constants.termsAndConditions);
-
-  late final TapGestureRecognizer _termsRecognizer = TapGestureRecognizer()
+  final TapGestureRecognizer _termsRecognizer = TapGestureRecognizer()
     ..onTap = () async {
+      final Uri termsAndConditionsUrl = Uri.parse(Constants.termsAndConditions);
+
       await launchUrl(
         termsAndConditionsUrl,
         mode: LaunchMode.externalApplication,
       );
     };
-  late final TapGestureRecognizer _privacyRecognizer = TapGestureRecognizer()
+  final TapGestureRecognizer _privacyRecognizer = TapGestureRecognizer()
     ..onTap = () async {
+      final Uri privacyUrl = Uri.parse(Constants.privacy);
+
       await launchUrl(privacyUrl, mode: LaunchMode.externalApplication);
     };
 
