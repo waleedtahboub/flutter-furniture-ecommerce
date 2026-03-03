@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/common/resources/assets.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
+import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
@@ -17,11 +19,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('login', style: Theme.of(context).textTheme.titleLarge),
+        title: Text('Login', style: Theme.of(context).textTheme.titleLarge),
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -140,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: CustomSocialButton(
                   label: 'Sign In with Google ',
                   onPressed: () {},
-                  icon: Image.asset('assets/icons/google.png'),
+                  icon: Image.asset(AppImages.googleIcon),
                 ),
               ),
               const SizedBox(height: 22),

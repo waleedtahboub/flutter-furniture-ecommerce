@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
-import 'package:furniture_store_app/common/widgets/coustom_Terms_And_privacy_richText.dart';
+import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:go_router/go_router.dart';
@@ -143,8 +143,6 @@ class _CreateAccountState extends State<CreateAccount> {
                 ),
               ),
               const SizedBox(height: 10),
-
-              const CustomTermsAndPrivacyRichText(),
 
               const CustomTermsAndPrivacyRichText(),
 

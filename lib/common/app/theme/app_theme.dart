@@ -116,26 +116,27 @@ class AppTheme {
     ),
   );
   static ThemeData bottomNav = ThemeData(
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColor.surface,
       selectedItemColor: AppColor.onSurface,
       unselectedItemColor: AppColor.outline,
-      selectedLabelStyle: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: AppColor.onSurface,
-      ),
-      unselectedLabelStyle: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
+      selectedLabelStyle: text.textTheme.bodyMedium,
+      unselectedLabelStyle: text.textTheme.bodyMedium?.copyWith(
         color: AppColor.outline,
       ),
-      selectedIconTheme: IconThemeData(size: 25, color: AppColor.onSurface),
-      unselectedIconTheme: IconThemeData(size: 23, color: AppColor.outline),
+      selectedIconTheme: const IconThemeData(
+        size: 25,
+        color: AppColor.onSurface,
+      ),
+      unselectedIconTheme: const IconThemeData(
+        size: 23,
+        color: AppColor.outline,
+      ),
       showSelectedLabels: true,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
-      elevation: 8,
+
+      elevation: 50,
     ),
   );
 
