@@ -24,4 +24,5 @@ class AppColor {
   static const Color iconColor = Color(0xff72777A);
 
   static const Color link = Color(0xff6B4EFF);
+  static const Color dragHandleColor = Color(0xffCDCFD0);
 }
