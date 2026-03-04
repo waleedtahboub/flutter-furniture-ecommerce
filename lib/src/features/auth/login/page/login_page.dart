@@ -126,8 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // all fields valid — proceed
+                    context.go(HomePage.routePath);
                   }
-                  context.go(HomePage.routePath);
                 },
                 child: const Text('Login'),
               ),
