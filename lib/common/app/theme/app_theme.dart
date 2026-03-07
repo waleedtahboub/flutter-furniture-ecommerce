@@ -73,6 +73,7 @@ class AppTheme {
       backgroundColor: AppColor.surface,
       elevation: 0,
       centerTitle: true,
+      actionsIconTheme: IconThemeData(size: 24),
 
       iconTheme: IconThemeData(color: AppColor.onSurface, size: 20),
 

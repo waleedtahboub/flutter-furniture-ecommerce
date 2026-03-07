@@ -10,16 +10,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              onPressed: () => context.go(LoginPage.routePath),
-              child: const Text('click me to go to login page'),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          TextButton(
+            onPressed: () => context.go(LoginPage.routePath),
+            child: const Text('click me to go to login page'),
+          ),
+        ],
       ),
     );
   }
