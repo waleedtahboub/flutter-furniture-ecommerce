@@ -12,26 +12,33 @@ class CategoriesCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: SizedBox(
-              height: 186,
-              width: 157.5,
-              child: Image.asset(imagePath, fit: BoxFit.cover),
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 186,
+                width: 157.5,
+                child: Image.asset(imagePath, fit: BoxFit.cover),
+              ),
             ),
-          ),
-          Container(
-            height: 28,
-            width: 158,
-            color: Theme.of(context).colorScheme.primaryContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text(title, style: Theme.of(context).textTheme.bodyMedium),
+            Container(
+              height: 28,
+              width: 158,
+              color: Theme.of(context).colorScheme.outline,
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

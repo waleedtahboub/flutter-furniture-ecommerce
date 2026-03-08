@@ -3,7 +3,7 @@ abstract class AppImages {
   static const String facebookIcon = '$_iconPath/facebook_icon.png';
   static const String googleIcon = '$_iconPath/google.png';
 
-  static const String _imagePath = 'assets/images';
+  static const String _imagePath = 'assets/images/categories';
   static const String livingRoom = '$_imagePath/living_room.jpg';
   static const String bedrooms = '$_imagePath/bedrooms.jpg';
   static const String dinningRoom = '$_imagePath/dinning_room.jpg';

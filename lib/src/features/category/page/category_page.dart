@@ -32,6 +32,7 @@ class CategoryPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
+            color: Theme.of(context).colorScheme.outline,
             icon: const Icon(Icons.notifications_none_outlined),
           ),
         ],
