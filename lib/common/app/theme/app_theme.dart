@@ -34,7 +34,7 @@ class AppTheme {
       titleMedium: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 26, 26, 26),
+        color: AppColor.onSurface,
       ),
       titleSmall: TextStyle(
         fontSize: 14,
@@ -73,6 +73,7 @@ class AppTheme {
       backgroundColor: AppColor.surface,
       elevation: 0,
       centerTitle: true,
+      actionsIconTheme: IconThemeData(size: 24),
 
       iconTheme: IconThemeData(color: AppColor.onSurface, size: 20),
 
