@@ -34,7 +34,7 @@ class AppTheme {
       titleMedium: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: Color.fromARGB(255, 26, 26, 26),
+        color: AppColor.onSurface,
       ),
       titleSmall: TextStyle(
         fontSize: 14,
