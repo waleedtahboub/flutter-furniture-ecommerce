@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
     ),
     ProductModel(
       imagePath: CategoryType.office.imagePath,
-      productName: 'Ergonomic Office Chair',
+      productName: 'Ergonomic Office Chair ',
       productCategory: CategoryType.office.title,
       productRating: '4.6',
       productPrice: '\$150 ',

@@ -42,6 +42,8 @@ class CustomSectionCard extends StatelessWidget {
                       Text(
                         product.productRating,
                         style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ],
                   ),
@@ -49,6 +51,8 @@ class CustomSectionCard extends StatelessWidget {
                   Text(
                     product.productName,
                     style: Theme.of(context).textTheme.titleSmall,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   const SizedBox(height: 10),
                   Row(
