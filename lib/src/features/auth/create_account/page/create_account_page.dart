@@ -60,7 +60,6 @@ class _CreateAccountState extends State<CreateAccount> {
                 decoration: const InputDecoration(
                   hintText: 'Create your username',
                   prefixIcon: Icon(Icons.email_outlined),
-                  prefixIconColor: AppColor.iconColor,
                 ),
               ),
               const SizedBox(height: 24),
@@ -90,7 +89,6 @@ class _CreateAccountState extends State<CreateAccount> {
                 decoration: const InputDecoration(
                   hintText: 'Enter your email',
                   prefixIcon: Icon(Icons.email_outlined),
-                  prefixIconColor: AppColor.iconColor,
                 ),
               ),
               const SizedBox(height: 24),
@@ -119,8 +117,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 obscureText: showPassword,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
-                  prefixIconColor: AppColor.iconColor,
-                  suffixIconColor: AppColor.iconColor,
+
                   prefixIcon: const Icon(Icons.lock_outlined),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -134,15 +131,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text('Forget password?'),
-                ),
-              ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
               const CustomTermsAndPrivacyRichText(),
 

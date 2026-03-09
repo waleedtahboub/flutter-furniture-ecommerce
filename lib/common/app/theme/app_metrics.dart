@@ -18,4 +18,5 @@ class AppMetrics {
   static const BorderRadius textFieldBorderRadius = BorderRadius.all(
     Radius.circular(12),
   );
+  static const double textFieldBorderWidth = 1;
 }
