@@ -16,14 +16,44 @@ class CustomSectionCard extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            Container(
-              clipBehavior: Clip.antiAlias,
+            SizedBox(
               height: 130,
               width: 230,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-              child: Image.asset(product.imagePath, fit: BoxFit.cover),
+              child: Stack(
+                children: [
+                  Container(
+                    clipBehavior: Clip.antiAlias,
+                    height: 130,
+                    width: 230,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Image.asset(product.imagePath, fit: BoxFit.cover),
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.favorite_border,
+                          size: 20,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 4),
             SizedBox(
               height: 88,
               width: 230,
@@ -32,6 +62,7 @@ class CustomSectionCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      const SizedBox(height: 22),
                       Text(
                         product.productCategory,
                         style: Theme.of(context).textTheme.bodyMedium,
@@ -64,8 +95,10 @@ class CustomSectionCard extends StatelessWidget {
                       Text(
                         '\$400',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppColor.onSecondary,
                           decoration: TextDecoration.lineThrough,
-                          decorationThickness: 2.5,
+                          decorationThickness: 2,
+                          decorationColor: AppColor.onSecondary,
                         ),
                       ),
 

@@ -38,6 +38,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Theme.of(context).colorScheme.surface,
         titleSpacing: 10,
         title: InkWell(
           onTap: () {},
@@ -47,7 +48,10 @@ class HomePage extends StatelessWidget {
 
               Text(
                 '  Select location',
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: AppColor.onSurface,
+                  fontSize: 16,
+                ),
               ),
             ],
           ),
@@ -68,6 +72,45 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(height: 5),
+            SizedBox(
+              height: 42,
+              width: 380,
+              child: Stack(
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      fillColor: AppColor.skaGray,
+                      filled: true,
+                      hintText: 'Search..',
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        height: 42,
+                        width: 42,
+
+                        decoration: const BoxDecoration(
+                          color: AppColor.primary,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.filter_alt,
+                          color: AppColor.onPrimary,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 200),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -125,7 +168,7 @@ class HomePage extends StatelessWidget {
                           const Spacer(),
                           Text(
                             category.title,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context).textTheme.titleSmall,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
