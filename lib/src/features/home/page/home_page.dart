@@ -84,6 +84,15 @@ class HomePage extends StatelessWidget {
                       fillColor: AppColor.skaGray,
                       filled: true,
                       hintText: 'Search..',
+                      hintStyle: TextStyle(color: AppColor.onSecondary),
+
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color: AppColor.iconColor,
+                          width: 1,
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(

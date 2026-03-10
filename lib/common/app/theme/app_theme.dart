@@ -143,10 +143,11 @@ class AppTheme {
 
   static ThemeData textField = ThemeData(
     inputDecorationTheme: const InputDecorationTheme(
+      
       contentPadding: AppMetrics.textFieldPadding,
       border: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
-
+        
         borderSide: BorderSide(color: AppColor.outline, width: 1),
       ),
       enabledBorder: OutlineInputBorder(
