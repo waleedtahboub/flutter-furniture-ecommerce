@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/resources/app_color.dart';
 
 class CategoriesCards extends StatelessWidget {
   const CategoriesCards({
@@ -28,7 +29,7 @@ class CategoriesCards extends StatelessWidget {
             Container(
               height: 28,
               width: 158,
-              color: Theme.of(context).colorScheme.outline,
+              color: AppColor.skaGray,
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Text(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:furniture_store_app/src/features/auth/login/widgets/create_password_sheet.dart';
 
-
 class ForgotPasswordSheet extends StatefulWidget {
   const ForgotPasswordSheet({super.key});
 
@@ -11,8 +10,6 @@ class ForgotPasswordSheet extends StatefulWidget {
 }
 
 class _ForgotPasswordSheetState extends State<ForgotPasswordSheet> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Container(
