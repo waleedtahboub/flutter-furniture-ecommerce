@@ -69,7 +69,9 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                               ? Icons.favorite
                               : Icons.favorite_border,
                           size: 20,
-                          color: Theme.of(context).colorScheme.onSecondary,
+                          color: widget.product.isFavorite
+                              ? Colors.red
+                              : Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
                     ),

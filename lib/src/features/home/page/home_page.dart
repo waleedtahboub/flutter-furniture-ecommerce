@@ -25,11 +25,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> implements ProductCallback {
   @override
   void onFavoriteToggled(ProductModel product) {
-    print(product.isFavorite);
     setState(() {
-      product.copyWith(isFavorite:true);
+      final index = products.indexOf(product);
+      products[index] = product.copyWith(isFavorite: !product.isFavorite);
     });
-    print(product.isFavorite);
   }
 
   @override

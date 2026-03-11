@@ -15,7 +15,7 @@ class ProductModel {
   final String rating;
   final String basePrice;
   final String salePrice;
-  bool isFavorite;
+  final bool isFavorite;
   final String description;
 
   ProductModel copyWith({
