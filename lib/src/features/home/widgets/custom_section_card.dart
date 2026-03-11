@@ -51,12 +51,10 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
 
                     child: InkWell(
                       onTap: () {
-                        print("product=${widget.product.isFavorite}");
                         // Trigger the callback when tapped!
                         widget.favoriteCallback.onFavoriteToggled(
                           widget.product,
                         );
-                        print(" after product=${widget.product.isFavorite}");
                       },
                       child: Container(
                         padding: const EdgeInsets.all(6),

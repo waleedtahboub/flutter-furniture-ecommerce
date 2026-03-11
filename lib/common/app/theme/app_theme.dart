@@ -43,6 +43,12 @@ class AppTheme {
       ),
 
       // Body — reading text, descriptions, paragraphs
+      bodyLarge: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppColor.onSurface,
+      ),
+
       bodyMedium: TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
@@ -140,27 +146,49 @@ class AppTheme {
       elevation: 50,
     ),
   );
+  static ThemeData bottomSheetTheme = ThemeData(
+    bottomSheetTheme: BottomSheetThemeData(
+      showDragHandle: true,
+      dragHandleColor: AppColor.dragHandleColor,
+      dragHandleSize: const Size(48, 5),
+
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      backgroundColor: AppColor.surface,
+    ),
+  );
 
   static ThemeData textField = ThemeData(
     inputDecorationTheme: const InputDecorationTheme(
-      
+      prefixIconColor: AppColor.iconColor,
+      suffixIconColor: AppColor.iconColor,
       contentPadding: AppMetrics.textFieldPadding,
       border: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
-        
-        borderSide: BorderSide(color: AppColor.outline, width: 1),
+        borderSide: BorderSide(
+          color: AppColor.outline,
+          width: AppMetrics.textFieldBorderWidth,
+        ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
-        borderSide: BorderSide(color: AppColor.outline, width: 1),
+        borderSide: BorderSide(
+          color: AppColor.outline,
+          width: AppMetrics.textFieldBorderWidth,
+        ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
-        borderSide: BorderSide(color: AppColor.primary, width: 1),
+        borderSide: BorderSide(
+          color: AppColor.primary,
+          width: AppMetrics.textFieldBorderWidth,
+        ),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: AppMetrics.textFieldBorderRadius,
-        borderSide: BorderSide(color: AppColor.error, width: 1),
+        borderSide: BorderSide(
+          color: AppColor.error,
+          width: AppMetrics.textFieldBorderWidth,
+        ),
       ),
     ),
   );
@@ -170,5 +198,6 @@ class AppTheme {
     elevatedButtonTheme: elevatedButton.elevatedButtonTheme,
     inputDecorationTheme: textField.inputDecorationTheme,
     bottomNavigationBarTheme: bottomNav.bottomNavigationBarTheme,
+    bottomSheetTheme: bottomSheetTheme.bottomSheetTheme,
   );
 }

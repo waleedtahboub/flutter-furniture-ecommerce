@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/home/models/products.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
-import 'package:furniture_store_app/src/features/home/widgets/custom_section_card/custom_section_card.dart';
+import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
 
 class BestSeller extends StatelessWidget {
   const BestSeller({super.key, required this.favoriteCallback});

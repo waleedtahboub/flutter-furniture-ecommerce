@@ -5,6 +5,7 @@ import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
+import 'package:furniture_store_app/src/features/auth/login/widgets/forgot_password_sheet.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,7 +63,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const InputDecoration(
                   hintText: 'Enter your email',
                   prefixIcon: Icon(Icons.email_outlined),
-                  prefixIconColor: AppColor.iconColor,
                 ),
               ),
               const SizedBox(height: 24),
@@ -91,8 +91,6 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: showPassword,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
-                  prefixIconColor: AppColor.iconColor,
-                  suffixIconColor: AppColor.iconColor,
                   prefixIcon: const Icon(Icons.lock_outlined),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -110,7 +108,14 @@ class _LoginPageState extends State<LoginPage> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return const ForgotPasswordSheet();
+                      },
+                    );
+                  },
                   child: const Text('Forget password?'),
                 ),
               ),
@@ -121,8 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // all fields valid — proceed
+                    context.go(HomePage.routePath);
                   }
-                  context.go(HomePage.routePath);
                 },
                 child: const Text('Login'),
               ),
