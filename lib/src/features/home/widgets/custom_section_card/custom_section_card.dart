@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart'; // Add this import
+import 'package:furniture_store_app/src/features/home/page/home_page.dart'; // Add Callback import
 
-class CustomSectionCard extends StatelessWidget {
-  const CustomSectionCard({super.key, required this.product});
+class CustomSectionCard extends StatefulWidget {
+  const CustomSectionCard({
+    super.key,
+    required this.product,
+    required this.favoriteCallback,
+  });
+
   final ProductModel product;
+  final ProductCallback favoriteCallback;
 
+  @override
+  State<CustomSectionCard> createState() => _CustomSectionCardState();
+}
+
+class _CustomSectionCardState extends State<CustomSectionCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -28,24 +40,36 @@ class CustomSectionCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Image.asset(product.imagePath, fit: BoxFit.cover),
+                    child: Image.asset(
+                      widget.product.imagePath,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   Positioned(
                     top: 8,
                     right: 8,
 
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        print("product=${widget.product.isFavorite}");
+                        // Trigger the callback when tapped!
+                        widget.favoriteCallback.onFavoriteToggled(
+                          widget.product,
+                        );
+                        print(" after product=${widget.product.isFavorite}");
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(6),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(
-                          Icons.favorite_border,
+                        child: Icon(
+                          widget.product.isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
                           size: 20,
-                          color: Colors.black87,
+                          color: Theme.of(context).colorScheme.onSecondary,
                         ),
                       ),
                     ),
@@ -64,14 +88,14 @@ class CustomSectionCard extends StatelessWidget {
                     children: [
                       const SizedBox(height: 22),
                       Text(
-                        product.productCategory,
+                        widget.product.category,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const Spacer(),
                       const Icon(Icons.star, color: AppColor.star, size: 18),
 
                       Text(
-                        product.productRating,
+                        widget.product.rating,
                         style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -80,7 +104,7 @@ class CustomSectionCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    product.productName,
+                    widget.product.name,
                     style: Theme.of(context).textTheme.titleSmall,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -89,11 +113,11 @@ class CustomSectionCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        product.productPrice,
+                        widget.product.basePrice,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
-                        '\$400',
+                        widget.product.salePrice,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColor.onSecondary,
                           decoration: TextDecoration.lineThrough,
@@ -104,7 +128,9 @@ class CustomSectionCard extends StatelessWidget {
 
                       const Spacer(),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {});
+                        },
                         child: Container(
                           height: 24,
                           width: 24,
