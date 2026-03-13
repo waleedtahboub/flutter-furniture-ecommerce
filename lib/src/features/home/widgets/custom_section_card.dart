@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart'; // Add this import
-import 'package:furniture_store_app/src/features/home/page/home_page.dart'; // Add Callback import
+import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:furniture_store_app/src/features/product_details_page/product_details_page.dart';
+import 'package:go_router/go_router.dart'; // Add Callback import
+
 
 class CustomSectionCard extends StatefulWidget {
   const CustomSectionCard({
@@ -21,7 +24,9 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.go(ProductDetailsPage.routePath, extra: widget.product);
+      },
       child: SizedBox(
         height: 230,
         width: 226,

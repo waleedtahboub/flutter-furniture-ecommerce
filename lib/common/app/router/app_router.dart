@@ -1,9 +1,11 @@
+import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/main/main_shell_scaffold.dart';
+import 'package:furniture_store_app/src/features/product_details_page/product_details_page.dart';
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,6 +15,13 @@ final myRouter = GoRouter(
     GoRoute(
       path: LoginPage.routePath,
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: ProductDetailsPage.routePath,
+      builder: (context, state) {
+        final product = state.extra as ProductModel;
+        return ProductDetailsPage(product: product);
+      },
     ),
     GoRoute(
       path: CreateAccount.routePath,
