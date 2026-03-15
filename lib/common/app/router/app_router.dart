@@ -5,7 +5,8 @@ import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/main/main_shell_scaffold.dart';
-import 'package:furniture_store_app/src/features/product_details_page/product_details_page.dart';
+import 'package:furniture_store_app/src/features/onboarding/pages/get_started.dart';
+import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_page_view.dart';
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,6 +28,17 @@ final myRouter = GoRouter(
       path: CreateAccount.routePath,
       builder: (context, state) => const CreateAccount(),
     ),
+
+    GoRoute(
+      path: OnBoardingPageView.routePath,
+      builder: (context, state) => const OnBoardingPageView(),
+    ),
+
+    GoRoute(
+      path: GetStarted.routePath,
+      builder: (context, state) => const GetStarted(),
+    ),
+
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return MainShellScaffold(navigationShell: navigationShell);

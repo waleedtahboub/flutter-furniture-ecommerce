@@ -6,7 +6,9 @@ import 'package:furniture_store_app/src/features/home/widgets/best_seller.dart';
 import 'package:furniture_store_app/src/features/home/widgets/categories.dart';
 import 'package:furniture_store_app/src/features/home/widgets/discounts_by_percentage.dart';
 import 'package:furniture_store_app/src/features/home/widgets/flash_deals.dart';
+import 'package:furniture_store_app/src/features/home/widgets/page_view_head_section.dart';
 import 'package:furniture_store_app/src/features/home/widgets/search_bar.dart';
+import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_page_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/src/features/home/models/products.dart';
 
@@ -38,7 +40,9 @@ class _HomePageState extends State<HomePage> implements ProductCallback {
         surfaceTintColor: Theme.of(context).colorScheme.surface,
         titleSpacing: 10,
         title: InkWell(
-          onTap: () {},
+          onTap: () {
+            context.go(OnBoardingPageView.routePath);
+          },
           child: Row(
             children: [
               const Icon(Icons.location_on_sharp),
@@ -69,9 +73,10 @@ class _HomePageState extends State<HomePage> implements ProductCallback {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 5),
+            const SizedBox(height: 10),
             const CustomSearchBar(),
-            const SizedBox(height: 200),
+            const SizedBox(height: 25),
+            const PageViewHeadSection(),
             const Categories(),
             BestSeller(favoriteCallback: this),
             FlashDeals(favoriteCallback: this),
