@@ -7,7 +7,7 @@ import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/main/main_shell_scaffold.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/get_started.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_page_view.dart';
-import 'package:furniture_store_app/src/features/product_details_page/product_details_page.dart';
+import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
 

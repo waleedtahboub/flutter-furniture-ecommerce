@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/models/review_model/review_model.dart';
 import 'package:furniture_store_app/src/features/category/models/category_type.dart';
@@ -14,9 +13,9 @@ final List<ProductModel> products = [
     description:
         'A beautifully crafted solid wood dining table that seats up to 6 guests. Features a rich walnut finish with elegant tapered legs and a smooth, scratch-resistant surface. Perfect for family dinners and entertaining.',
     colors: [
-      const Color(0xFF8B5A2B), // Wood Brown
-      const Color(0xFF4B3621), // Dark Walnut
-      const Color(0xFF000000), // Black
+      '8B5A2B', // Wood Brown
+      '4B3621', // Dark Walnut
+      '000000', // Black
     ],
     reviews: [
       ReviewModel(
@@ -73,9 +72,9 @@ final List<ProductModel> products = [
     description:
         'A premium king-size bed frame with a padded upholstered headboard wrapped in soft linen fabric. Built with a sturdy steel frame and wooden slats for long-lasting support. Includes built-in under-bed storage drawers.',
     colors: [
-      const Color(0xFFD3D3D3), // Light Grey
-      const Color(0xFFF5F5DC), // Beige
-      const Color(0xFF000080), // Navy Blue
+      'D3D3D3', // Light Grey
+      'F5F5DC', // Beige
+      '000080', // Navy Blue
     ],
     reviews: [
       ReviewModel(
@@ -102,10 +101,10 @@ final List<ProductModel> products = [
     description:
         'A high-performance ergonomic office chair with adjustable lumbar support, breathable mesh back, and cushioned seat. Features 360° swivel, adjustable armrests, and a tilt-lock mechanism for all-day comfort.',
     colors: [
-      const Color(0xFF000000), // Black
-      const Color(0xFFFFFFFF), // White
-      const Color(0xFF0000FF), // Blue
-      const Color(0xFF808080), // Grey
+      '000000', // Black
+      'FFFFFF', // White
+      '0000FF', // Blue
+      '808080', // Grey
     ],
     reviews: [
       ReviewModel(

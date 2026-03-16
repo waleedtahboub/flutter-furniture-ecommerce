@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:intl/intl.dart';
 
 class RatingSection extends StatelessWidget {
@@ -69,7 +70,7 @@ class RatingSection extends StatelessWidget {
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
                                 Text(
-                                  DateFormat('d MMM').format(review.date),
+                                  DateFormat(Constants.dayAndMonth).format(review.date),
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
                               ],

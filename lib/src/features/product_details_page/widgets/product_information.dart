@@ -80,10 +80,12 @@ class ProductInformation extends StatelessWidget {
           moreStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface,
             decoration: TextDecoration.underline,
+            fontSize: 16,
           ),
           lessStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurface,
             decoration: TextDecoration.underline,
+            fontSize: 16,
           ),
         ),
       ],

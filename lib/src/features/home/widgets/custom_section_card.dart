@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart'; // Add this import
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
-import 'package:furniture_store_app/src/features/product_details_page/product_details_page.dart';
+import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:go_router/go_router.dart'; // Add Callback import
 
 

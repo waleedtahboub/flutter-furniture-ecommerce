@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
-import 'package:furniture_store_app/src/features/product_details_page/color_section.dart';
-import 'package:furniture_store_app/src/features/product_details_page/head_section.dart';
-import 'package:furniture_store_app/src/features/product_details_page/product_information.dart';
-import 'package:furniture_store_app/src/features/product_details_page/rating_section.dart';
+import 'package:furniture_store_app/src/features/product_details_page/widgets/rating_section.dart';
+import 'package:furniture_store_app/src/features/product_details_page/widgets/color_section.dart';
+import 'package:furniture_store_app/src/features/product_details_page/widgets/head_section.dart';
+import 'package:furniture_store_app/src/features/product_details_page/widgets/product_information.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   const ProductDetailsPage({super.key, required this.product});

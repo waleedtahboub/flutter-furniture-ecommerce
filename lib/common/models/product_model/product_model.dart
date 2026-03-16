@@ -23,7 +23,7 @@ class ProductModel {
   final bool isFavorite;
   final String description;
   final List<ReviewModel> reviews;
-  final List<Color> colors;
+  final List<String> colors;
 
   ProductModel copyWith({
     String? imagePath,
@@ -35,7 +35,7 @@ class ProductModel {
     bool? isFavorite,
     String? description,
     List<ReviewModel>? reviews,
-    List<Color>? colors,
+    List<String>? colors,
   }) {
     return ProductModel(
       imagePath: imagePath ?? this.imagePath,

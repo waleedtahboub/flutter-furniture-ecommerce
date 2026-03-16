@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/extensions/string_extension.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 
 class ColorSection extends StatefulWidget {
@@ -31,7 +32,7 @@ class _ColorSectionState extends State<ColorSection> {
                 child: InkWell(
                   onTap: () {},
                   child: CircleAvatar(
-                    backgroundColor: widget.product.colors[index],
+                    backgroundColor: widget.product.colors[index].toColor(),
                   ),
                 ),
               );
