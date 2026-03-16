@@ -73,6 +73,12 @@ class ProductInformation extends StatelessWidget {
 
         ReadMoreText(
           product.description,
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            inherit: true,
+            color: Theme.of(context).colorScheme.onSurface,
+
+            fontSize: 16,
+          ),
           trimMode: TrimMode.Line,
           trimLines: 4,
           trimCollapsedText: 'See more',

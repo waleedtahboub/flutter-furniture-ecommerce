@@ -11,7 +11,7 @@ final List<ProductModel> products = [
     basePrice: '\$450 ',
     salePrice: '\$200',
     description:
-        'A beautifully crafted solid wood dining table that seats up to 6 guests. Features a rich walnut finish with elegant tapered legs and a smooth, scratch-resistant surface. Perfect for family dinners and entertaining.',
+        'A beautifully crafted solid wood dining table that comfortably seats up to 6 guests, making it the heart of your dining room. This masterpiece features a rich, deep walnut finish that highlights the natural grain of the wood, complemented by elegant tapered legs for a modern yet timeless silhouette. The surface is treated with a specialized smooth, scratch-resistant coating, ensuring it maintains its premium look even after years of family dinners and lively entertaining. Built with durability in mind, its sturdy construction makes it perfect for everyday use, while the refined design effortlessly elevates your home decor. Whether you are hosting a formal holiday feast or enjoying a quiet morning breakfast, this table provides the perfect balance of luxury, comfort, and long-lasting quality.',
     colors: [
       '8B5A2B', // Wood Brown
       '4B3621', // Dark Walnut

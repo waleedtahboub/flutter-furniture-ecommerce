@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/review_model/review_model.dart';
 
 class ProductModel {
