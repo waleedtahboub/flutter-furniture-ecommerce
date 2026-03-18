@@ -27,7 +27,7 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.go(ProductDetailsPage.routePath, extra: widget.product);
+        context.push(ProductDetailsPage.routePath, extra: widget.product);
       },
       child: SizedBox(
         height: 230,

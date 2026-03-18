@@ -38,7 +38,7 @@ class RatingSection extends StatelessWidget {
         ListView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
-          itemCount: 4,
+          itemCount: product.reviews.length,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final review = product.reviews[index];
@@ -70,7 +70,9 @@ class RatingSection extends StatelessWidget {
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
                                 Text(
-                                  DateFormat(Constants.dayAndMonth).format(review.date),
+                                  DateFormat(
+                                    Constants.dayAndMonth,
+                                  ).format(review.date),
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
                               ],

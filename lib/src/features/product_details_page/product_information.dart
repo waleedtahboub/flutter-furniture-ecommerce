@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
-// import 'package:readmore/readmore.dart';
 
 class ProductInformation extends StatelessWidget {
   const ProductInformation({super.key, required this.product});
@@ -71,22 +70,6 @@ class ProductInformation extends StatelessWidget {
           ).textTheme.titleMedium?.copyWith(fontSize: 19),
         ),
         const SizedBox(height: 10),
-
-        // ReadMoreText(
-        //   product.description,
-        //   trimMode: TrimMode.Line,
-        //   trimLines: 4,
-        //   trimCollapsedText: 'See more',
-        //   trimExpandedText: 'See less',
-        //   moreStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-        //     color: Theme.of(context).colorScheme.onSurface,
-        //     decoration: TextDecoration.underline,
-        //   ),
-        //   lessStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-        //     color: Theme.of(context).colorScheme.onSurface,
-        //     decoration: TextDecoration.underline,
-        //   ),
-        // ),
       ],
     );
   }
