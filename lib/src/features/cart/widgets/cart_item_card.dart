@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
-import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 
 class CartItemCard extends StatelessWidget {
   const CartItemCard({super.key, required this.product});
