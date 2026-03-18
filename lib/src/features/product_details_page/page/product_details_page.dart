@@ -15,7 +15,7 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  String buttonText = 'Add to Cart';
+  bool isAdded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +55,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   style: const ButtonStyle(alignment: Alignment.center),
-                  onPressed: () {
-                    myCartItems.add(widget.product);
-                    setState(() {
-                      buttonText = 'Added!';
-                    });
-                  },
-                  child: Text(buttonText),
+                  onPressed: isAdded == true
+                      ? null
+                      : () async {
+                          myCartItems.add(widget.product);
+                          setState(() {
+                            isAdded = true;
+                          });
+                          await Future.delayed(const Duration(seconds: 3));
+                          if (mounted) {
+                            setState(() {
+                              isAdded = false;
+                            });
+                          }
+                        },
+                  // The text changes automatically depending on the true/false variable
+                  child: Text(isAdded ? 'Added!' : 'Add to Cart'),
                 ),
                 const SizedBox(height: 40),
               ],
