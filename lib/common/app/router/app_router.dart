@@ -2,6 +2,7 @@ import 'package:furniture_store_app/src/features/auth/create_account/page/create
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
+import 'package:furniture_store_app/src/features/checkout/page/checkout_page.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/main/main_shell_scaffold.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/get_started.dart';
@@ -29,6 +30,11 @@ final myRouter = GoRouter(
     GoRoute(
       path: GetStarted.routePath,
       builder: (context, state) => const GetStarted(),
+    ),
+
+    GoRoute(
+      path: CheckoutPage.routePath,
+      builder: (context, state) => const CheckoutPage(),
     ),
 
     StatefulShellRoute.indexedStack(
