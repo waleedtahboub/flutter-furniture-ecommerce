@@ -10,6 +10,8 @@
         "cupertino_icons",
         "flutter",
         "go_router",
+        "intl",
+        "readmore",
         "url_launcher"
       ],
       "devDependencies": [
@@ -82,6 +84,22 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "readmore",
+      "version": "3.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "intl",
+      "version": "0.20.2",
+      "dependencies": [
+        "clock",
+        "meta",
+        "path"
       ]
     },
     {

@@ -9,4 +9,5 @@ abstract class Constants {
   static const String privacy = 'https://tasheh.app/en/#/privacy-policy';
   static const String termsAndConditions =
       'https://tasheh.app/en/#/terms-and-conditions';
+  static const String dayAndMonth = 'd MMM';
 }
