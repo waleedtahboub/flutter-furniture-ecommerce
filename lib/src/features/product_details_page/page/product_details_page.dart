@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 import 'package:furniture_store_app/src/features/product_details_page/widgets/rating_section.dart';
@@ -58,7 +59,25 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   onPressed: isAdded == true
                       ? null
                       : () async {
-                          myCartItems.add(widget.product);
+                          int existingIndex = myCartItems.indexWhere(
+                            (wrapper) =>
+                                wrapper.product.name == widget.product.name,
+                          );
+                          if (existingIndex != -1) {
+                            final oldItem = myCartItems[existingIndex];
+                            myCartItems[existingIndex] = oldItem.copyWith(
+                              quantity: oldItem.quantity + 1,
+                            );
+                          } else {
+                            // 3. We didn't find it! Make a brand new wrapper and push it.
+                            myCartItems.add(
+                              CartItemModel(
+                                product: widget.product,
+                                quantity: 1,
+                              ),
+                            );
+                          }
+
                           setState(() {
                             isAdded = true;
                           });

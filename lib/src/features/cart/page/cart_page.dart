@@ -17,7 +17,7 @@ class _CartPageState extends State<CartPage> {
     if (isCartEmpty) {
       return const EmptyCartPage();
     } else {
-      return FilledCartView();
+      return const FilledCartView();
     }
   }
 }

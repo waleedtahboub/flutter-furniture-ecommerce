@@ -1,2 +1,3 @@
-import 'package:furniture_store_app/common/models/product_model/product_model.dart';
-List<ProductModel> myCartItems = [];
+import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
+
+List<CartItemModel> myCartItems = [];

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_app/common/models/product_model/product_model.dart';
+import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
 
 class CartItemCard extends StatelessWidget {
-  const CartItemCard({super.key, required this.product});
-  final ProductModel product;
+  const CartItemCard({
+    super.key,
+    required this.cartItem,
+    required this.onIncrement,
+    required this.onDecrement,
+  });
+  final CartItemModel cartItem;
+  final VoidCallback onIncrement;
+  final VoidCallback onDecrement;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class CartItemCard extends StatelessWidget {
         width: 335,
         height: 137,
         decoration: BoxDecoration(
-          border: BoxBorder.all(color: AppColor.cartItemContainerOutline),
+          border: Border.all(color: AppColor.cartItemContainerOutline),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -29,7 +36,10 @@ class CartItemCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Image.asset(product.imagePath, fit: BoxFit.cover),
+                child: Image.asset(
+                  cartItem.product.imagePath,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Expanded(
@@ -37,7 +47,7 @@ class CartItemCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.name,
+                    cartItem.product.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -46,7 +56,7 @@ class CartItemCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 11),
                   Text(
-                    product.description,
+                    cartItem.product.description,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
@@ -58,7 +68,7 @@ class CartItemCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        AppCurrencyFormatter.format(product.basePrice),
+                        AppCurrencyFormatter.format(cartItem.product.basePrice),
                         style: Theme.of(context).textTheme.headlineSmall
                             ?.copyWith(
                               color: AppColor.primary,
@@ -66,35 +76,44 @@ class CartItemCard extends StatelessWidget {
                             ),
                       ),
                       const Spacer(),
-                      Container(
-                        height: 32,
-                        width: 115,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: AppColor.skaGray,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: const Icon(Icons.remove),
-                              ),
-                              const Spacer(),
-                              Text(
-                                '1',
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.titleSmall?.copyWith(fontSize: 17),
-                              ),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () {},
-                                child: const Icon(Icons.add),
-                              ),
-                            ],
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: Container(
+                          height: 32,
+                          width: 115,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: AppColor.skaGray,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8.0,
+                              right: 8.0,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    onDecrement();
+                                  },
+                                  child: const Icon(Icons.remove),
+                                ),
+                                const Spacer(),
+                                Text(
+                                  cartItem.quantity.toString(),
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(fontSize: 17),
+                                ),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    onIncrement();
+                                  },
+                                  child: const Icon(Icons.add),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

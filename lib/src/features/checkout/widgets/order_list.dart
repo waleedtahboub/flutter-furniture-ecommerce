@@ -20,7 +20,7 @@ class OrderList extends StatelessWidget {
           width: double.infinity,
           child: ListView.separated(
             itemBuilder: (context, index) {
-              return OrderItemCard(product: myCartItems[index]);
+              return OrderItemCard(cartItem: myCartItems[index]);
             },
             separatorBuilder: (context, index) {
               return const SizedBox(height: 12);

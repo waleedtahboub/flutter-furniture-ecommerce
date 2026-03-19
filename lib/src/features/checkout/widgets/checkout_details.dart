@@ -104,7 +104,7 @@ class CheckoutDetails extends StatelessWidget {
           children: [
             Text('Total ', style: Theme.of(context).textTheme.titleMedium),
             Text(
-              '(${myCartItems.length} items)',
+              '(${myCartItems.fold(0, (sum, item) => sum + item.quantity)} items)',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const Spacer(),

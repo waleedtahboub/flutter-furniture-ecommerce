@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart'; // Add this import
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
@@ -136,8 +137,25 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
+                          int existingIndex = myCartItems.indexWhere(
+                            (element) =>
+                                element.product.name == widget.product.name,
+                          );
                           setState(() {
-                            myCartItems.add(widget.product);
+                            if (existingIndex != -1) {
+                              myCartItems[existingIndex] =
+                                  myCartItems[existingIndex].copyWith(
+                                    quantity:
+                                        myCartItems[existingIndex].quantity + 1,
+                                  );
+                            } else {
+                              myCartItems.add(
+                                CartItemModel(
+                                  product: widget.product,
+                                  quantity: 1,
+                                ),
+                              );
+                            }
                           });
                         },
                         child: Container(
