@@ -12,6 +12,7 @@ class CartItemModel {
     return CartItemModel(
       product: product ?? this.product,
       quantity: quantity ?? this.quantity,
+      
     );
   }
 }
