@@ -46,6 +46,7 @@ class CartItemCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 7),
                   Text(
                     cartItem.product.name,
                     maxLines: 1,
@@ -64,7 +65,7 @@ class CartItemCard extends StatelessWidget {
                       context,
                     ).textTheme.bodyMedium?.copyWith(fontSize: 13),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 15),
                   Row(
                     children: [
                       Text(
