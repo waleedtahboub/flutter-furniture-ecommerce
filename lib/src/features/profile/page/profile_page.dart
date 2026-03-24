@@ -32,15 +32,15 @@ class ProfilePage extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.start,
             ),
-            const CustomButton(
+            const ProfileItem(
               leadingIcon: Icons.notifications_none,
               text: 'Notifications',
             ),
-            const CustomButton(
+            const ProfileItem(
               leadingIcon: Icons.shopping_basket_outlined,
               text: 'My orders',
             ),
-            const CustomButton(
+            const ProfileItem(
               leadingIcon: Icons.delete_forever_outlined,
               text: 'Delete Account',
             ),
@@ -50,17 +50,17 @@ class ProfilePage extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.start,
             ),
-            CustomButton(
+            ProfileItem(
               leadingIcon: Icons.help_outline,
               text: 'FAQ\'s',
               onTap: () => launchMyUrl(Constants.faqURL),
             ),
-            CustomButton(
+            ProfileItem(
               leadingIcon: Icons.contact_support_outlined,
               text: 'Help Center',
               onTap: () => launchMyUrl(Constants.helpCenterURL),
             ),
-            CustomButton(
+            ProfileItem(
               leadingIcon: Icons.privacy_tip_outlined,
               text: 'Legal & Polices',
               onTap: () => launchMyUrl(Constants.privacy),
@@ -71,7 +71,7 @@ class ProfilePage extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.start,
             ),
-            const CustomButton(leadingIcon: Icons.logout, text: 'Log out'),
+            const ProfileItem(leadingIcon: Icons.logout, text: 'Log out'),
           ],
         ),
       ),

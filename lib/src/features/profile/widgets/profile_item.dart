@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({
+class ProfileItem extends StatelessWidget {
+  const ProfileItem({
     super.key,
     required this.text,
     required this.leadingIcon,

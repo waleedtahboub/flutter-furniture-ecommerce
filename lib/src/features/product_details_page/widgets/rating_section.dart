@@ -70,7 +70,9 @@ class RatingSection extends StatelessWidget {
                                   style: Theme.of(context).textTheme.labelLarge,
                                 ),
                                 Text(
-                                  DateFormat(Constants.dayAndMonth).format(review.date),
+                                  DateFormat(
+                                    Constants.dayAndMonth,
+                                  ).format(review.date),
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
                               ],
