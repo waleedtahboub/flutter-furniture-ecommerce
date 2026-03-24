@@ -17,8 +17,8 @@ class ProductModel {
   final String name;
   final String category;
   final String rating;
-  final String basePrice;
-  final String salePrice;
+  final double basePrice;
+  final double salePrice;
   final bool isFavorite;
   final String description;
   final List<ReviewModel> reviews;
@@ -29,8 +29,8 @@ class ProductModel {
     String? name,
     String? category,
     String? rating,
-    String? basePrice,
-    String? salePrice,
+    double? basePrice,
+    double? salePrice,
     bool? isFavorite,
     String? description,
     List<ReviewModel>? reviews,

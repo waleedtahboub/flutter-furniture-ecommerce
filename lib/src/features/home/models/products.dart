@@ -8,8 +8,8 @@ final List<ProductModel> products = [
     name: 'Elegant Dining Table',
     category: CategoryType.diningRoom.title,
     rating: '4.7',
-    basePrice: '\$450 ',
-    salePrice: '\$200',
+    basePrice: 450,
+    salePrice: 200,
     description:
         'A beautifully crafted solid wood dining table that comfortably seats up to 6 guests, making it the heart of your dining room. This masterpiece features a rich, deep walnut finish that highlights the natural grain of the wood, complemented by elegant tapered legs for a modern yet timeless silhouette. The surface is treated with a specialized smooth, scratch-resistant coating, ensuring it maintains its premium look even after years of family dinners and lively entertaining. Built with durability in mind, its sturdy construction makes it perfect for everyday use, while the refined design effortlessly elevates your home decor. Whether you are hosting a formal holiday feast or enjoying a quiet morning breakfast, this table provides the perfect balance of luxury, comfort, and long-lasting quality.',
     colors: [
@@ -67,8 +67,8 @@ final List<ProductModel> products = [
     name: 'Luxury King Bed Frame',
     category: CategoryType.bedrooms.title,
     rating: '5',
-    basePrice: '\$320 ',
-    salePrice: '\$150',
+    basePrice: 320,
+    salePrice: 50,
     description:
         'A premium king-size bed frame with a padded upholstered headboard wrapped in soft linen fabric. Built with a sturdy steel frame and wooden slats for long-lasting support. Includes built-in under-bed storage drawers.',
     colors: [
@@ -96,8 +96,8 @@ final List<ProductModel> products = [
     name: 'Ergonomic Office Chair',
     category: CategoryType.office.title,
     rating: '4.6',
-    basePrice: '\$150 ',
-    salePrice: '\$75',
+    basePrice: 150,
+    salePrice: 75,
     description:
         'A high-performance ergonomic office chair with adjustable lumbar support, breathable mesh back, and cushioned seat. Features 360° swivel, adjustable armrests, and a tilt-lock mechanism for all-day comfort.',
     colors: [

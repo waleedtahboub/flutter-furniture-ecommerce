@@ -27,4 +27,5 @@ class AppColor {
   static const Color star = Color(0xffFFDA46);
   static const Color skaGray = Color(0xffE3E5E5);
   static const Color dragHandleColor = Color(0xffCDCFD0);
+  static const Color cartItemContainerOutline = Color(0xffD4C4B6);
 }

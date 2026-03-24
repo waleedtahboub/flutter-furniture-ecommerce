@@ -38,7 +38,7 @@ class RatingSection extends StatelessWidget {
         ListView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
-          itemCount: 4,
+          itemCount: product.reviews.length,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final review = product.reviews[index];
