@@ -11,10 +11,18 @@ class HeadSection extends StatelessWidget {
       width: 335,
       child: Row(
         children: [
-          const SizedBox(
+          SizedBox(
             height: 69,
             width: 69,
-            child: CircleAvatar(backgroundColor: AppColor.primary),
+            child: CircleAvatar(
+              backgroundColor: AppColor.primary,
+              child: Text(
+                'I',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontSize: 24),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

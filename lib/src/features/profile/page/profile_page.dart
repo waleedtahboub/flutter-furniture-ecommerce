@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/src/features/profile/widgets/head_section.dart';
-import 'package:furniture_store_app/src/features/profile/widgets/custom_button.dart';
+import 'package:furniture_store_app/src/features/profile/widgets/profile_item.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -37,11 +37,11 @@ class ProfilePage extends StatelessWidget {
               text: 'Notifications',
             ),
             const CustomButton(
-              leadingIcon: Icons.notifications_none,
+              leadingIcon: Icons.shopping_basket_outlined,
               text: 'My orders',
             ),
             const CustomButton(
-              leadingIcon: Icons.notifications_none,
+              leadingIcon: Icons.delete_forever_outlined,
               text: 'Delete Account',
             ),
 
@@ -71,10 +71,7 @@ class ProfilePage extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.start,
             ),
-            const CustomButton(
-              leadingIcon: Icons.notifications_none,
-              text: 'Log out',
-            ),
+            const CustomButton(leadingIcon: Icons.logout, text: 'Log out'),
           ],
         ),
       ),
