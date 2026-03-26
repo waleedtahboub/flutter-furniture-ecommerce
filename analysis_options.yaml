@@ -1,12 +1,17 @@
 analyzer:
+  plugins:
+    - custom_lint
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
   errors:
+    invalid_annotation_target: ignore
     missing_required_param: error
     missing_return: warning
     todo: ignore
   exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
 
 linter:
   rules:
@@ -34,7 +39,6 @@ linter:
     - unrelated_type_equality_checks
     - valid_regexps
     - void_checks
-    - always_require_non_null_named_parameters
     - annotate_overrides
     - avoid_function_literals_in_foreach_calls
     - avoid_init_to_null
@@ -58,7 +62,6 @@ linter:
     - prefer_collection_literals
     - prefer_conditional_assignment
     - prefer_contains
-    - prefer_equal_for_default_values
     - prefer_final_fields
     - prefer_for_elements_to_map_fromIterable
     - prefer_function_declarations_over_variables
@@ -95,3 +98,4 @@ linter:
     - sized_box_for_whitespace
     - use_full_hex_values_for_flutter_colors
     - use_key_in_widget_constructors
+    

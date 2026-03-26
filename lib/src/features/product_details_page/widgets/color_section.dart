@@ -23,8 +23,7 @@ class _ColorSectionState extends State<ColorSection> {
           ).textTheme.titleMedium?.copyWith(fontSize: 19),
         ),
         const SizedBox(height: 4),
-
-        Row(
+        Row(    
           children: [
             ...List.generate(widget.product.colors.length, (index) {
               return Padding(
