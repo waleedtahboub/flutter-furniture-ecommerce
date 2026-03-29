@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1021956585555",
+    "project_id": "oakley-project",
+    "storage_bucket": "oakley-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021956585555:android:21b0a63a2a6d9c7728aea6",
+        "android_client_info": {
+          "package_name": "com.example.furniture_store_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpb1-pM5XiuLpOOCODudPOga64B5kjq2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
