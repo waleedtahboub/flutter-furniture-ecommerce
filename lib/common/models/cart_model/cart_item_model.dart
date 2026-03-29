@@ -14,3 +14,4 @@ abstract class CartItemModel with _$CartItemModel {
   factory CartItemModel.fromJson(Map<String, dynamic> json) =>
       _$CartItemModelFromJson(json);
 }
+
