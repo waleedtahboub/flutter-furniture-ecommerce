@@ -1,25 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_rich_text.dart';
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
+import 'package:furniture_store_app/src/features/auth/provider/signup_notifier.dart';
+import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:go_router/go_router.dart';
 
-class CreateAccount extends StatefulWidget {
+class CreateAccount extends ConsumerStatefulWidget {
   const CreateAccount({super.key});
   static const String routePath = '/CreateAccount';
 
   @override
-  State<CreateAccount> createState() => _CreateAccountState();
+  ConsumerState<CreateAccount> createState() => _CreateAccountState();
 }
 
-class _CreateAccountState extends State<CreateAccount> {
+class _CreateAccountState extends ConsumerState<CreateAccount> {
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(signUpProvider).isLoading;
+    ref.listen(signUpProvider, (previous, next) {
+      next.whenOrNull(
+        error: (error, stackTrace) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(error.toString())));
+        },
+        data: (_) {
+          context.go(HomePage.routePath);
+        },
+      );
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -51,6 +79,7 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
 
               TextFormField(
+                controller: _usernameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Username is required';
@@ -77,6 +106,7 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
 
               TextFormField(
+                controller: _emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Email is required';
@@ -105,6 +135,7 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
 
               TextFormField(
+                controller: _passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Password is required';
@@ -137,12 +168,22 @@ class _CreateAccountState extends State<CreateAccount> {
 
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // all fields valid — proceed
-                  }
-                },
-                child: const Text('Login'),
+                onPressed: isLoading
+                    ? null
+                    : () {
+                        if (_formKey.currentState!.validate()) {
+                          ref
+                              .read(signUpProvider.notifier)
+                              .signUP(
+                                _emailController.text,
+                                _passwordController.text,
+                                _usernameController.text,
+                              );
+                        }
+                      },
+                child: isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('Create Account'),
               ),
               const SizedBox(height: 20),
               SizedBox(
