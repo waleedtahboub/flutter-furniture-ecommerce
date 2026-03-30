@@ -9,6 +9,7 @@
       "dependencies": [
         "cupertino_icons",
         "equatable",
+        "firebase_core",
         "flutter",
         "flutter_riverpod",
         "freezed_annotation",
@@ -315,6 +316,16 @@
         "meta",
         "sky_engine",
         "vector_math"
+      ]
+    },
+    {
+      "name": "firebase_core",
+      "version": "4.6.0",
+      "dependencies": [
+        "firebase_core_platform_interface",
+        "firebase_core_web",
+        "flutter",
+        "meta"
       ]
     },
     {
@@ -1014,6 +1025,28 @@
       "name": "characters",
       "version": "1.4.1",
       "dependencies": []
+    },
+    {
+      "name": "firebase_core_web",
+      "version": "3.5.1",
+      "dependencies": [
+        "firebase_core_platform_interface",
+        "flutter",
+        "flutter_web_plugins",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "firebase_core_platform_interface",
+      "version": "6.0.3",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "flutter_test",
+        "meta",
+        "plugin_platform_interface"
+      ]
     },
     {
       "name": "typed_data",
