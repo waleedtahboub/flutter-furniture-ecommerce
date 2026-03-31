@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/common/resources/assets.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
@@ -6,23 +7,48 @@ import 'package:furniture_store_app/common/widgets/coustom_terms_and_privacy_ric
 import 'package:furniture_store_app/common/widgets/custom_social_button.dart';
 import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
 import 'package:furniture_store_app/src/features/auth/login/widgets/forgot_password_sheet.dart';
+import 'package:furniture_store_app/src/features/auth/provider/login_notifier.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
   static const String routePath = '/Login';
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(signInProvider).isLoading;
+    ref.listen(signInProvider, (previous, next) {
+      next.whenOrNull(
+        error: (error, stackTrace) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(error.toString())));
+        },
+        data: (_) {
+          context.go(HomePage.routePath);
+        },
+      );
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Login', style: Theme.of(context).textTheme.titleLarge),
@@ -51,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               TextFormField(
+                controller: _emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Email is required';
@@ -79,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               TextFormField(
+                controller: _passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Password is required';
@@ -123,13 +151,21 @@ class _LoginPageState extends State<LoginPage> {
               const CustomTermsAndPrivacyRichText(),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // all fields valid — proceed
-                    context.go(HomePage.routePath);
-                  }
-                },
-                child: const Text('Login'),
+                onPressed: isLoading
+                    ? null
+                    : () {
+                        if (_formKey.currentState!.validate()) {
+                          ref
+                              .read(signInProvider.notifier)
+                              .signIn(
+                                _emailController.text,
+                                _passwordController.text,
+                              );
+                        }
+                      },
+                child: isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('Login'),
               ),
               const SizedBox(height: 20),
               SizedBox(
