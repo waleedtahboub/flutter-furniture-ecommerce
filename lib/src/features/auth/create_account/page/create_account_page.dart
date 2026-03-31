@@ -35,8 +35,8 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(signUpProvider).isLoading;
-    ref.listen(signUpProvider, (previous, next) {
+    final isLoading = ref.watch(signupProvider).isLoading;
+    ref.listen(signupProvider, (previous, next) {
       next.whenOrNull(
         error: (error, stackTrace) {
           ScaffoldMessenger.of(
@@ -173,8 +173,8 @@ class _CreateAccountState extends ConsumerState<CreateAccount> {
                     : () {
                         if (_formKey.currentState!.validate()) {
                           ref
-                              .read(signUpProvider.notifier)
-                              .signUP(
+                              .read(signupProvider.notifier)
+                              .signUp(
                                 _emailController.text,
                                 _passwordController.text,
                                 _usernameController.text,
