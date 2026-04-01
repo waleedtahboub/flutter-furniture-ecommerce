@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
+import 'package:furniture_store_app/src/features/auth/provider/signout_notifier.dart';
 import 'package:furniture_store_app/src/features/profile/widgets/head_section.dart';
 import 'package:furniture_store_app/src/features/profile/widgets/profile_item.dart';
 import 'package:furniture_store_app/common/resources/constants.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -65,13 +69,35 @@ class ProfilePage extends StatelessWidget {
               text: 'Legal & Polices',
               onTap: () => launchMyUrl(Constants.privacy),
             ),
-
             Text(
               'Log out',
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.start,
             ),
-            const ProfileItem(leadingIcon: Icons.logout, text: 'Log out'),
+            Consumer(
+              builder: (context, ref, child) {
+                final isLoading = ref.watch(signoutProvider).isLoading;
+                ref.listen(signoutProvider, (previous, next) {
+                  next.whenOrNull(
+                    error: (error, stackTrace) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text(error.toString())));
+                    },
+                    data: (data) {
+                      context.go(LoginPage.routePath);
+                    },
+                  );
+                });
+                return ProfileItem(
+                  leadingIcon: Icons.logout,
+                  text: isLoading ? 'Logging out...' : 'Log out',
+                  onTap: isLoading
+                      ? null
+                      : () => ref.read(signoutProvider.notifier).signOut(),
+                );
+              },
+            ),
           ],
         ),
       ),
