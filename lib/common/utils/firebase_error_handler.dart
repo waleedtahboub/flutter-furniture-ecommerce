@@ -5,7 +5,6 @@ class FirebaseErrorHandler {
   // This is a static function so you don't even need to create the class
   static String handleAuthError(FirebaseAuthException e) {
     switch (e.code) {
-      // ---> YOU TYPE ALL YOUR CASES HERE! <---
       case 'invalid-email':
         return 'Please enter a valid email address.';
       case 'user-not-found':
@@ -26,7 +25,6 @@ class FirebaseErrorHandler {
         return 'No internet connection. Please check your network and try again.';
 
       default:
-        // Always return a fallback if it's a completely random error
         return 'An unknown error occurred. Please try again.';
     }
   }
