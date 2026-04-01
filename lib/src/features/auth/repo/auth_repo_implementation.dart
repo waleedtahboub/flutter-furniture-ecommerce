@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/utils/firebase_error_handler.dart';
 import 'package:furniture_store_app/src/features/auth/repo/auth_repo.dart';
+import 'package:furniture_store_app/common/models/user_model/user_model.dart';
 
 class AuthRepoImplementation implements AuthRepo {
   AuthRepoImplementation(this._auth, this._firestore);
@@ -21,12 +22,16 @@ class AuthRepoImplementation implements AuthRepo {
       );
 
       if (credential.user != null) {
-        await _firestore.collection('users').doc(credential.user!.uid).set({
-          'uid': credential.user!.uid,
-          'email': email,
-          'username': username,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
+        final newUser = UserModel(
+          email: email,
+          uid: credential.user!.uid,
+          username: username,
+        );
+
+        final userJson = newUser.toJson();
+        userJson['createdAt'] = FieldValue.serverTimestamp();
+
+        await _firestore.collection('users').doc(newUser.uid).set(userJson);
       }
       return credential;
     } on FirebaseAuthException catch (e) {
