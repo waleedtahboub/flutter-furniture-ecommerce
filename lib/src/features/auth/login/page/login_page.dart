@@ -35,8 +35,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(signInProvider).isLoading;
-    ref.listen(signInProvider, (previous, next) {
+    final isLoading = ref.watch(loginProvider).isLoading;
+    ref.listen(loginProvider, (previous, next) {
       next.whenOrNull(
         error: (error, stackTrace) {
           ScaffoldMessenger.of(
@@ -156,7 +156,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     : () {
                         if (_formKey.currentState!.validate()) {
                           ref
-                              .read(signInProvider.notifier)
+                              .read(loginProvider.notifier)
                               .signIn(
                                 _emailController.text,
                                 _passwordController.text,

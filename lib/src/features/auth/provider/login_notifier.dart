@@ -1,13 +1,15 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:furniture_store_app/src/features/auth/repo/auth_repo.dart';
 
-class LoginNotifier extends AutoDisposeAsyncNotifier<void> {
+part 'login_notifier.g.dart';
+
+@riverpod
+class LoginNotifier extends _$LoginNotifier {
   @override
   FutureOr<void> build() {
     return null;
   }
 
-  @riverpod
   Future<void> signIn(String email, String password) async {
     state = const AsyncLoading();
 
@@ -17,9 +19,3 @@ class LoginNotifier extends AutoDisposeAsyncNotifier<void> {
     });
   }
 }
-
-final signInProvider = AsyncNotifierProvider.autoDispose<LoginNotifier, void>(
-  () {
-    return LoginNotifier();
-  },
-);
