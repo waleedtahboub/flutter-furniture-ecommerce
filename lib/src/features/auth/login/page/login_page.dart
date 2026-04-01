@@ -116,7 +116,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   }
                   return null;
                 },
-                obscureText: showPassword,
+                obscureText: !showPassword,
                 decoration: InputDecoration(
                   hintText: 'Enter your password',
                   prefixIcon: const Icon(Icons.lock_outlined),
