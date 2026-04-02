@@ -55,6 +55,17 @@ class AuthRepoImplementation implements AuthRepo {
       throw 'Something went wrong. Please try again.';
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      throw FirebaseErrorHandler.handleAuthError(e);
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 }
 
 final authRepoProvider = Provider<AuthRepo>((ref) {
