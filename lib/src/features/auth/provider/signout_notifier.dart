@@ -11,11 +11,13 @@ class SignoutNotifier extends _$SignoutNotifier {
     // nothing to initialize
   }
 
-  FutureOr<void> signOut() async {
+  Future<bool> signOut() async {
     state = const AsyncLoading();
-
-    state = await AsyncValue.guard(() async {
+    try {
       await ref.read(authRepoProvider).signOut();
-    });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }

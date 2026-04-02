@@ -8,19 +8,18 @@ import 'package:furniture_store_app/common/resources/constants.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
   static const String routePath = '/profile';
+  Future<void> launchMyUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
-  Widget build(BuildContext context) {
-    Future<void> launchMyUrl(String urlString) async {
-      final Uri url = Uri.parse(urlString);
-      if (!await launchUrl(url)) {
-        throw Exception('Could not launch $url');
-      }
-    }
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(title: const Text('Profile')),
       body: Center(
@@ -74,28 +73,24 @@ class ProfilePage extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.start,
             ),
-            Consumer(
-              builder: (context, ref, child) {
-                final isLoading = ref.watch(signoutProvider).isLoading;
-                ref.listen(signoutProvider, (previous, next) {
-                  next.whenOrNull(
-                    error: (error, stackTrace) {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text(error.toString())));
-                    },
-                    data: (data) {
-                      context.go(LoginPage.routePath);
-                    },
+
+            ProfileItem(
+              leadingIcon: Icons.logout,
+              text: 'Log out',
+              onTap: () async {
+                final success = await ref
+                    .read(signoutProvider.notifier)
+                    .signOut();
+                if (!context.mounted) return;
+                if (success == true) {
+                  context.go(LoginPage.routePath);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Failed to log out. Please try again.'),
+                    ),
                   );
-                });
-                return ProfileItem(
-                  leadingIcon: Icons.logout,
-                  text: isLoading ? 'Logging out...' : 'Log out',
-                  onTap: isLoading
-                      ? null
-                      : () => ref.read(signoutProvider.notifier).signOut(),
-                );
+                }
               },
             ),
           ],

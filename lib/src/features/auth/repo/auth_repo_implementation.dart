@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_app/common/utils/firebase_error_handler.dart';
 import 'package:furniture_store_app/src/features/auth/repo/auth_repo.dart';
+import 'package:furniture_store_app/common/models/user_model/user_model.dart';
 
 class AuthRepoImplementation implements AuthRepo {
-  AuthRepoImplementation(this._auth);
+  AuthRepoImplementation(this._auth, this._firestore);
   final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore;
   @override
   Future<UserCredential> signUp(
     String email,
@@ -16,9 +20,22 @@ class AuthRepoImplementation implements AuthRepo {
         email: email,
         password: password,
       );
+
+      if (credential.user != null) {
+        final newUser = UserModel(
+          email: email,
+          uid: credential.user!.uid,
+          username: username,
+        );
+
+        final userJson = newUser.toJson();
+        userJson['createdAt'] = FieldValue.serverTimestamp();
+
+        await _firestore.collection('users').doc(newUser.uid).set(userJson);
+      }
       return credential;
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? 'An unknown error occurred  during  sign up.';
+      throw FirebaseErrorHandler.handleAuthError(e);
     } catch (e) {
       throw 'Something went wrong. Please try again.';
     }
@@ -33,7 +50,7 @@ class AuthRepoImplementation implements AuthRepo {
       );
       return credential;
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? 'An unknown error occurred  during  sign In.';
+      throw FirebaseErrorHandler.handleAuthError(e);
     } catch (e) {
       throw 'Something went wrong. Please try again.';
     }
@@ -42,9 +59,9 @@ class AuthRepoImplementation implements AuthRepo {
   @override
   Future<void> signOut() async {
     try {
-     await _auth.signOut();
+      await _auth.signOut();
     } on FirebaseAuthException catch (e) {
-      throw e.message ?? 'An unknown error occurred  during  logOut.';
+      throw FirebaseErrorHandler.handleAuthError(e);
     } catch (e) {
       throw 'Something went wrong. Please try again.';
     }
@@ -52,5 +69,8 @@ class AuthRepoImplementation implements AuthRepo {
 }
 
 final authRepoProvider = Provider<AuthRepo>((ref) {
-  return AuthRepoImplementation(FirebaseAuth.instance);
+  return AuthRepoImplementation(
+    FirebaseAuth.instance,
+    FirebaseFirestore.instance,
+  );
 });
