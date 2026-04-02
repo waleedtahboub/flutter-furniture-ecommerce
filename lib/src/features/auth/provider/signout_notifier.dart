@@ -12,7 +12,6 @@ class SignoutNotifier extends _$SignoutNotifier {
   }
 
   Future<bool> signOut() async {
-    state = const AsyncLoading();
     try {
       await ref.read(authRepoProvider).signOut();
       return true;
