@@ -33,7 +33,7 @@ final class SignoutNotifierProvider
   SignoutNotifier create() => SignoutNotifier();
 }
 
-String _$signoutNotifierHash() => r'34b1d1394382cd675af19d99bd08b2ba77effd39';
+String _$signoutNotifierHash() => r'7a77be5699e8459747608a29f31379f6a9a52ccb';
 
 abstract class _$SignoutNotifier extends $AsyncNotifier<void> {
   FutureOr<void> build();
