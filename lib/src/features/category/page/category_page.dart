@@ -19,8 +19,6 @@ class CategoryPage extends ConsumerWidget {
         leading: IconButton(
           onPressed: () {
             ref.read(categoriesProvider.notifier).seed();
-
-
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
@@ -45,7 +43,7 @@ class CategoryPage extends ConsumerWidget {
             final category = CategoryType.values[index];
             return CategoriesCards(
               title: category.title,
-              imagePath: category.imagePath,
+              imagePath: category.imageUrl,
             );
           },
         ),

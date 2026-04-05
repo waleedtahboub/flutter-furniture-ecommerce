@@ -56,7 +56,7 @@ class Categories extends StatelessWidget {
                         height: 58,
                         width: 58,
                         child: CircleAvatar(
-                          backgroundImage: AssetImage(category.imagePath),
+                          backgroundImage: NetworkImage(category.imageUrl),
                         ),
                       ),
                       const Spacer(),

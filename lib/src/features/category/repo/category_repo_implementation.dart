@@ -19,7 +19,7 @@ class CategoryRepoImplementation implements CategoryRepo {
         title: type.title,
         imageUrl: type.imageUrl,
       ).toJson();
-      await docRef.set(category);
+      await docRef.set(category); 
     }
   }
 

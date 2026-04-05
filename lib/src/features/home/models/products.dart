@@ -4,7 +4,7 @@ import 'package:furniture_store_app/src/features/category/models/category_type.d
 
 final List<ProductModel> products = [
   ProductModel(
-    imagePath: CategoryType.diningRoom.imagePath,
+    imagePath: CategoryType.diningRoom.imageUrl,
     name: 'Elegant Dining Table',
     category: CategoryType.diningRoom.title,
     rating: '4.7',
@@ -63,7 +63,7 @@ final List<ProductModel> products = [
     ],
   ),
   ProductModel(
-    imagePath: CategoryType.bedrooms.imagePath,
+    imagePath: CategoryType.bedrooms.imageUrl,
     name: 'Luxury King Bed Frame',
     category: CategoryType.bedrooms.title,
     rating: '5',
@@ -92,7 +92,7 @@ final List<ProductModel> products = [
     ],
   ),
   ProductModel(
-    imagePath: CategoryType.office.imagePath,
+    imagePath: CategoryType.office.imageUrl,
     name: 'Ergonomic Office Chair',
     category: CategoryType.office.title,
     rating: '4.6',

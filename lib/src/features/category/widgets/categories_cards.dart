@@ -23,7 +23,7 @@ class CategoriesCards extends StatelessWidget {
               child: SizedBox(
                 height: 186,
                 width: 157.5,
-                child: Image.asset(imagePath, fit: BoxFit.cover),
+                child: Image.network(imagePath, fit: BoxFit.cover),
               ),
             ),
             Container(
