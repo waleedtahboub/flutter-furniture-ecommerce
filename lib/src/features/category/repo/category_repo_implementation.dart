@@ -7,31 +7,22 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'category_repo_implementation.g.dart';
 
 class CategoryRepoImplementation implements CategoryRepo {
-  CategoryRepoImplementation(this._firestore);
+  CategoryRepoImplementation();
 
-  final FirebaseFirestore _firestore;
-
-  CollectionReference<Map<String, dynamic>> get _collection =>
-      _firestore.collection('categories');
-
- 
-
+  final _collection = FirebaseFirestore.instance.collection('categories');
   @override
   Future<void> addCategories() async {
     for (final type in CategoryType.values) {
+      final docRef = _collection.doc();
       final category = CategoryModel(
-        id: type.name,
+        id: docRef.id,
         title: type.title,
         imageUrl: type.imageUrl,
-      );
-
-      await _collection.doc(type.name).set(
-            category.toJson(),
-            SetOptions(merge: true),
-          );
+      ).toJson();
+      await docRef.set(category);
     }
   }
-  
+
   @override
   Future<List<CategoryModel>> fetchAllCategories() {
     // TODO: implement fetchAllCategories
@@ -41,5 +32,5 @@ class CategoryRepoImplementation implements CategoryRepo {
 
 @Riverpod(keepAlive: true)
 CategoryRepo categoryRepo(Ref ref) {
-  return CategoryRepoImplementation(FirebaseFirestore.instance);
+  return CategoryRepoImplementation();
 }
