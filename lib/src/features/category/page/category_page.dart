@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/src/features/category/models/category_type.dart';
+import 'package:furniture_store_app/src/features/category/provider/category_provider.dart';
 import 'package:furniture_store_app/src/features/category/widgets/categories_cards.dart';
 
-class CategoryPage extends StatelessWidget {
+class CategoryPage extends ConsumerWidget {
   const CategoryPage({super.key});
   static const String routePath = '/category';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -15,7 +17,11 @@ class CategoryPage extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            ref.read(categoriesProvider.notifier).seed();
+
+
+          },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
         actions: [
