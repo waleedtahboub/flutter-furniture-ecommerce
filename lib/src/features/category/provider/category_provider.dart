@@ -6,18 +6,16 @@ part 'category_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class CategoriesNotifier extends _$CategoriesNotifier {
-  
   @override
   FutureOr<List<CategoryModel>> build() {
     return ref.read(categoryRepoProvider).fetchAllCategories();
   }
 
-  Future<void> seed() async {
+  Future<void> addCategories() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       await ref.read(categoryRepoProvider).addCategories();
       return [];
     });
-
   }
 }
