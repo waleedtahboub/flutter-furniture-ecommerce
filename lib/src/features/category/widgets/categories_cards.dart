@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 
@@ -23,7 +24,13 @@ class CategoriesCards extends StatelessWidget {
               child: SizedBox(
                 height: 186,
                 width: 157.5,
-                child: Image.network(imagePath, fit: BoxFit.cover),
+                child: CachedNetworkImage(
+                  imageUrl: imagePath,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
             Container(

@@ -8,7 +8,8 @@ part 'category_provider.g.dart';
 class CategoriesNotifier extends _$CategoriesNotifier {
   @override
   FutureOr<List<CategoryModel>> build() {
-    return ref.read(categoryRepoProvider).fetchAllCategories();
+    fetchAllCategories();
+    return [];
   }
 
   Future<void> addCategories() async {
@@ -16,6 +17,13 @@ class CategoriesNotifier extends _$CategoriesNotifier {
     state = await AsyncValue.guard(() async {
       await ref.read(categoryRepoProvider).addCategories();
       return [];
+    });
+  }
+
+  Future<void> fetchAllCategories() async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() {
+      return ref.read(categoryRepoProvider).fetchAllCategories();
     });
   }
 }

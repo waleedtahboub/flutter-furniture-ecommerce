@@ -26,11 +26,10 @@ class CategoryRepoImplementation implements CategoryRepo {
   @override
   Future<List<CategoryModel>> fetchAllCategories() async {
     final snapshot = await _collection.get();
-    List<CategoryModel> categoryList = [];
-    for (final doc in snapshot.docs) {
-      categoryList.add(CategoryModel.fromJson(doc.data()));
-    }
-    return categoryList;
+
+    return snapshot.docs
+        .map((doc) => CategoryModel.fromJson(doc.data()))
+        .toList(); 
   }
 }
 
