@@ -11,16 +11,19 @@ class CategoryPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoriesState = ref.watch(categoriesProvider);
+    final width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Categories',
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
+        leading: width < AppBreakpoints.desktop
+            ? IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_back_ios_new),
+              )
+            : null,
         actions: [
           IconButton(
             onPressed: () {},
@@ -33,7 +36,6 @@ class CategoryPage extends ConsumerWidget {
         data: (data) {
           return LayoutBuilder(
             builder: (context, constraints) {
-              final width = constraints.maxWidth;
               int crossAxisCount;
               if (width >= AppBreakpoints.desktop) {
                 crossAxisCount = 4;
@@ -47,8 +49,8 @@ class CategoryPage extends ConsumerWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.builder(
                   itemCount: data.length,
-                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:crossAxisCount,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 10,
                   ),
@@ -56,6 +58,7 @@ class CategoryPage extends ConsumerWidget {
                     final category = data[index];
                     return CategoriesCards(
                       title: category.title,
+                      titleFontSize: AppBreakpoints.titleFontSize(width),
                       imagePath: category.imageUrl,
                     );
                   },
