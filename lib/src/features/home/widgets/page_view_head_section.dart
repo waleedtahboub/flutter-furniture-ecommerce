@@ -12,9 +12,9 @@ class PageViewHeadSection extends StatefulWidget {
 class _PageViewHeadSectionState extends State<PageViewHeadSection> {
   final PageController pageController = PageController(initialPage: 0);
   List<Widget> headSectionImages = [
-    Image.asset(CategoryType.diningRoom.imagePath, fit: BoxFit.fill),
-    Image.asset(CategoryType.bedrooms.imagePath, fit: BoxFit.cover),
-    Image.asset(CategoryType.guestsRoom.imagePath, fit: BoxFit.cover),
+    Image.network(CategoryType.diningRoom.imageUrl, fit: BoxFit.fill),
+    Image.network(CategoryType.bedrooms.imageUrl, fit: BoxFit.cover),
+    Image.network(CategoryType.guestsRoom.imageUrl, fit: BoxFit.cover),
   ];
   int activePicture = 0;
 

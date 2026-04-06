@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 
@@ -6,9 +7,11 @@ class CategoriesCards extends StatelessWidget {
     super.key,
     required this.title,
     required this.imagePath,
+    this.titleFontSize,
   });
   final String title;
   final String imagePath;
+  final double? titleFontSize;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -23,7 +26,22 @@ class CategoriesCards extends StatelessWidget {
               child: SizedBox(
                 height: 186,
                 width: 157.5,
-                child: Image.asset(imagePath, fit: BoxFit.cover),
+                child: CachedNetworkImage(
+                  imageUrl: imagePath,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => const Center(
+                    child: SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: Icon(Icons.error),
+                  ),
+                ),
               ),
             ),
             Container(
@@ -34,7 +52,9 @@ class CategoriesCards extends StatelessWidget {
                 padding: const EdgeInsets.all(5.0),
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(fontSize: titleFontSize),
                 ),
               ),
             ),

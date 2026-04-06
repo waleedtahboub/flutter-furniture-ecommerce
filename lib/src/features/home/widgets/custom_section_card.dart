@@ -48,7 +48,7 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Image.asset(
+                    child: Image.network(
                       widget.product.imagePath,
                       fit: BoxFit.cover,
                     ),
