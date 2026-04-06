@@ -19,14 +19,18 @@ class CategoryRepoImplementation implements CategoryRepo {
         title: type.title,
         imageUrl: type.imageUrl,
       ).toJson();
-      await docRef.set(category); 
+      await docRef.set(category);
     }
   }
 
   @override
-  Future<List<CategoryModel>> fetchAllCategories() {
-    // TODO: implement fetchAllCategories
-    throw UnimplementedError();
+  Future<List<CategoryModel>> fetchAllCategories() async {
+    final snapshot = await _collection.get();
+    List<CategoryModel> categoryList = [];
+    for (final doc in snapshot.docs) {
+      categoryList.add(CategoryModel.fromJson(doc.data()));
+    }
+    return categoryList;
   }
 }
 

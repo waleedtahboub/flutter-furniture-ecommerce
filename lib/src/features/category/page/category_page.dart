@@ -10,6 +10,7 @@ class CategoryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final categoriesState = ref.watch(categoriesProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -17,9 +18,7 @@ class CategoryPage extends ConsumerWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
         leading: IconButton(
-          onPressed: () {
-            ref.read(categoriesProvider.notifier).seed();
-          },
+          onPressed: () {},
           icon: const Icon(Icons.arrow_back_ios_new),
         ),
         actions: [
@@ -30,23 +29,45 @@ class CategoryPage extends ConsumerWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          itemCount: CategoryType.values.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 10,
-          ),
-          itemBuilder: (context, index) {
-            final category = CategoryType.values[index];
-            return CategoriesCards(
-              title: category.title,
-              imagePath: category.imageUrl,
-            );
-          },
-        ),
+      body: categoriesState.when(
+        data: (data) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              itemCount: data.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                final category = data[index];
+                return CategoriesCards(
+                  title: category.title,
+                  imagePath: category.imageUrl,
+                );
+              },
+            ),
+          );
+        },
+        loading: () {
+          return const Center(child: CircularProgressIndicator());
+        },
+        error: (error, stackTrace) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Failed to load categories'),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () => ref.invalidate(categoriesProvider),
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

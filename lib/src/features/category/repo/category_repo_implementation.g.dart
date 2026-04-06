@@ -48,4 +48,4 @@ final class CategoryRepoProvider
   }
 }
 
-String _$categoryRepoHash() => r'7258977c92fe17dca436acc6521f2386afafe6e4';
+String _$categoryRepoHash() => r'bcab7a6e2427354da1b4f0c46f3c3e47b97d4601';
