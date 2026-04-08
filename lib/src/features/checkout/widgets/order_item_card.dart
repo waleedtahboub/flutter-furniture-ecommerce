@@ -29,8 +29,8 @@ class OrderItemCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Image.asset(
-                  cartItem.product.imagePath,
+                child: Image.network(
+                  cartItem.product.imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),

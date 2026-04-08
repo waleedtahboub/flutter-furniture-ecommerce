@@ -7,17 +7,24 @@ part 'product_model.g.dart';
 
 @freezed
 abstract class ProductModel with _$ProductModel {
+  @JsonSerializable(explicitToJson: true)
   factory ProductModel({
-    required String imagePath,
+    required String id,
+    required String imageUrl,
     required String name,
-    required String category,
-    required String rating,
+    required String categoryId,
+    required String categoryName,
+    required double rating,
     required double basePrice,
     required double salePrice,
-    @Default(false) bool isFavorite,
-    @Default('') String description,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    @Default(false)
+    bool isFavorite,
+
+    required String description,
     required List<ReviewModel> reviews,
     required List<String> colors,
+    required DateTime createdAt,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

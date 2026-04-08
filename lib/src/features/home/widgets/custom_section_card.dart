@@ -49,7 +49,7 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Image.network(
-                      widget.product.imagePath,
+                      widget.product.imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -96,14 +96,14 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                     children: [
                       const SizedBox(height: 22),
                       Text(
-                        widget.product.category,
+                        widget.product.categoryName,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const Spacer(),
                       const Icon(Icons.star, color: AppColor.star, size: 18),
 
                       Text(
-                        widget.product.rating,
+                        widget.product.rating.toStringAsFixed(1),
                         style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
