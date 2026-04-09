@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
+import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:furniture_store_app/src/features/home/widgets/best_seller.dart';
 import 'package:furniture_store_app/src/features/home/widgets/categories.dart';
 import 'package:furniture_store_app/src/features/home/widgets/discounts_by_percentage.dart';
