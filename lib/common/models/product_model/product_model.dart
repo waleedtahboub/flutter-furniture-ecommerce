@@ -17,6 +17,10 @@ abstract class ProductModel with _$ProductModel {
     required double rating,
     required double basePrice,
     required double salePrice,
+    @Default(false) bool isBestseller,
+    @Default(false) bool isFlashDeal,
+    @Default(false) bool is50PercentOff,
+
     @JsonKey(includeFromJson: false, includeToJson: false)
     @Default(false)
     bool isFavorite,

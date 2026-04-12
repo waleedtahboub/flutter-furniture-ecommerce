@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:furniture_store_app/src/features/home/models/products.dart';
 import 'package:furniture_store_app/src/features/product_details_page/repo/products_repo.dart';
@@ -27,6 +28,15 @@ class ProductsRepoImplementation implements ProductsRepo {
 
       await docRef.set(updatedProduct);
     }
+  }
+
+  @override
+  Future<List<ProductModel>> fetchProducts() async {
+    final snapshot = await _collection.get();
+
+    return snapshot.docs
+        .map((doc) => ProductModel.fromJson(doc.data()))
+        .toList();
   }
 }
 

@@ -13,7 +13,6 @@ import 'package:furniture_store_app/src/features/home/widgets/search_bar.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_page_view.dart';
 import 'package:furniture_store_app/src/features/product_details_page/products/provider/products_provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:furniture_store_app/src/features/home/models/products.dart';
 
 abstract class ProductCallback {
   void onFavoriteToggled(ProductModel product);
@@ -30,6 +29,7 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage>
     implements ProductCallback {
   @override
+  //todo move this to the provider so you finish the logic 
   void onFavoriteToggled(ProductModel product) {
     setState(() {
       final index = products.indexOf(product);
@@ -39,7 +39,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final productState = ref.watch(productsProvider);
+    final homeState = ref.watch(homeProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -74,8 +74,18 @@ class _HomePageState extends ConsumerState<HomePage>
         centerTitle: false,
       ),
       backgroundColor: Colors.white,
-      body: productState.when(
+      body: homeState.when(
         data: (data) {
+          final bestSeller = data.products
+              .where((element) => element.isBestseller)
+              .toList();
+          final flashDeals = data.products
+              .where((element) => element.isFlashDeal)
+              .toList();
+          final isFiftyOFF = data.products
+              .where((element) => element.is50PercentOff)
+              .toList();
+
           return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -86,9 +96,13 @@ class _HomePageState extends ConsumerState<HomePage>
                 const SizedBox(height: 25),
                 const PageViewHeadSection(),
                 const Categories(),
-                BestSeller(favoriteCallback: this),
-                FlashDeals(favoriteCallback: this),
-                DiscountsByPercentage(favoriteCallback: this),
+                BestSeller(favoriteCallback: this, products: bestSeller),
+                FlashDeals(favoriteCallback: this, products: flashDeals),
+
+                DiscountsByPercentage(
+                  favoriteCallback: this,
+                  products: isFiftyOFF,
+                ),
                 TextButton(
                   onPressed: () => context.go(LoginPage.routePath),
                   child: const Text('click me to go to login page'),

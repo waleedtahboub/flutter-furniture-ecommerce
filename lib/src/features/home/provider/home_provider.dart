@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:furniture_store_app/src/features/product_details_page/repo/products_repo.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:furniture_store_app/src/features/home/models/home_state.dart';
@@ -11,9 +12,8 @@ part 'home_provider.g.dart';
 class HomeNotifier extends _$HomeNotifier {
   @override
   FutureOr<HomeState> build() async {
-   return  fetchHomeData() ;
+    return fetchHomeData();
   }
-
 
   Future<void> addBanner() async {
     state = const AsyncLoading();
@@ -24,15 +24,9 @@ class HomeNotifier extends _$HomeNotifier {
   }
 
   Future<HomeState> fetchHomeData() async {
-   final banners = await ref.read(bannerRepoProvider).fetchAllBanners();
+    final banners = await ref.read(bannerRepoProvider).fetchAllBanners();
+    final products = await ref.read(productsRepoProvider).fetchProducts();
 
-    return HomeState(
-      banners: banners,
-      isLoading: false,
-    );
-
+    return HomeState(banners: banners, isLoading: false, products: products);
   }
-
-
-
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/models/products.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
 
 class BestSeller extends StatelessWidget {
-  const BestSeller({super.key, required this.favoriteCallback});
+  const BestSeller({super.key, required this.favoriteCallback, required this.products});
 
   final ProductCallback favoriteCallback;
-
+  final List<ProductModel> products;
   @override
   Widget build(BuildContext context) {
     return Column(

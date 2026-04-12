@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/models/products.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 
 class FlashDeals extends StatelessWidget {
-  const FlashDeals({super.key, required this.favoriteCallback});
-
+  const FlashDeals({super.key, required this.favoriteCallback, required this.products});
+  final List<ProductModel> products; 
   final ProductCallback favoriteCallback;
 
   @override
