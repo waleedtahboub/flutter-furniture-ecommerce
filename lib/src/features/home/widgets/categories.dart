@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_store_app/common/models/category_model/category_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/category/models/category_type.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
 import 'package:go_router/go_router.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key});
-
+  const Categories({super.key, required this.categories});
+  final List<CategoryModel> categories;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,9 +43,9 @@ class Categories extends StatelessWidget {
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             scrollDirection: Axis.horizontal,
-            itemCount: 4,
+            itemCount: categories.length,
             itemBuilder: (context, index) {
-              final category = CategoryType.values[index];
+              final category = categories[index];
               return InkWell(
                 onTap: () {},
                 child: SizedBox(

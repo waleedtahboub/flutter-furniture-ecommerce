@@ -4,6 +4,7 @@ import 'package:furniture_store_app/common/models/product_model/product_model.da
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
+import 'package:furniture_store_app/src/features/home/widgets/all_procuts.dart';
 import 'package:furniture_store_app/src/features/home/widgets/best_seller.dart';
 import 'package:furniture_store_app/src/features/home/widgets/categories.dart';
 import 'package:furniture_store_app/src/features/home/widgets/discounts_by_percentage.dart';
@@ -11,7 +12,6 @@ import 'package:furniture_store_app/src/features/home/widgets/flash_deals.dart';
 import 'package:furniture_store_app/src/features/home/widgets/page_view_head_section.dart';
 import 'package:furniture_store_app/src/features/home/widgets/search_bar.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_page_view.dart';
-import 'package:furniture_store_app/src/features/product_details_page/products/provider/products_provider.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class ProductCallback {
@@ -28,12 +28,30 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage>
     implements ProductCallback {
+  final ScrollController _scrollController = ScrollController();
   @override
-  //todo move this to the provider so you finish the logic 
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 200) {
+        ref.read(homeProvider.notifier).fetchMoreProducts();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose(); // Kill the controller to save memory
+    super.dispose();
+  }
+
+  @override
+  //todo move this to the provider so you finish the logic
   void onFavoriteToggled(ProductModel product) {
     setState(() {
-      final index = products.indexOf(product);
-      products[index] = product.copyWith(isFavorite: !product.isFavorite);
+      // final index = products.indexOf(product);
+      // products[index] = product.copyWith(isFavorite: !product.isFavorite);
     });
   }
 
@@ -76,17 +94,12 @@ class _HomePageState extends ConsumerState<HomePage>
       backgroundColor: Colors.white,
       body: homeState.when(
         data: (data) {
-          final bestSeller = data.products
-              .where((element) => element.isBestseller)
-              .toList();
-          final flashDeals = data.products
-              .where((element) => element.isFlashDeal)
-              .toList();
-          final isFiftyOFF = data.products
-              .where((element) => element.is50PercentOff)
-              .toList();
-
+          final bestSeller = data.bestSeller;
+          final flashDeals = data.flashDeals;
+          final isFiftyOFF = data.isFiftyOFF;
+          final categories = data.categories;
           return SingleChildScrollView(
+            controller: _scrollController,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,7 +108,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 const CustomSearchBar(),
                 const SizedBox(height: 25),
                 const PageViewHeadSection(),
-                const Categories(),
+                Categories(categories: categories),
                 BestSeller(favoriteCallback: this, products: bestSeller),
                 FlashDeals(favoriteCallback: this, products: flashDeals),
 
@@ -109,6 +122,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
 
                 const SizedBox(height: 16),
+                AllProducts(products: data.products, favoriteCallback: this,  isFetchingMore: data.isFetchingMore,),
               ],
             ),
           );

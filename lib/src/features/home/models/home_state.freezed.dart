@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeState {
 
- List<BannerModel> get banners; List<CategoryModel> get categories; List<ProductModel> get products; bool get isLoading; String? get errorMessage;
+ List<BannerModel> get banners; List<CategoryModel> get categories; List<ProductModel> get products; bool get isLoading; bool get hasMore; bool get isFetchingMore; String? get errorMessage;
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&const DeepCollectionEquality().equals(other.banners, banners)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&const DeepCollectionEquality().equals(other.banners, banners)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.isFetchingMore, isFetchingMore) || other.isFetchingMore == isFetchingMore)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(banners),const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(products),isLoading,errorMessage);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(banners),const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(products),isLoading,hasMore,isFetchingMore,errorMessage);
 
 @override
 String toString() {
-  return 'HomeState(banners: $banners, categories: $categories, products: $products, isLoading: $isLoading, errorMessage: $errorMessage)';
+  return 'HomeState(banners: $banners, categories: $categories, products: $products, isLoading: $isLoading, hasMore: $hasMore, isFetchingMore: $isFetchingMore, errorMessage: $errorMessage)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $HomeStateCopyWith<$Res>  {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
 @useResult
 $Res call({
- List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> products, bool isLoading, String? errorMessage
+ List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> products, bool isLoading, bool hasMore, bool isFetchingMore, String? errorMessage
 });
 
 
@@ -62,12 +62,14 @@ class _$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? banners = null,Object? categories = null,Object? products = null,Object? isLoading = null,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? banners = null,Object? categories = null,Object? products = null,Object? isLoading = null,Object? hasMore = null,Object? isFetchingMore = null,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
 banners: null == banners ? _self.banners : banners // ignore: cast_nullable_to_non_nullable
 as List<BannerModel>,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
 as List<CategoryModel>,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingMore: null == isFetchingMore ? _self.isFetchingMore : isFetchingMore // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -154,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> products,  bool isLoading,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> products,  bool isLoading,  bool hasMore,  bool isFetchingMore,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
-return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_that.errorMessage);case _:
+return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_that.hasMore,_that.isFetchingMore,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -175,10 +177,10 @@ return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> products,  bool isLoading,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> products,  bool isLoading,  bool hasMore,  bool isFetchingMore,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _HomeState():
-return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_that.errorMessage);case _:
+return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_that.hasMore,_that.isFetchingMore,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +197,10 @@ return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> products,  bool isLoading,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> products,  bool isLoading,  bool hasMore,  bool isFetchingMore,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
-return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_that.errorMessage);case _:
+return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_that.hasMore,_that.isFetchingMore,_that.errorMessage);case _:
   return null;
 
 }
@@ -209,8 +211,8 @@ return $default(_that.banners,_that.categories,_that.products,_that.isLoading,_t
 /// @nodoc
 
 
-class _HomeState implements HomeState {
-  const _HomeState({final  List<BannerModel> banners = const [], final  List<CategoryModel> categories = const [], final  List<ProductModel> products = const [], this.isLoading = false, this.errorMessage}): _banners = banners,_categories = categories,_products = products;
+class _HomeState extends HomeState {
+  const _HomeState({final  List<BannerModel> banners = const [], final  List<CategoryModel> categories = const [], final  List<ProductModel> products = const [], this.isLoading = false, this.hasMore = true, this.isFetchingMore = false, this.errorMessage}): _banners = banners,_categories = categories,_products = products,super._();
   
 
  final  List<BannerModel> _banners;
@@ -235,6 +237,8 @@ class _HomeState implements HomeState {
 }
 
 @override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  bool hasMore;
+@override@JsonKey() final  bool isFetchingMore;
 @override final  String? errorMessage;
 
 /// Create a copy of HomeState
@@ -247,16 +251,16 @@ _$HomeStateCopyWith<_HomeState> get copyWith => __$HomeStateCopyWithImpl<_HomeSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&const DeepCollectionEquality().equals(other._banners, _banners)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&const DeepCollectionEquality().equals(other._banners, _banners)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.isFetchingMore, isFetchingMore) || other.isFetchingMore == isFetchingMore)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_banners),const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_products),isLoading,errorMessage);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_banners),const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_products),isLoading,hasMore,isFetchingMore,errorMessage);
 
 @override
 String toString() {
-  return 'HomeState(banners: $banners, categories: $categories, products: $products, isLoading: $isLoading, errorMessage: $errorMessage)';
+  return 'HomeState(banners: $banners, categories: $categories, products: $products, isLoading: $isLoading, hasMore: $hasMore, isFetchingMore: $isFetchingMore, errorMessage: $errorMessage)';
 }
 
 
@@ -267,7 +271,7 @@ abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Re
   factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> products, bool isLoading, String? errorMessage
+ List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> products, bool isLoading, bool hasMore, bool isFetchingMore, String? errorMessage
 });
 
 
@@ -284,12 +288,14 @@ class __$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? banners = null,Object? categories = null,Object? products = null,Object? isLoading = null,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? banners = null,Object? categories = null,Object? products = null,Object? isLoading = null,Object? hasMore = null,Object? isFetchingMore = null,Object? errorMessage = freezed,}) {
   return _then(_HomeState(
 banners: null == banners ? _self._banners : banners // ignore: cast_nullable_to_non_nullable
 as List<BannerModel>,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
 as List<CategoryModel>,products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingMore: null == isFetchingMore ? _self.isFetchingMore : isFetchingMore // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

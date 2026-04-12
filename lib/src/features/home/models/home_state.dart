@@ -7,12 +7,22 @@ part 'home_state.freezed.dart';
 
 @freezed
 abstract class HomeState with _$HomeState {
- const  factory HomeState({
+  const HomeState._();
+  const factory HomeState({
     @Default([]) List<BannerModel> banners,
     @Default([]) List<CategoryModel> categories,
 
     @Default([]) List<ProductModel> products,
     @Default(false) bool isLoading,
+    @Default(true) bool hasMore, 
+    @Default(false) bool isFetchingMore,
     String? errorMessage,
   }) = _HomeState;
+
+  List<ProductModel> get bestSeller =>
+      products.where((element) => element.isBestseller).toList();
+  List<ProductModel> get flashDeals =>
+      products.where((element) => element.isFlashDeal).toList();
+  List<ProductModel> get isFiftyOFF =>
+      products.where((element) => element.is50PercentOff).toList();
 }
