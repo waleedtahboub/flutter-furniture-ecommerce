@@ -12,8 +12,23 @@ class PaginatedProducts {
 abstract class ProductsRepo {
   Future<void> addProducts();
 
+
   Future<PaginatedProducts> fetchProducts({
     int limit = 10,
+    DocumentSnapshot? startAfter,
+  });
+  Future<PaginatedProducts> fetchBestseller({
+    int limit = 10,
+    DocumentSnapshot? startAfter,
+  });
+
+  Future<PaginatedProducts> fetchByPercentage({
+    int limit = 10 ,
+    DocumentSnapshot? startAfter,
+  });
+
+  Future<PaginatedProducts> fetchFlashDeals ({
+    int limit = 10, 
     DocumentSnapshot? startAfter,
   });
 }

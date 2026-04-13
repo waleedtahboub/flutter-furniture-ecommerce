@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
+import 'package:furniture_store_app/common/app/router/app_router.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
+import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
+import 'package:go_router/go_router.dart';
 
 class DiscountsByPercentage extends StatelessWidget {
   const DiscountsByPercentage({
@@ -25,7 +28,16 @@ class DiscountsByPercentage extends StatelessWidget {
               Text('50% off', style: Theme.of(context).textTheme.titleMedium),
               const Spacer(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.push(
+                    ViewAllProductsPage.routePath,
+                    extra: ViewAllParams(
+                      title: '50% off',
+                      products: products,
+                      favoriteCallback: favoriteCallback,
+                    ),
+                  );
+                },
                 child: Text(
                   'View all',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(

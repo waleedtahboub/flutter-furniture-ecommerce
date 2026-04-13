@@ -5,6 +5,7 @@ import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
 import 'package:furniture_store_app/src/features/checkout/page/checkout_page.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
 import 'package:furniture_store_app/src/features/main/main_shell_scaffold.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/get_started.dart';
 import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_page_view.dart';
@@ -12,12 +13,35 @@ import 'package:furniture_store_app/src/features/product_details_page/page/produ
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
+class ViewAllParams {
+
+  ViewAllParams({
+    required this.title,
+    required this.products,
+    required this.favoriteCallback,
+  });
+  final String title;
+  final List<ProductModel> products;
+  final ProductCallback favoriteCallback;
+}
+
 final myRouter = GoRouter(
   initialLocation: HomePage.routePath,
   routes: [
     GoRoute(
       path: LoginPage.routePath,
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: ViewAllProductsPage.routePath,
+      builder: (context, state) {
+        final params = state.extra as ViewAllParams;
+        return ViewAllProductsPage(
+          title: params.title,
+          products: params.products,
+          favoriteCallback: params.favoriteCallback,
+        );
+      },
     ),
     GoRoute(
       path: ProductDetailsPage.routePath,

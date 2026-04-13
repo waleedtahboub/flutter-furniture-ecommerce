@@ -6,6 +6,8 @@ import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:furniture_store_app/src/features/home/widgets/product_badge.dart';
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 
 class CustomAllProducts extends StatefulWidget {
@@ -25,119 +27,207 @@ class CustomAllProducts extends StatefulWidget {
 class _CustomSectionCardState extends State<CustomAllProducts> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        context.push(ProductDetailsPage.routePath, extra: widget.product);
-      },
-      child: SizedBox(
-        width: 340,
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(
+              13,
+            ), // 13 is ~0.05 opacity in 0-255 scale
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: () {
+          context.push(ProductDetailsPage.routePath, extra: widget.product);
+        },
+        borderRadius: BorderRadius.circular(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 330,
-              width: 330,
-              child: Stack(
-                children: [
-                  Container(
-                    clipBehavior: Clip.antiAlias,
-                    height: 200,
-                    width: 330,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Image.network(
-                      widget.product.imageUrl,
-                      fit: BoxFit.contain,
+            // Image & Badges Section
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: AppColor.secondary,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16),
                     ),
                   ),
-                  Positioned(
-                    top: 8,
-                    right: 8,
-
-                    child: InkWell(
-                      onTap: () {
-                        // Trigger the callback when tapped!
-                        widget.favoriteCallback.onFavoriteToggled(
-                          widget.product,
-                        );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
+                  child: Hero(
+                    tag: 'product-${widget.product.id}',
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.product.imageUrl,
+                        fit: BoxFit.contain,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
                         ),
-                        child: Icon(
-                          widget.product.isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          size: 20,
-                          color: widget.product.isFavorite
-                              ? Colors.red
-                              : Theme.of(context).colorScheme.onSecondary,
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.image_not_supported_outlined,
+                          color: AppColor.onSecondary,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+
+                // Badges
+                Positioned(
+                  top: 12,
+                  left: 12,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (widget.product.isBestseller)
+                        const ProductBadge(
+                          text: 'BESTSELLER',
+                          color: Color(0xff1DB954),
+                        ),
+                      if (widget.product.is50PercentOff)
+                        const Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: ProductBadge(
+                            text: '50% OFF',
+                            color: Color(0xffEE3633),
+                          ),
+                        ),
+                      if (widget.product.isFlashDeal)
+                        const Padding(
+                          padding: EdgeInsets.only(top: 4),
+                          child: ProductBadge(
+                            text: 'FLASH DEAL',
+                            color: Color(0xffD47222),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+
+                // Favorite Button
+                Positioned(
+                  top: 12,
+                  right: 12,
+                  child: InkWell(
+                    onTap: () {
+                      widget.favoriteCallback.onFavoriteToggled(widget.product);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(230), // ~0.9 opacity
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withAlpha(25), // ~0.1 opacity
+                            blurRadius: 4,
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        widget.product.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        size: 20,
+                        color: widget.product.isFavorite
+                            ? Colors.red
+                            : AppColor.onSecondary,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 4),
-            SizedBox(
-              height: 88,
-              width: 230,
+
+            // Info Section
+            Padding(
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(height: 22),
                       Text(
-                        widget.product.categoryName,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        widget.product.categoryName.toUpperCase(),
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: AppColor.onSecondary,
+                          letterSpacing: 1.2,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      const Spacer(),
-                      const Icon(Icons.star, color: AppColor.star, size: 18),
-
-                      Text(
-                        widget.product.rating.toStringAsFixed(1),
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: AppColor.star,
+                            size: 14,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            widget.product.rating.toStringAsFixed(1),
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 8),
                   Text(
                     widget.product.name,
-                    style: Theme.of(context).textTheme.titleSmall,
-                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                     maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        AppCurrencyFormatter.format(widget.product.basePrice),
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Text(
-                        AppCurrencyFormatter.format(widget.product.salePrice),
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColor.onSecondary,
-                          decoration: TextDecoration.lineThrough,
-                          decorationThickness: 2,
-                          decorationColor: AppColor.onSecondary,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (widget.product.salePrice <
+                              widget.product.basePrice)
+                            Text(
+                              AppCurrencyFormatter.format(
+                                widget.product.basePrice,
+                              ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(
+                                    color: AppColor.onSecondary,
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                            ),
+                          Text(
+                            AppCurrencyFormatter.format(
+                              widget.product.salePrice,
+                            ),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: AppColor.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ],
                       ),
 
-                      const Spacer(),
+                      // Add to Cart Button
                       InkWell(
                         onTap: () {
                           int existingIndex = myCartItems.indexWhere(
                             (element) =>
-                                element.product.name == widget.product.name,
+                                element.product.id == widget.product.id,
                           );
                           setState(() {
                             if (existingIndex != -1) {
@@ -155,17 +245,23 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                               );
                             }
                           });
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Added to cart!'),
+                              duration: Duration(seconds: 1),
+                            ),
+                          );
                         },
                         child: Container(
-                          height: 24,
-                          width: 24,
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(18),
+                            color: AppColor.primary,
+                            borderRadius: BorderRadius.circular(12),
                           ),
                           child: const Icon(
-                            Icons.add,
-                            color: AppColor.onPrimary,
+                            Icons.add_shopping_cart_rounded,
+                            color: Colors.white,
                             size: 20,
                           ),
                         ),
@@ -180,4 +276,5 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
       ),
     );
   }
+
 }

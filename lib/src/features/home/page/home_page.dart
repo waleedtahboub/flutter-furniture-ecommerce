@@ -4,7 +4,7 @@ import 'package:furniture_store_app/common/models/product_model/product_model.da
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
-import 'package:furniture_store_app/src/features/home/widgets/all_procuts.dart';
+import 'package:furniture_store_app/src/features/home/widgets/all_products.dart';
 import 'package:furniture_store_app/src/features/home/widgets/best_seller.dart';
 import 'package:furniture_store_app/src/features/home/widgets/categories.dart';
 import 'package:furniture_store_app/src/features/home/widgets/discounts_by_percentage.dart';
@@ -94,9 +94,9 @@ class _HomePageState extends ConsumerState<HomePage>
       backgroundColor: Colors.white,
       body: homeState.when(
         data: (data) {
-          final bestSeller = data.bestSeller;
+          final bestSeller = data.bestSellers;
           final flashDeals = data.flashDeals;
-          final isFiftyOFF = data.isFiftyOFF;
+          final isFiftyOFF = data.fiftyPercentOff;
           final categories = data.categories;
           return SingleChildScrollView(
             controller: _scrollController,
@@ -122,7 +122,11 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
 
                 const SizedBox(height: 16),
-                AllProducts(products: data.products, favoriteCallback: this,  isFetchingMore: data.isFetchingMore,),
+                AllProducts(
+                  products: data.products,
+                  favoriteCallback: this,
+                  isFetchingMore: data.isFetchingMore,
+                ),
               ],
             ),
           );

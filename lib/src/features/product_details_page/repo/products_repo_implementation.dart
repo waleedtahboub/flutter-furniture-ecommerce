@@ -36,7 +36,7 @@ class ProductsRepoImplementation implements ProductsRepo {
     int limit = 10,
     DocumentSnapshot? startAfter,
   }) async {
-    var query = _collection.orderBy('name').limit(limit);
+    var query = _collection.orderBy('createdAt', descending: true).limit(limit);
 
     if (startAfter != null) {
       query = query.startAfterDocument(startAfter);
@@ -51,6 +51,78 @@ class ProductsRepoImplementation implements ProductsRepo {
     final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
 
     return PaginatedProducts(products: products, lastDoc: lastDoc);
+  }
+
+  @override
+  Future<PaginatedProducts> fetchBestseller({
+    int limit = 10,
+    DocumentSnapshot<Object?>? startAfter,
+  }) async {
+    var query = _collection
+        .where('isBestseller', isEqualTo: true)
+        .orderBy('createdAt', descending: true)
+        .limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+    final snapshot = await query.get();
+
+    final bestSellerProducts = snapshot.docs
+        .map((doc) => ProductModel.fromJson(doc.data()))
+        .toList();
+
+    final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
+
+    return PaginatedProducts(products: bestSellerProducts, lastDoc: lastDoc);
+  }
+
+  @override
+  Future<PaginatedProducts> fetchByPercentage({
+    int limit = 10,
+    DocumentSnapshot<Object?>? startAfter,
+  }) async {
+    var query = _collection
+        .where('is50PercentOff', isEqualTo: true)
+        .orderBy('createdAt', descending: true)
+        .limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    final snapshot = await query.get();
+
+    final byPercentageProducts = snapshot.docs
+        .map((doc) => ProductModel.fromJson(doc.data()))
+        .toList();
+
+    final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
+    return PaginatedProducts(products: byPercentageProducts, lastDoc: lastDoc);
+  }
+
+  @override
+  Future<PaginatedProducts> fetchFlashDeals({
+    int limit = 10,
+    DocumentSnapshot<Object?>? startAfter,
+  }) async {
+    var query = _collection
+        .where('is50PercentOff', isEqualTo: true)
+        .orderBy('createdAt', descending: true)
+        .limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    final snapshot = await query.get();
+
+    final flashDealsProducts = snapshot.docs
+        .map((doc) => ProductModel.fromJson(doc.data()))
+        .toList();
+
+    final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
+    return PaginatedProducts(products: flashDealsProducts, lastDoc: lastDoc);
   }
 }
 
