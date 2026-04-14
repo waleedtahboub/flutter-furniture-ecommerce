@@ -14,7 +14,6 @@ import 'package:furniture_store_app/src/features/profile/page/profile_page.dart'
 import 'package:go_router/go_router.dart';
 
 class ViewAllParams {
-
   ViewAllParams({
     required this.title,
     required this.products,

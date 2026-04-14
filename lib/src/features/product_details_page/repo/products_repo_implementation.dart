@@ -107,7 +107,7 @@ class ProductsRepoImplementation implements ProductsRepo {
     DocumentSnapshot<Object?>? startAfter,
   }) async {
     var query = _collection
-        .where('is50PercentOff', isEqualTo: true)
+        .where('isFlashDeal', isEqualTo: true)
         .orderBy('createdAt', descending: true)
         .limit(limit);
 

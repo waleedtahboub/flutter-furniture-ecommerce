@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_all_products.dart';
 import 'package:go_router/go_router.dart';
 
-class ViewAllProductsPage extends StatelessWidget {
+class ViewAllProductsPage extends ConsumerStatefulWidget {
   const ViewAllProductsPage({
     super.key,
     required this.title,
@@ -19,11 +21,68 @@ class ViewAllProductsPage extends StatelessWidget {
   static const String routePath = '/view-all';
 
   @override
+  ConsumerState<ViewAllProductsPage> createState() =>
+      _ViewAllProductsPageState();
+}
+
+class _ViewAllProductsPageState extends ConsumerState<ViewAllProductsPage> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    // Check if user is near the bottom of the vertical list
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      final notifier = ref.read(homeProvider.notifier);
+      
+      // Dynamic loading based on the page title
+      if (widget.title == 'Best Sellers') {
+        notifier.fetchMoreBestsellers();
+      } else if (widget.title == 'Flash Deals') {
+        notifier.fetchMoreFlashDeals();
+      } else if (widget.title == '50% off') {
+        notifier.fetchMoreFiftyPercentOff();
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final homeState = ref.watch(homeProvider);
+    
+    // We default to the products passed initially, but update with provider data
+    List<ProductModel> currentProducts = widget.products;
+    bool isFetchingMore = false;
+
+    // Dynamically watch the correct list and loading flag from the provider
+    homeState.whenData((data) {
+      if (widget.title == 'Best Sellers') {
+        currentProducts = data.bestSellers;
+        isFetchingMore = data.isFetchingMoreBestSellers;
+      } else if (widget.title == 'Flash Deals') {
+        currentProducts = data.flashDeals;
+        isFetchingMore = data.isFetchingMoreFlashDeals;
+      } else if (widget.title == '50% off') {
+        currentProducts = data.fiftyPercentOff;
+        isFetchingMore = data.isFetchingMoreFiftyPercentOff;
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          title,
+          widget.title,
           style: Theme.of(
             context,
           ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
@@ -34,17 +93,28 @@ class ViewAllProductsPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
         ),
       ),
-      body: products.isEmpty
+      body: currentProducts.isEmpty
           ? const Center(child: Text('No products found.'))
           : ListView.separated(
+              controller: _scrollController,
               padding: const EdgeInsets.all(16),
-              itemCount: products.length,
+              itemCount: currentProducts.length + (isFetchingMore ? 1 : 0),
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
-                final product = products[index];
+                // Return spinner at the very bottom
+                if (index == currentProducts.length) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+
+                final product = currentProducts[index];
                 return CustomAllProducts(
                   product: product,
-                  favoriteCallback: favoriteCallback,
+                  favoriteCallback: widget.favoriteCallback,
                 );
               },
             ),
