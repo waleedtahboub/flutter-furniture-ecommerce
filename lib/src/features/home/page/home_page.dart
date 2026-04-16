@@ -97,37 +97,40 @@ class _HomePageState extends ConsumerState<HomePage>
           final flashDeals = data.flashDeals;
           final isFiftyOFF = data.fiftyPercentOff;
           final categories = data.categories;
-          return SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 10),
-                const CustomSearchBar(),
-                const SizedBox(height: 25),
-                const PageViewHeadSection(),
-                Categories(categories: categories),
-                BestSeller( products: bestSeller),
-                FlashDeals( products: flashDeals),
+          return RefreshIndicator(
+            onRefresh: () async {
+              return ref.refresh(homeProvider.future);
+            },
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 10),
+                  const CustomSearchBar(),
+                  const SizedBox(height: 25),
+                  const PageViewHeadSection(),
+                  Categories(categories: categories),
+                  BestSeller(products: bestSeller),
+                  FlashDeals(products: flashDeals),
 
-                DiscountsByPercentage(
-                  
-                  products: isFiftyOFF,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'Products',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
+                  DiscountsByPercentage(products: isFiftyOFF),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Products',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
 
-                const SizedBox(height: 16),
-                AllProducts(
-                  products: data.products,
-                  
-                  isFetchingMore: data.isFetchingMore,
-                ),
-              ],
+                  const SizedBox(height: 16),
+                  AllProducts(
+                    products: data.products,
+
+                    isFetchingMore: data.isFetchingMore,
+                  ),
+                ],
+              ),
             ),
           );
         },
