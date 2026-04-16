@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/common/app/router/app_router.dart';
 import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
@@ -12,11 +11,9 @@ import 'package:go_router/go_router.dart';
 class BestSeller extends ConsumerStatefulWidget {
   const BestSeller({
     super.key,
-    required this.favoriteCallback,
     required this.products,
   });
 
-  final ProductCallback favoriteCallback;
   final List<ProductModel> products;
 
   @override
@@ -69,7 +66,6 @@ class _BestSellerState extends ConsumerState<BestSeller> {
                     extra: ViewAllParams(
                       title: 'Best Sellers',
                       products: widget.products,
-                      favoriteCallback: widget.favoriteCallback,
                     ),
                   );
                 },
@@ -88,7 +84,7 @@ class _BestSellerState extends ConsumerState<BestSeller> {
         SizedBox(
           height: 240,
           child: ListView.separated(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             physics: const BouncingScrollPhysics(),
             controller: _scrollController,
             itemCount: widget.products.length + (isFetchingMore ? 1 : 0),
@@ -105,7 +101,6 @@ class _BestSellerState extends ConsumerState<BestSeller> {
               final product = widget.products[index];
               return CustomSectionCard(
                 product: product,
-                favoriteCallback: widget.favoriteCallback,
               );
             },
             separatorBuilder: (context, index) => const SizedBox(width: 30),

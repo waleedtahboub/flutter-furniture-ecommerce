@@ -17,11 +17,11 @@ class ViewAllParams {
   ViewAllParams({
     required this.title,
     required this.products,
-    required this.favoriteCallback,
+
   });
   final String title;
   final List<ProductModel> products;
-  final ProductCallback favoriteCallback;
+
 }
 
 final myRouter = GoRouter(
@@ -38,7 +38,6 @@ final myRouter = GoRouter(
         return ViewAllProductsPage(
           title: params.title,
           products: params.products,
-          favoriteCallback: params.favoriteCallback,
         );
       },
     ),

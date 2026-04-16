@@ -174,6 +174,50 @@ class HomeNotifier extends _$HomeNotifier {
       state = AsyncError(e, st);
     }
   }
+
+  Future<void> fetchByCategory(String categoryName) async {
+    state = const AsyncLoading();
+    try {
+      final result = await ref.read(productsRepoProvider).fetchByCategory(
+            categoryName: categoryName,
+          );
+
+      state = AsyncData(state.value!.copyWith(
+        categoryProducts: result.products,
+        lastDocCategory: result.lastDoc,
+        hasMoreCategory: result.lastDoc != null,
+      ));
+    } catch (e, st) {
+      state = AsyncError(e, st);
+    }
+  }
+
+  Future<void> fetchMoreByCategory(String categoryName) async {
+    final currentState = state.value;
+    if (currentState == null ||
+        currentState.isFetchingMoreCategory ||
+        !currentState.hasMoreCategory) {
+      return;
+    }
+
+    state = AsyncData(currentState.copyWith(isFetchingMoreCategory: true));
+
+    try {
+      final result = await ref.read(productsRepoProvider).fetchByCategory(
+            categoryName: categoryName,
+            startAfter: currentState.lastDocCategory,
+          );
+
+      state = AsyncData(currentState.copyWith(
+        categoryProducts: [...currentState.categoryProducts, ...result.products],
+        lastDocCategory: result.lastDoc,
+        hasMoreCategory: result.lastDoc != null,
+        isFetchingMoreCategory: false,
+      ));
+    } catch (e) {
+      state = AsyncData(state.value!.copyWith(isFetchingMoreCategory: false));
+    }
+  }
 }
 
 

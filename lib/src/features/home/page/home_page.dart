@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:furniture_store_app/src/features/home/widgets/all_products.dart';
 import 'package:furniture_store_app/src/features/home/widgets/best_seller.dart';
@@ -109,22 +108,23 @@ class _HomePageState extends ConsumerState<HomePage>
                 const SizedBox(height: 25),
                 const PageViewHeadSection(),
                 Categories(categories: categories),
-                BestSeller(favoriteCallback: this, products: bestSeller),
-                FlashDeals(favoriteCallback: this, products: flashDeals),
+                BestSeller( products: bestSeller),
+                FlashDeals( products: flashDeals),
 
                 DiscountsByPercentage(
-                  favoriteCallback: this,
+                  
                   products: isFiftyOFF,
                 ),
-                TextButton(
-                  onPressed: () => context.go(LoginPage.routePath),
-                  child: const Text('click me to go to login page'),
+                const SizedBox(height: 16),
+                Text(
+                  'Products',
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
 
                 const SizedBox(height: 16),
                 AllProducts(
                   products: data.products,
-                  favoriteCallback: this,
+                  
                   isFetchingMore: data.isFetchingMore,
                 ),
               ],
@@ -132,7 +132,7 @@ class _HomePageState extends ConsumerState<HomePage>
           );
         },
         error: (error, stackTrace) {
-          return Text('[Firebase error:$error');
+          return Text('[Firebase error:$error]');
         },
         loading: () {
           return const Center(child: CircularProgressIndicator());

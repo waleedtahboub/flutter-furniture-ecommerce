@@ -18,12 +18,7 @@ class CategoryPage extends ConsumerWidget {
           'Categories',
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        leading: width < AppBreakpoints.desktop
-            ? IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_back_ios_new),
-              )
-            : null,
+
         actions: [
           IconButton(
             onPressed: () {},

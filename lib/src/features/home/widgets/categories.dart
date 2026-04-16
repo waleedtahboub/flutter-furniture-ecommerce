@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_app/common/app/router/app_router.dart';
 import 'package:furniture_store_app/common/models/category_model/category_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
+import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
+import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 
-class Categories extends StatelessWidget {
+
+class Categories extends ConsumerWidget {
   const Categories({super.key, required this.categories});
   final List<CategoryModel> categories;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -39,7 +45,7 @@ class Categories extends StatelessWidget {
         ),
 
         SizedBox(
-          height: 91,
+          height: 100,
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             scrollDirection: Axis.horizontal,
@@ -47,7 +53,22 @@ class Categories extends StatelessWidget {
             itemBuilder: (context, index) {
               final category = categories[index];
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  // 1. Tell the database to start searching for this category
+                  ref
+                      .read(homeProvider.notifier)
+                      .fetchByCategory(category.title);
+
+                  // 2. Fly to the View All page!
+                  context.push(
+                    ViewAllProductsPage.routePath,
+                    extra: ViewAllParams(
+                      title: category.title,
+                      products: <ProductModel>[], // Start with an empty list, the provider will fill it!
+                      
+                    ),
+                  );
+                },
                 child: SizedBox(
                   width: 69,
                   child: Column(
@@ -60,11 +81,15 @@ class Categories extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      Text(
-                        category.title,
-                        style: Theme.of(context).textTheme.titleSmall,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      SizedBox(
+                        height: 40,
+                        child: Text(
+                          category.title,
+                          style: Theme.of(context).textTheme.titleSmall,
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
                     ],
                   ),

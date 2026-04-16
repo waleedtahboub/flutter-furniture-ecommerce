@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
-import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_all_products.dart';
 
 class AllProducts extends StatefulWidget {
   const AllProducts({
     super.key,
     required this.products,
-    required this.favoriteCallback,
     required this.isFetchingMore,
   });
   final List<ProductModel> products;
-  final ProductCallback favoriteCallback;
   final bool isFetchingMore;
   @override
   State<AllProducts> createState() => _AllProductsState();
@@ -32,7 +29,6 @@ class _AllProductsState extends State<AllProducts> {
               final product = widget.products[index];
               return CustomAllProducts(
                 product: product,
-                favoriteCallback: widget.favoriteCallback,
               );
             },
             separatorBuilder: (context, index) {

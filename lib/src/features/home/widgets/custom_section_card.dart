@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
@@ -12,11 +11,9 @@ class CustomSectionCard extends StatefulWidget {
   const CustomSectionCard({
     super.key,
     required this.product,
-    required this.favoriteCallback,
   });
 
   final ProductModel product;
-  final ProductCallback favoriteCallback;
 
   @override
   State<CustomSectionCard> createState() => _CustomSectionCardState();
@@ -49,7 +46,7 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                     ),
                     child: Image.network(
                       widget.product.imageUrl,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fill,
                     ),
                   ),
                   Positioned(
@@ -59,9 +56,7 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                     child: InkWell(
                       onTap: () {
                         // Trigger the callback when tapped!
-                        widget.favoriteCallback.onFavoriteToggled(
-                          widget.product,
-                        );
+
                       },
                       child: Container(
                         padding: const EdgeInsets.all(6),
@@ -120,11 +115,11 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                   Row(
                     children: [
                       Text(
-                        AppCurrencyFormatter.format(widget.product.basePrice),
+                        AppCurrencyFormatter.format(widget.product.salePrice),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
-                        AppCurrencyFormatter.format(widget.product.salePrice),
+                        AppCurrencyFormatter.format(widget.product.basePrice),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColor.onSecondary,
                           decoration: TextDecoration.lineThrough,

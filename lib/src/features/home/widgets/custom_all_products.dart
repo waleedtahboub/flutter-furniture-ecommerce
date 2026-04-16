@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/page/home_page.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
@@ -14,11 +13,9 @@ class CustomAllProducts extends StatefulWidget {
   const CustomAllProducts({
     super.key,
     required this.product,
-    required this.favoriteCallback,
   });
 
   final ProductModel product;
-  final ProductCallback favoriteCallback;
 
   @override
   State<CustomAllProducts> createState() => _CustomSectionCardState();
@@ -50,7 +47,6 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image & Badges Section
             Stack(
               children: [
                 Container(
@@ -62,21 +58,17 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                       top: Radius.circular(16),
                     ),
                   ),
-                  child: Hero(
-                    tag: 'product-${widget.product.id}',
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.product.imageUrl,
-                        fit: BoxFit.contain,
-                        placeholder: (context, url) => const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.image_not_supported_outlined,
-                          color: AppColor.onSecondary,
-                        ),
-                      ),
+
+                  child: CachedNetworkImage(
+                    imageUrl: widget.product.imageUrl,
+                    fit: BoxFit.fill,
+                    filterQuality: FilterQuality.high,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.image_not_supported_outlined,
+                      color: AppColor.onSecondary,
                     ),
                   ),
                 ),
@@ -119,7 +111,6 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                   right: 12,
                   child: InkWell(
                     onTap: () {
-                      widget.favoriteCallback.onFavoriteToggled(widget.product);
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),
@@ -276,5 +267,4 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
       ),
     );
   }
-
 }

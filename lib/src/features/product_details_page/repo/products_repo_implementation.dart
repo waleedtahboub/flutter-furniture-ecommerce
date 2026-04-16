@@ -124,7 +124,35 @@ class ProductsRepoImplementation implements ProductsRepo {
     final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
     return PaginatedProducts(products: flashDealsProducts, lastDoc: lastDoc);
   }
+    @override
+  Future<PaginatedProducts> fetchByCategory({
+    required String categoryName,
+    int limit = 10,
+    DocumentSnapshot<Object?>? startAfter,
+  }) async {
+    var query = _collection
+        .where('categoryName', isEqualTo: categoryName )
+        .orderBy('createdAt', descending: true)
+        .limit(limit);
+
+    if (startAfter != null) {
+      query = query.startAfterDocument(startAfter);
+    }
+
+    final snapshot = await query.get();
+
+    final flashDealsProducts = snapshot.docs
+        .map((doc) => ProductModel.fromJson(doc.data()))
+        .toList();
+
+    final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
+    return PaginatedProducts(products: flashDealsProducts, lastDoc: lastDoc);
+  }
+
 }
+
+
+
 
 @Riverpod(keepAlive: true)
 ProductsRepo productsRepo(Ref ref) {

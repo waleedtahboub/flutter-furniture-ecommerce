@@ -14,7 +14,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeState {
 
- List<BannerModel> get banners; List<CategoryModel> get categories; List<ProductModel> get bestSellers; List<ProductModel> get flashDeals; List<ProductModel> get fiftyPercentOff; List<ProductModel> get products; bool get isLoading; bool get hasMore; bool get hasMoreBestSellers; bool get hasMoreFlashDeals; bool get hasMoreFiftyPercentOff; bool get isFetchingMore; bool get isFetchingMoreBestSellers; bool get isFetchingMoreFlashDeals; bool get isFetchingMoreFiftyPercentOff; String? get errorMessage; DocumentSnapshot? get lastDocAll; DocumentSnapshot? get lastDocBestSellers; DocumentSnapshot? get lastDocFlashDeals; DocumentSnapshot? get lastDocFiftyPercentOff;
+ List<BannerModel> get banners; List<CategoryModel> get categories; List<ProductModel> get bestSellers; List<ProductModel> get flashDeals; List<ProductModel> get fiftyPercentOff; List<ProductModel> get products; List<ProductModel> get categoryProducts; bool get isLoading; bool get hasMore; bool get hasMoreCategory; bool get hasMoreBestSellers; bool get hasMoreFlashDeals; bool get hasMoreFiftyPercentOff; bool get isFetchingMore; bool get isFetchingMoreBestSellers; bool get isFetchingMoreFlashDeals; bool get isFetchingMoreFiftyPercentOff; bool get isFetchingMoreCategory;// 2. Where the "hasMore" flags are:
+// 3. Where the scroll markers are:
+// 4. Where the loading flags are:
+ String? get errorMessage; DocumentSnapshot? get lastDocAll; DocumentSnapshot? get lastDocBestSellers; DocumentSnapshot? get lastDocFlashDeals; DocumentSnapshot? get lastDocFiftyPercentOff; DocumentSnapshot? get lastDocCategory;
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +28,16 @@ $HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&const DeepCollectionEquality().equals(other.banners, banners)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.bestSellers, bestSellers)&&const DeepCollectionEquality().equals(other.flashDeals, flashDeals)&&const DeepCollectionEquality().equals(other.fiftyPercentOff, fiftyPercentOff)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.hasMoreBestSellers, hasMoreBestSellers) || other.hasMoreBestSellers == hasMoreBestSellers)&&(identical(other.hasMoreFlashDeals, hasMoreFlashDeals) || other.hasMoreFlashDeals == hasMoreFlashDeals)&&(identical(other.hasMoreFiftyPercentOff, hasMoreFiftyPercentOff) || other.hasMoreFiftyPercentOff == hasMoreFiftyPercentOff)&&(identical(other.isFetchingMore, isFetchingMore) || other.isFetchingMore == isFetchingMore)&&(identical(other.isFetchingMoreBestSellers, isFetchingMoreBestSellers) || other.isFetchingMoreBestSellers == isFetchingMoreBestSellers)&&(identical(other.isFetchingMoreFlashDeals, isFetchingMoreFlashDeals) || other.isFetchingMoreFlashDeals == isFetchingMoreFlashDeals)&&(identical(other.isFetchingMoreFiftyPercentOff, isFetchingMoreFiftyPercentOff) || other.isFetchingMoreFiftyPercentOff == isFetchingMoreFiftyPercentOff)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.lastDocAll, lastDocAll) || other.lastDocAll == lastDocAll)&&(identical(other.lastDocBestSellers, lastDocBestSellers) || other.lastDocBestSellers == lastDocBestSellers)&&(identical(other.lastDocFlashDeals, lastDocFlashDeals) || other.lastDocFlashDeals == lastDocFlashDeals)&&(identical(other.lastDocFiftyPercentOff, lastDocFiftyPercentOff) || other.lastDocFiftyPercentOff == lastDocFiftyPercentOff));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&const DeepCollectionEquality().equals(other.banners, banners)&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.bestSellers, bestSellers)&&const DeepCollectionEquality().equals(other.flashDeals, flashDeals)&&const DeepCollectionEquality().equals(other.fiftyPercentOff, fiftyPercentOff)&&const DeepCollectionEquality().equals(other.products, products)&&const DeepCollectionEquality().equals(other.categoryProducts, categoryProducts)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.hasMoreCategory, hasMoreCategory) || other.hasMoreCategory == hasMoreCategory)&&(identical(other.hasMoreBestSellers, hasMoreBestSellers) || other.hasMoreBestSellers == hasMoreBestSellers)&&(identical(other.hasMoreFlashDeals, hasMoreFlashDeals) || other.hasMoreFlashDeals == hasMoreFlashDeals)&&(identical(other.hasMoreFiftyPercentOff, hasMoreFiftyPercentOff) || other.hasMoreFiftyPercentOff == hasMoreFiftyPercentOff)&&(identical(other.isFetchingMore, isFetchingMore) || other.isFetchingMore == isFetchingMore)&&(identical(other.isFetchingMoreBestSellers, isFetchingMoreBestSellers) || other.isFetchingMoreBestSellers == isFetchingMoreBestSellers)&&(identical(other.isFetchingMoreFlashDeals, isFetchingMoreFlashDeals) || other.isFetchingMoreFlashDeals == isFetchingMoreFlashDeals)&&(identical(other.isFetchingMoreFiftyPercentOff, isFetchingMoreFiftyPercentOff) || other.isFetchingMoreFiftyPercentOff == isFetchingMoreFiftyPercentOff)&&(identical(other.isFetchingMoreCategory, isFetchingMoreCategory) || other.isFetchingMoreCategory == isFetchingMoreCategory)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.lastDocAll, lastDocAll) || other.lastDocAll == lastDocAll)&&(identical(other.lastDocBestSellers, lastDocBestSellers) || other.lastDocBestSellers == lastDocBestSellers)&&(identical(other.lastDocFlashDeals, lastDocFlashDeals) || other.lastDocFlashDeals == lastDocFlashDeals)&&(identical(other.lastDocFiftyPercentOff, lastDocFiftyPercentOff) || other.lastDocFiftyPercentOff == lastDocFiftyPercentOff)&&(identical(other.lastDocCategory, lastDocCategory) || other.lastDocCategory == lastDocCategory));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,const DeepCollectionEquality().hash(banners),const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(bestSellers),const DeepCollectionEquality().hash(flashDeals),const DeepCollectionEquality().hash(fiftyPercentOff),const DeepCollectionEquality().hash(products),isLoading,hasMore,hasMoreBestSellers,hasMoreFlashDeals,hasMoreFiftyPercentOff,isFetchingMore,isFetchingMoreBestSellers,isFetchingMoreFlashDeals,isFetchingMoreFiftyPercentOff,errorMessage,lastDocAll,lastDocBestSellers,lastDocFlashDeals,lastDocFiftyPercentOff]);
+int get hashCode => Object.hashAll([runtimeType,const DeepCollectionEquality().hash(banners),const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(bestSellers),const DeepCollectionEquality().hash(flashDeals),const DeepCollectionEquality().hash(fiftyPercentOff),const DeepCollectionEquality().hash(products),const DeepCollectionEquality().hash(categoryProducts),isLoading,hasMore,hasMoreCategory,hasMoreBestSellers,hasMoreFlashDeals,hasMoreFiftyPercentOff,isFetchingMore,isFetchingMoreBestSellers,isFetchingMoreFlashDeals,isFetchingMoreFiftyPercentOff,isFetchingMoreCategory,errorMessage,lastDocAll,lastDocBestSellers,lastDocFlashDeals,lastDocFiftyPercentOff,lastDocCategory]);
 
 @override
 String toString() {
-  return 'HomeState(banners: $banners, categories: $categories, bestSellers: $bestSellers, flashDeals: $flashDeals, fiftyPercentOff: $fiftyPercentOff, products: $products, isLoading: $isLoading, hasMore: $hasMore, hasMoreBestSellers: $hasMoreBestSellers, hasMoreFlashDeals: $hasMoreFlashDeals, hasMoreFiftyPercentOff: $hasMoreFiftyPercentOff, isFetchingMore: $isFetchingMore, isFetchingMoreBestSellers: $isFetchingMoreBestSellers, isFetchingMoreFlashDeals: $isFetchingMoreFlashDeals, isFetchingMoreFiftyPercentOff: $isFetchingMoreFiftyPercentOff, errorMessage: $errorMessage, lastDocAll: $lastDocAll, lastDocBestSellers: $lastDocBestSellers, lastDocFlashDeals: $lastDocFlashDeals, lastDocFiftyPercentOff: $lastDocFiftyPercentOff)';
+  return 'HomeState(banners: $banners, categories: $categories, bestSellers: $bestSellers, flashDeals: $flashDeals, fiftyPercentOff: $fiftyPercentOff, products: $products, categoryProducts: $categoryProducts, isLoading: $isLoading, hasMore: $hasMore, hasMoreCategory: $hasMoreCategory, hasMoreBestSellers: $hasMoreBestSellers, hasMoreFlashDeals: $hasMoreFlashDeals, hasMoreFiftyPercentOff: $hasMoreFiftyPercentOff, isFetchingMore: $isFetchingMore, isFetchingMoreBestSellers: $isFetchingMoreBestSellers, isFetchingMoreFlashDeals: $isFetchingMoreFlashDeals, isFetchingMoreFiftyPercentOff: $isFetchingMoreFiftyPercentOff, isFetchingMoreCategory: $isFetchingMoreCategory, errorMessage: $errorMessage, lastDocAll: $lastDocAll, lastDocBestSellers: $lastDocBestSellers, lastDocFlashDeals: $lastDocFlashDeals, lastDocFiftyPercentOff: $lastDocFiftyPercentOff, lastDocCategory: $lastDocCategory)';
 }
 
 
@@ -45,7 +48,7 @@ abstract mixin class $HomeStateCopyWith<$Res>  {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
 @useResult
 $Res call({
- List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> bestSellers, List<ProductModel> flashDeals, List<ProductModel> fiftyPercentOff, List<ProductModel> products, bool isLoading, bool hasMore, bool hasMoreBestSellers, bool hasMoreFlashDeals, bool hasMoreFiftyPercentOff, bool isFetchingMore, bool isFetchingMoreBestSellers, bool isFetchingMoreFlashDeals, bool isFetchingMoreFiftyPercentOff, String? errorMessage, DocumentSnapshot? lastDocAll, DocumentSnapshot? lastDocBestSellers, DocumentSnapshot? lastDocFlashDeals, DocumentSnapshot? lastDocFiftyPercentOff
+ List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> bestSellers, List<ProductModel> flashDeals, List<ProductModel> fiftyPercentOff, List<ProductModel> products, List<ProductModel> categoryProducts, bool isLoading, bool hasMore, bool hasMoreCategory, bool hasMoreBestSellers, bool hasMoreFlashDeals, bool hasMoreFiftyPercentOff, bool isFetchingMore, bool isFetchingMoreBestSellers, bool isFetchingMoreFlashDeals, bool isFetchingMoreFiftyPercentOff, bool isFetchingMoreCategory, String? errorMessage, DocumentSnapshot? lastDocAll, DocumentSnapshot? lastDocBestSellers, DocumentSnapshot? lastDocFlashDeals, DocumentSnapshot? lastDocFiftyPercentOff, DocumentSnapshot? lastDocCategory
 });
 
 
@@ -62,7 +65,7 @@ class _$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? banners = null,Object? categories = null,Object? bestSellers = null,Object? flashDeals = null,Object? fiftyPercentOff = null,Object? products = null,Object? isLoading = null,Object? hasMore = null,Object? hasMoreBestSellers = null,Object? hasMoreFlashDeals = null,Object? hasMoreFiftyPercentOff = null,Object? isFetchingMore = null,Object? isFetchingMoreBestSellers = null,Object? isFetchingMoreFlashDeals = null,Object? isFetchingMoreFiftyPercentOff = null,Object? errorMessage = freezed,Object? lastDocAll = freezed,Object? lastDocBestSellers = freezed,Object? lastDocFlashDeals = freezed,Object? lastDocFiftyPercentOff = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? banners = null,Object? categories = null,Object? bestSellers = null,Object? flashDeals = null,Object? fiftyPercentOff = null,Object? products = null,Object? categoryProducts = null,Object? isLoading = null,Object? hasMore = null,Object? hasMoreCategory = null,Object? hasMoreBestSellers = null,Object? hasMoreFlashDeals = null,Object? hasMoreFiftyPercentOff = null,Object? isFetchingMore = null,Object? isFetchingMoreBestSellers = null,Object? isFetchingMoreFlashDeals = null,Object? isFetchingMoreFiftyPercentOff = null,Object? isFetchingMoreCategory = null,Object? errorMessage = freezed,Object? lastDocAll = freezed,Object? lastDocBestSellers = freezed,Object? lastDocFlashDeals = freezed,Object? lastDocFiftyPercentOff = freezed,Object? lastDocCategory = freezed,}) {
   return _then(_self.copyWith(
 banners: null == banners ? _self.banners : banners // ignore: cast_nullable_to_non_nullable
 as List<BannerModel>,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
@@ -70,8 +73,10 @@ as List<CategoryModel>,bestSellers: null == bestSellers ? _self.bestSellers : be
 as List<ProductModel>,flashDeals: null == flashDeals ? _self.flashDeals : flashDeals // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,fiftyPercentOff: null == fiftyPercentOff ? _self.fiftyPercentOff : fiftyPercentOff // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
+as List<ProductModel>,categoryProducts: null == categoryProducts ? _self.categoryProducts : categoryProducts // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,hasMoreCategory: null == hasMoreCategory ? _self.hasMoreCategory : hasMoreCategory // ignore: cast_nullable_to_non_nullable
 as bool,hasMoreBestSellers: null == hasMoreBestSellers ? _self.hasMoreBestSellers : hasMoreBestSellers // ignore: cast_nullable_to_non_nullable
 as bool,hasMoreFlashDeals: null == hasMoreFlashDeals ? _self.hasMoreFlashDeals : hasMoreFlashDeals // ignore: cast_nullable_to_non_nullable
 as bool,hasMoreFiftyPercentOff: null == hasMoreFiftyPercentOff ? _self.hasMoreFiftyPercentOff : hasMoreFiftyPercentOff // ignore: cast_nullable_to_non_nullable
@@ -79,11 +84,13 @@ as bool,isFetchingMore: null == isFetchingMore ? _self.isFetchingMore : isFetchi
 as bool,isFetchingMoreBestSellers: null == isFetchingMoreBestSellers ? _self.isFetchingMoreBestSellers : isFetchingMoreBestSellers // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingMoreFlashDeals: null == isFetchingMoreFlashDeals ? _self.isFetchingMoreFlashDeals : isFetchingMoreFlashDeals // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingMoreFiftyPercentOff: null == isFetchingMoreFiftyPercentOff ? _self.isFetchingMoreFiftyPercentOff : isFetchingMoreFiftyPercentOff // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingMoreCategory: null == isFetchingMoreCategory ? _self.isFetchingMoreCategory : isFetchingMoreCategory // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,lastDocAll: freezed == lastDocAll ? _self.lastDocAll : lastDocAll // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,lastDocBestSellers: freezed == lastDocBestSellers ? _self.lastDocBestSellers : lastDocBestSellers // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,lastDocFlashDeals: freezed == lastDocFlashDeals ? _self.lastDocFlashDeals : lastDocFlashDeals // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,lastDocFiftyPercentOff: freezed == lastDocFiftyPercentOff ? _self.lastDocFiftyPercentOff : lastDocFiftyPercentOff // ignore: cast_nullable_to_non_nullable
+as DocumentSnapshot?,lastDocCategory: freezed == lastDocCategory ? _self.lastDocCategory : lastDocCategory // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,
   ));
 }
@@ -169,10 +176,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> bestSellers,  List<ProductModel> flashDeals,  List<ProductModel> fiftyPercentOff,  List<ProductModel> products,  bool isLoading,  bool hasMore,  bool hasMoreBestSellers,  bool hasMoreFlashDeals,  bool hasMoreFiftyPercentOff,  bool isFetchingMore,  bool isFetchingMoreBestSellers,  bool isFetchingMoreFlashDeals,  bool isFetchingMoreFiftyPercentOff,  String? errorMessage,  DocumentSnapshot? lastDocAll,  DocumentSnapshot? lastDocBestSellers,  DocumentSnapshot? lastDocFlashDeals,  DocumentSnapshot? lastDocFiftyPercentOff)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> bestSellers,  List<ProductModel> flashDeals,  List<ProductModel> fiftyPercentOff,  List<ProductModel> products,  List<ProductModel> categoryProducts,  bool isLoading,  bool hasMore,  bool hasMoreCategory,  bool hasMoreBestSellers,  bool hasMoreFlashDeals,  bool hasMoreFiftyPercentOff,  bool isFetchingMore,  bool isFetchingMoreBestSellers,  bool isFetchingMoreFlashDeals,  bool isFetchingMoreFiftyPercentOff,  bool isFetchingMoreCategory,  String? errorMessage,  DocumentSnapshot? lastDocAll,  DocumentSnapshot? lastDocBestSellers,  DocumentSnapshot? lastDocFlashDeals,  DocumentSnapshot? lastDocFiftyPercentOff,  DocumentSnapshot? lastDocCategory)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
-return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeals,_that.fiftyPercentOff,_that.products,_that.isLoading,_that.hasMore,_that.hasMoreBestSellers,_that.hasMoreFlashDeals,_that.hasMoreFiftyPercentOff,_that.isFetchingMore,_that.isFetchingMoreBestSellers,_that.isFetchingMoreFlashDeals,_that.isFetchingMoreFiftyPercentOff,_that.errorMessage,_that.lastDocAll,_that.lastDocBestSellers,_that.lastDocFlashDeals,_that.lastDocFiftyPercentOff);case _:
+return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeals,_that.fiftyPercentOff,_that.products,_that.categoryProducts,_that.isLoading,_that.hasMore,_that.hasMoreCategory,_that.hasMoreBestSellers,_that.hasMoreFlashDeals,_that.hasMoreFiftyPercentOff,_that.isFetchingMore,_that.isFetchingMoreBestSellers,_that.isFetchingMoreFlashDeals,_that.isFetchingMoreFiftyPercentOff,_that.isFetchingMoreCategory,_that.errorMessage,_that.lastDocAll,_that.lastDocBestSellers,_that.lastDocFlashDeals,_that.lastDocFiftyPercentOff,_that.lastDocCategory);case _:
   return orElse();
 
 }
@@ -190,10 +197,10 @@ return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeal
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> bestSellers,  List<ProductModel> flashDeals,  List<ProductModel> fiftyPercentOff,  List<ProductModel> products,  bool isLoading,  bool hasMore,  bool hasMoreBestSellers,  bool hasMoreFlashDeals,  bool hasMoreFiftyPercentOff,  bool isFetchingMore,  bool isFetchingMoreBestSellers,  bool isFetchingMoreFlashDeals,  bool isFetchingMoreFiftyPercentOff,  String? errorMessage,  DocumentSnapshot? lastDocAll,  DocumentSnapshot? lastDocBestSellers,  DocumentSnapshot? lastDocFlashDeals,  DocumentSnapshot? lastDocFiftyPercentOff)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> bestSellers,  List<ProductModel> flashDeals,  List<ProductModel> fiftyPercentOff,  List<ProductModel> products,  List<ProductModel> categoryProducts,  bool isLoading,  bool hasMore,  bool hasMoreCategory,  bool hasMoreBestSellers,  bool hasMoreFlashDeals,  bool hasMoreFiftyPercentOff,  bool isFetchingMore,  bool isFetchingMoreBestSellers,  bool isFetchingMoreFlashDeals,  bool isFetchingMoreFiftyPercentOff,  bool isFetchingMoreCategory,  String? errorMessage,  DocumentSnapshot? lastDocAll,  DocumentSnapshot? lastDocBestSellers,  DocumentSnapshot? lastDocFlashDeals,  DocumentSnapshot? lastDocFiftyPercentOff,  DocumentSnapshot? lastDocCategory)  $default,) {final _that = this;
 switch (_that) {
 case _HomeState():
-return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeals,_that.fiftyPercentOff,_that.products,_that.isLoading,_that.hasMore,_that.hasMoreBestSellers,_that.hasMoreFlashDeals,_that.hasMoreFiftyPercentOff,_that.isFetchingMore,_that.isFetchingMoreBestSellers,_that.isFetchingMoreFlashDeals,_that.isFetchingMoreFiftyPercentOff,_that.errorMessage,_that.lastDocAll,_that.lastDocBestSellers,_that.lastDocFlashDeals,_that.lastDocFiftyPercentOff);case _:
+return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeals,_that.fiftyPercentOff,_that.products,_that.categoryProducts,_that.isLoading,_that.hasMore,_that.hasMoreCategory,_that.hasMoreBestSellers,_that.hasMoreFlashDeals,_that.hasMoreFiftyPercentOff,_that.isFetchingMore,_that.isFetchingMoreBestSellers,_that.isFetchingMoreFlashDeals,_that.isFetchingMoreFiftyPercentOff,_that.isFetchingMoreCategory,_that.errorMessage,_that.lastDocAll,_that.lastDocBestSellers,_that.lastDocFlashDeals,_that.lastDocFiftyPercentOff,_that.lastDocCategory);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -210,10 +217,10 @@ return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeal
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> bestSellers,  List<ProductModel> flashDeals,  List<ProductModel> fiftyPercentOff,  List<ProductModel> products,  bool isLoading,  bool hasMore,  bool hasMoreBestSellers,  bool hasMoreFlashDeals,  bool hasMoreFiftyPercentOff,  bool isFetchingMore,  bool isFetchingMoreBestSellers,  bool isFetchingMoreFlashDeals,  bool isFetchingMoreFiftyPercentOff,  String? errorMessage,  DocumentSnapshot? lastDocAll,  DocumentSnapshot? lastDocBestSellers,  DocumentSnapshot? lastDocFlashDeals,  DocumentSnapshot? lastDocFiftyPercentOff)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<BannerModel> banners,  List<CategoryModel> categories,  List<ProductModel> bestSellers,  List<ProductModel> flashDeals,  List<ProductModel> fiftyPercentOff,  List<ProductModel> products,  List<ProductModel> categoryProducts,  bool isLoading,  bool hasMore,  bool hasMoreCategory,  bool hasMoreBestSellers,  bool hasMoreFlashDeals,  bool hasMoreFiftyPercentOff,  bool isFetchingMore,  bool isFetchingMoreBestSellers,  bool isFetchingMoreFlashDeals,  bool isFetchingMoreFiftyPercentOff,  bool isFetchingMoreCategory,  String? errorMessage,  DocumentSnapshot? lastDocAll,  DocumentSnapshot? lastDocBestSellers,  DocumentSnapshot? lastDocFlashDeals,  DocumentSnapshot? lastDocFiftyPercentOff,  DocumentSnapshot? lastDocCategory)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeState() when $default != null:
-return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeals,_that.fiftyPercentOff,_that.products,_that.isLoading,_that.hasMore,_that.hasMoreBestSellers,_that.hasMoreFlashDeals,_that.hasMoreFiftyPercentOff,_that.isFetchingMore,_that.isFetchingMoreBestSellers,_that.isFetchingMoreFlashDeals,_that.isFetchingMoreFiftyPercentOff,_that.errorMessage,_that.lastDocAll,_that.lastDocBestSellers,_that.lastDocFlashDeals,_that.lastDocFiftyPercentOff);case _:
+return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeals,_that.fiftyPercentOff,_that.products,_that.categoryProducts,_that.isLoading,_that.hasMore,_that.hasMoreCategory,_that.hasMoreBestSellers,_that.hasMoreFlashDeals,_that.hasMoreFiftyPercentOff,_that.isFetchingMore,_that.isFetchingMoreBestSellers,_that.isFetchingMoreFlashDeals,_that.isFetchingMoreFiftyPercentOff,_that.isFetchingMoreCategory,_that.errorMessage,_that.lastDocAll,_that.lastDocBestSellers,_that.lastDocFlashDeals,_that.lastDocFiftyPercentOff,_that.lastDocCategory);case _:
   return null;
 
 }
@@ -225,7 +232,7 @@ return $default(_that.banners,_that.categories,_that.bestSellers,_that.flashDeal
 
 
 class _HomeState extends HomeState {
-  const _HomeState({final  List<BannerModel> banners = const [], final  List<CategoryModel> categories = const [], final  List<ProductModel> bestSellers = const [], final  List<ProductModel> flashDeals = const [], final  List<ProductModel> fiftyPercentOff = const [], final  List<ProductModel> products = const [], this.isLoading = false, this.hasMore = true, this.hasMoreBestSellers = true, this.hasMoreFlashDeals = true, this.hasMoreFiftyPercentOff = true, this.isFetchingMore = false, this.isFetchingMoreBestSellers = false, this.isFetchingMoreFlashDeals = false, this.isFetchingMoreFiftyPercentOff = false, this.errorMessage, this.lastDocAll, this.lastDocBestSellers, this.lastDocFlashDeals, this.lastDocFiftyPercentOff}): _banners = banners,_categories = categories,_bestSellers = bestSellers,_flashDeals = flashDeals,_fiftyPercentOff = fiftyPercentOff,_products = products,super._();
+  const _HomeState({final  List<BannerModel> banners = const [], final  List<CategoryModel> categories = const [], final  List<ProductModel> bestSellers = const [], final  List<ProductModel> flashDeals = const [], final  List<ProductModel> fiftyPercentOff = const [], final  List<ProductModel> products = const [], final  List<ProductModel> categoryProducts = const [], this.isLoading = false, this.hasMore = true, this.hasMoreCategory = true, this.hasMoreBestSellers = true, this.hasMoreFlashDeals = true, this.hasMoreFiftyPercentOff = true, this.isFetchingMore = false, this.isFetchingMoreBestSellers = false, this.isFetchingMoreFlashDeals = false, this.isFetchingMoreFiftyPercentOff = false, this.isFetchingMoreCategory = false, this.errorMessage, this.lastDocAll, this.lastDocBestSellers, this.lastDocFlashDeals, this.lastDocFiftyPercentOff, this.lastDocCategory}): _banners = banners,_categories = categories,_bestSellers = bestSellers,_flashDeals = flashDeals,_fiftyPercentOff = fiftyPercentOff,_products = products,_categoryProducts = categoryProducts,super._();
   
 
  final  List<BannerModel> _banners;
@@ -270,8 +277,16 @@ class _HomeState extends HomeState {
   return EqualUnmodifiableListView(_products);
 }
 
+ final  List<ProductModel> _categoryProducts;
+@override@JsonKey() List<ProductModel> get categoryProducts {
+  if (_categoryProducts is EqualUnmodifiableListView) return _categoryProducts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categoryProducts);
+}
+
 @override@JsonKey() final  bool isLoading;
 @override@JsonKey() final  bool hasMore;
+@override@JsonKey() final  bool hasMoreCategory;
 @override@JsonKey() final  bool hasMoreBestSellers;
 @override@JsonKey() final  bool hasMoreFlashDeals;
 @override@JsonKey() final  bool hasMoreFiftyPercentOff;
@@ -279,11 +294,16 @@ class _HomeState extends HomeState {
 @override@JsonKey() final  bool isFetchingMoreBestSellers;
 @override@JsonKey() final  bool isFetchingMoreFlashDeals;
 @override@JsonKey() final  bool isFetchingMoreFiftyPercentOff;
+@override@JsonKey() final  bool isFetchingMoreCategory;
+// 2. Where the "hasMore" flags are:
+// 3. Where the scroll markers are:
+// 4. Where the loading flags are:
 @override final  String? errorMessage;
 @override final  DocumentSnapshot? lastDocAll;
 @override final  DocumentSnapshot? lastDocBestSellers;
 @override final  DocumentSnapshot? lastDocFlashDeals;
 @override final  DocumentSnapshot? lastDocFiftyPercentOff;
+@override final  DocumentSnapshot? lastDocCategory;
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
@@ -295,16 +315,16 @@ _$HomeStateCopyWith<_HomeState> get copyWith => __$HomeStateCopyWithImpl<_HomeSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&const DeepCollectionEquality().equals(other._banners, _banners)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._bestSellers, _bestSellers)&&const DeepCollectionEquality().equals(other._flashDeals, _flashDeals)&&const DeepCollectionEquality().equals(other._fiftyPercentOff, _fiftyPercentOff)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.hasMoreBestSellers, hasMoreBestSellers) || other.hasMoreBestSellers == hasMoreBestSellers)&&(identical(other.hasMoreFlashDeals, hasMoreFlashDeals) || other.hasMoreFlashDeals == hasMoreFlashDeals)&&(identical(other.hasMoreFiftyPercentOff, hasMoreFiftyPercentOff) || other.hasMoreFiftyPercentOff == hasMoreFiftyPercentOff)&&(identical(other.isFetchingMore, isFetchingMore) || other.isFetchingMore == isFetchingMore)&&(identical(other.isFetchingMoreBestSellers, isFetchingMoreBestSellers) || other.isFetchingMoreBestSellers == isFetchingMoreBestSellers)&&(identical(other.isFetchingMoreFlashDeals, isFetchingMoreFlashDeals) || other.isFetchingMoreFlashDeals == isFetchingMoreFlashDeals)&&(identical(other.isFetchingMoreFiftyPercentOff, isFetchingMoreFiftyPercentOff) || other.isFetchingMoreFiftyPercentOff == isFetchingMoreFiftyPercentOff)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.lastDocAll, lastDocAll) || other.lastDocAll == lastDocAll)&&(identical(other.lastDocBestSellers, lastDocBestSellers) || other.lastDocBestSellers == lastDocBestSellers)&&(identical(other.lastDocFlashDeals, lastDocFlashDeals) || other.lastDocFlashDeals == lastDocFlashDeals)&&(identical(other.lastDocFiftyPercentOff, lastDocFiftyPercentOff) || other.lastDocFiftyPercentOff == lastDocFiftyPercentOff));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&const DeepCollectionEquality().equals(other._banners, _banners)&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._bestSellers, _bestSellers)&&const DeepCollectionEquality().equals(other._flashDeals, _flashDeals)&&const DeepCollectionEquality().equals(other._fiftyPercentOff, _fiftyPercentOff)&&const DeepCollectionEquality().equals(other._products, _products)&&const DeepCollectionEquality().equals(other._categoryProducts, _categoryProducts)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.hasMoreCategory, hasMoreCategory) || other.hasMoreCategory == hasMoreCategory)&&(identical(other.hasMoreBestSellers, hasMoreBestSellers) || other.hasMoreBestSellers == hasMoreBestSellers)&&(identical(other.hasMoreFlashDeals, hasMoreFlashDeals) || other.hasMoreFlashDeals == hasMoreFlashDeals)&&(identical(other.hasMoreFiftyPercentOff, hasMoreFiftyPercentOff) || other.hasMoreFiftyPercentOff == hasMoreFiftyPercentOff)&&(identical(other.isFetchingMore, isFetchingMore) || other.isFetchingMore == isFetchingMore)&&(identical(other.isFetchingMoreBestSellers, isFetchingMoreBestSellers) || other.isFetchingMoreBestSellers == isFetchingMoreBestSellers)&&(identical(other.isFetchingMoreFlashDeals, isFetchingMoreFlashDeals) || other.isFetchingMoreFlashDeals == isFetchingMoreFlashDeals)&&(identical(other.isFetchingMoreFiftyPercentOff, isFetchingMoreFiftyPercentOff) || other.isFetchingMoreFiftyPercentOff == isFetchingMoreFiftyPercentOff)&&(identical(other.isFetchingMoreCategory, isFetchingMoreCategory) || other.isFetchingMoreCategory == isFetchingMoreCategory)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.lastDocAll, lastDocAll) || other.lastDocAll == lastDocAll)&&(identical(other.lastDocBestSellers, lastDocBestSellers) || other.lastDocBestSellers == lastDocBestSellers)&&(identical(other.lastDocFlashDeals, lastDocFlashDeals) || other.lastDocFlashDeals == lastDocFlashDeals)&&(identical(other.lastDocFiftyPercentOff, lastDocFiftyPercentOff) || other.lastDocFiftyPercentOff == lastDocFiftyPercentOff)&&(identical(other.lastDocCategory, lastDocCategory) || other.lastDocCategory == lastDocCategory));
 }
 
 
 @override
-int get hashCode => Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_banners),const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_bestSellers),const DeepCollectionEquality().hash(_flashDeals),const DeepCollectionEquality().hash(_fiftyPercentOff),const DeepCollectionEquality().hash(_products),isLoading,hasMore,hasMoreBestSellers,hasMoreFlashDeals,hasMoreFiftyPercentOff,isFetchingMore,isFetchingMoreBestSellers,isFetchingMoreFlashDeals,isFetchingMoreFiftyPercentOff,errorMessage,lastDocAll,lastDocBestSellers,lastDocFlashDeals,lastDocFiftyPercentOff]);
+int get hashCode => Object.hashAll([runtimeType,const DeepCollectionEquality().hash(_banners),const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_bestSellers),const DeepCollectionEquality().hash(_flashDeals),const DeepCollectionEquality().hash(_fiftyPercentOff),const DeepCollectionEquality().hash(_products),const DeepCollectionEquality().hash(_categoryProducts),isLoading,hasMore,hasMoreCategory,hasMoreBestSellers,hasMoreFlashDeals,hasMoreFiftyPercentOff,isFetchingMore,isFetchingMoreBestSellers,isFetchingMoreFlashDeals,isFetchingMoreFiftyPercentOff,isFetchingMoreCategory,errorMessage,lastDocAll,lastDocBestSellers,lastDocFlashDeals,lastDocFiftyPercentOff,lastDocCategory]);
 
 @override
 String toString() {
-  return 'HomeState(banners: $banners, categories: $categories, bestSellers: $bestSellers, flashDeals: $flashDeals, fiftyPercentOff: $fiftyPercentOff, products: $products, isLoading: $isLoading, hasMore: $hasMore, hasMoreBestSellers: $hasMoreBestSellers, hasMoreFlashDeals: $hasMoreFlashDeals, hasMoreFiftyPercentOff: $hasMoreFiftyPercentOff, isFetchingMore: $isFetchingMore, isFetchingMoreBestSellers: $isFetchingMoreBestSellers, isFetchingMoreFlashDeals: $isFetchingMoreFlashDeals, isFetchingMoreFiftyPercentOff: $isFetchingMoreFiftyPercentOff, errorMessage: $errorMessage, lastDocAll: $lastDocAll, lastDocBestSellers: $lastDocBestSellers, lastDocFlashDeals: $lastDocFlashDeals, lastDocFiftyPercentOff: $lastDocFiftyPercentOff)';
+  return 'HomeState(banners: $banners, categories: $categories, bestSellers: $bestSellers, flashDeals: $flashDeals, fiftyPercentOff: $fiftyPercentOff, products: $products, categoryProducts: $categoryProducts, isLoading: $isLoading, hasMore: $hasMore, hasMoreCategory: $hasMoreCategory, hasMoreBestSellers: $hasMoreBestSellers, hasMoreFlashDeals: $hasMoreFlashDeals, hasMoreFiftyPercentOff: $hasMoreFiftyPercentOff, isFetchingMore: $isFetchingMore, isFetchingMoreBestSellers: $isFetchingMoreBestSellers, isFetchingMoreFlashDeals: $isFetchingMoreFlashDeals, isFetchingMoreFiftyPercentOff: $isFetchingMoreFiftyPercentOff, isFetchingMoreCategory: $isFetchingMoreCategory, errorMessage: $errorMessage, lastDocAll: $lastDocAll, lastDocBestSellers: $lastDocBestSellers, lastDocFlashDeals: $lastDocFlashDeals, lastDocFiftyPercentOff: $lastDocFiftyPercentOff, lastDocCategory: $lastDocCategory)';
 }
 
 
@@ -315,7 +335,7 @@ abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Re
   factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> bestSellers, List<ProductModel> flashDeals, List<ProductModel> fiftyPercentOff, List<ProductModel> products, bool isLoading, bool hasMore, bool hasMoreBestSellers, bool hasMoreFlashDeals, bool hasMoreFiftyPercentOff, bool isFetchingMore, bool isFetchingMoreBestSellers, bool isFetchingMoreFlashDeals, bool isFetchingMoreFiftyPercentOff, String? errorMessage, DocumentSnapshot? lastDocAll, DocumentSnapshot? lastDocBestSellers, DocumentSnapshot? lastDocFlashDeals, DocumentSnapshot? lastDocFiftyPercentOff
+ List<BannerModel> banners, List<CategoryModel> categories, List<ProductModel> bestSellers, List<ProductModel> flashDeals, List<ProductModel> fiftyPercentOff, List<ProductModel> products, List<ProductModel> categoryProducts, bool isLoading, bool hasMore, bool hasMoreCategory, bool hasMoreBestSellers, bool hasMoreFlashDeals, bool hasMoreFiftyPercentOff, bool isFetchingMore, bool isFetchingMoreBestSellers, bool isFetchingMoreFlashDeals, bool isFetchingMoreFiftyPercentOff, bool isFetchingMoreCategory, String? errorMessage, DocumentSnapshot? lastDocAll, DocumentSnapshot? lastDocBestSellers, DocumentSnapshot? lastDocFlashDeals, DocumentSnapshot? lastDocFiftyPercentOff, DocumentSnapshot? lastDocCategory
 });
 
 
@@ -332,7 +352,7 @@ class __$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? banners = null,Object? categories = null,Object? bestSellers = null,Object? flashDeals = null,Object? fiftyPercentOff = null,Object? products = null,Object? isLoading = null,Object? hasMore = null,Object? hasMoreBestSellers = null,Object? hasMoreFlashDeals = null,Object? hasMoreFiftyPercentOff = null,Object? isFetchingMore = null,Object? isFetchingMoreBestSellers = null,Object? isFetchingMoreFlashDeals = null,Object? isFetchingMoreFiftyPercentOff = null,Object? errorMessage = freezed,Object? lastDocAll = freezed,Object? lastDocBestSellers = freezed,Object? lastDocFlashDeals = freezed,Object? lastDocFiftyPercentOff = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? banners = null,Object? categories = null,Object? bestSellers = null,Object? flashDeals = null,Object? fiftyPercentOff = null,Object? products = null,Object? categoryProducts = null,Object? isLoading = null,Object? hasMore = null,Object? hasMoreCategory = null,Object? hasMoreBestSellers = null,Object? hasMoreFlashDeals = null,Object? hasMoreFiftyPercentOff = null,Object? isFetchingMore = null,Object? isFetchingMoreBestSellers = null,Object? isFetchingMoreFlashDeals = null,Object? isFetchingMoreFiftyPercentOff = null,Object? isFetchingMoreCategory = null,Object? errorMessage = freezed,Object? lastDocAll = freezed,Object? lastDocBestSellers = freezed,Object? lastDocFlashDeals = freezed,Object? lastDocFiftyPercentOff = freezed,Object? lastDocCategory = freezed,}) {
   return _then(_HomeState(
 banners: null == banners ? _self._banners : banners // ignore: cast_nullable_to_non_nullable
 as List<BannerModel>,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
@@ -340,8 +360,10 @@ as List<CategoryModel>,bestSellers: null == bestSellers ? _self._bestSellers : b
 as List<ProductModel>,flashDeals: null == flashDeals ? _self._flashDeals : flashDeals // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,fiftyPercentOff: null == fiftyPercentOff ? _self._fiftyPercentOff : fiftyPercentOff // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
+as List<ProductModel>,categoryProducts: null == categoryProducts ? _self._categoryProducts : categoryProducts // ignore: cast_nullable_to_non_nullable
 as List<ProductModel>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,hasMoreCategory: null == hasMoreCategory ? _self.hasMoreCategory : hasMoreCategory // ignore: cast_nullable_to_non_nullable
 as bool,hasMoreBestSellers: null == hasMoreBestSellers ? _self.hasMoreBestSellers : hasMoreBestSellers // ignore: cast_nullable_to_non_nullable
 as bool,hasMoreFlashDeals: null == hasMoreFlashDeals ? _self.hasMoreFlashDeals : hasMoreFlashDeals // ignore: cast_nullable_to_non_nullable
 as bool,hasMoreFiftyPercentOff: null == hasMoreFiftyPercentOff ? _self.hasMoreFiftyPercentOff : hasMoreFiftyPercentOff // ignore: cast_nullable_to_non_nullable
@@ -349,11 +371,13 @@ as bool,isFetchingMore: null == isFetchingMore ? _self.isFetchingMore : isFetchi
 as bool,isFetchingMoreBestSellers: null == isFetchingMoreBestSellers ? _self.isFetchingMoreBestSellers : isFetchingMoreBestSellers // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingMoreFlashDeals: null == isFetchingMoreFlashDeals ? _self.isFetchingMoreFlashDeals : isFetchingMoreFlashDeals // ignore: cast_nullable_to_non_nullable
 as bool,isFetchingMoreFiftyPercentOff: null == isFetchingMoreFiftyPercentOff ? _self.isFetchingMoreFiftyPercentOff : isFetchingMoreFiftyPercentOff // ignore: cast_nullable_to_non_nullable
+as bool,isFetchingMoreCategory: null == isFetchingMoreCategory ? _self.isFetchingMoreCategory : isFetchingMoreCategory // ignore: cast_nullable_to_non_nullable
 as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,lastDocAll: freezed == lastDocAll ? _self.lastDocAll : lastDocAll // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,lastDocBestSellers: freezed == lastDocBestSellers ? _self.lastDocBestSellers : lastDocBestSellers // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,lastDocFlashDeals: freezed == lastDocFlashDeals ? _self.lastDocFlashDeals : lastDocFlashDeals // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,lastDocFiftyPercentOff: freezed == lastDocFiftyPercentOff ? _self.lastDocFiftyPercentOff : lastDocFiftyPercentOff // ignore: cast_nullable_to_non_nullable
+as DocumentSnapshot?,lastDocCategory: freezed == lastDocCategory ? _self.lastDocCategory : lastDocCategory // ignore: cast_nullable_to_non_nullable
 as DocumentSnapshot?,
   ));
 }

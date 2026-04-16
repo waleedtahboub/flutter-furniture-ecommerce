@@ -51,7 +51,7 @@ class _PageViewHeadSectionState extends ConsumerState<PageViewHeadSection> {
                 itemBuilder: (context, index) {
                   return CachedNetworkImage(
                     imageUrl: data.banners[index].imageUrl,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   );
                 },
               ),
