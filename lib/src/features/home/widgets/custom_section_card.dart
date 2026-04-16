@@ -8,10 +8,7 @@ import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart'
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 
 class CustomSectionCard extends StatefulWidget {
-  const CustomSectionCard({
-    super.key,
-    required this.product,
-  });
+  const CustomSectionCard({super.key, required this.product});
 
   final ProductModel product;
 
@@ -56,7 +53,6 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                     child: InkWell(
                       onTap: () {
                         // Trigger the callback when tapped!
-
                       },
                       child: Container(
                         padding: const EdgeInsets.all(6),

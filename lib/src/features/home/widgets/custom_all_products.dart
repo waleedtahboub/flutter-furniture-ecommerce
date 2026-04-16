@@ -10,10 +10,7 @@ import 'package:furniture_store_app/src/features/home/widgets/product_badge.dart
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 
 class CustomAllProducts extends StatefulWidget {
-  const CustomAllProducts({
-    super.key,
-    required this.product,
-  });
+  const CustomAllProducts({super.key, required this.product});
 
   final ProductModel product;
 
@@ -53,7 +50,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                   height: 200,
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                    color: AppColor.secondary,
+                    color: Colors.white,
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(16),
                     ),
@@ -61,14 +58,14 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
 
                   child: CachedNetworkImage(
                     imageUrl: widget.product.imageUrl,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                     filterQuality: FilterQuality.high,
                     placeholder: (context, url) => const Center(
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                     errorWidget: (context, url, error) => const Icon(
                       Icons.image_not_supported_outlined,
-                      color: AppColor.onSecondary,
+                      color: AppColor.secondary,
                     ),
                   ),
                 ),
@@ -110,8 +107,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                   top: 12,
                   right: 12,
                   child: InkWell(
-                    onTap: () {
-                    },
+                    onTap: () {},
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(

@@ -124,14 +124,15 @@ class ProductsRepoImplementation implements ProductsRepo {
     final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
     return PaginatedProducts(products: flashDealsProducts, lastDoc: lastDoc);
   }
-    @override
+
+  @override
   Future<PaginatedProducts> fetchByCategory({
     required String categoryName,
     int limit = 10,
     DocumentSnapshot<Object?>? startAfter,
   }) async {
     var query = _collection
-        .where('categoryName', isEqualTo: categoryName )
+        .where('categoryName', isEqualTo: categoryName)
         .orderBy('createdAt', descending: true)
         .limit(limit);
 
@@ -148,11 +149,7 @@ class ProductsRepoImplementation implements ProductsRepo {
     final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
     return PaginatedProducts(products: flashDealsProducts, lastDoc: lastDoc);
   }
-
 }
-
-
-
 
 @Riverpod(keepAlive: true)
 ProductsRepo productsRepo(Ref ref) {
