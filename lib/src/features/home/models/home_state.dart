@@ -7,41 +7,27 @@ import 'package:furniture_store_app/common/models/product_model/product_model.da
 part 'home_state.freezed.dart';
 
 @freezed
+abstract class PaginatedSection<T> with _$PaginatedSection<T> {
+  const PaginatedSection._();
+  const factory PaginatedSection({
+    @Default([]) List<T> items,
+    @Default(false) bool isFetchingMore,
+    @Default(true) bool hasMore,
+    DocumentSnapshot? lastDoc,
+  }) = _PaginatedSection;
+}
+@freezed
 abstract class HomeState with _$HomeState {
   const HomeState._();
   const factory HomeState({
     @Default([]) List<BannerModel> banners,
     @Default([]) List<CategoryModel> categories,
-    @Default([]) List<ProductModel> bestSellers,
-    @Default([]) List<ProductModel> flashDeals,
-    @Default([]) List<ProductModel> fiftyPercentOff,
-    @Default([]) List<ProductModel> products,
-    @Default([]) List<ProductModel> categoryProducts,
-
-    @Default(false) bool isLoading,
-
-    @Default(true) bool hasMore,
-    @Default(true) bool hasMoreCategory,
-    @Default(true) bool hasMoreBestSellers,
-    @Default(true) bool hasMoreFlashDeals,
-    @Default(true) bool hasMoreFiftyPercentOff,
-
-    @Default(false) bool isFetchingMore,
-    @Default(false) bool isFetchingMoreBestSellers,
-    @Default(false) bool isFetchingMoreFlashDeals,
-    @Default(false) bool isFetchingMoreFiftyPercentOff,
-    @Default(false) bool isFetchingMoreCategory,
-
-    // 2. Where the "hasMore" flags are:
-
-    // 3. Where the scroll markers are:
-
-    // 4. Where the loading flags are:
+    // Using the generic section model for all product lists
+    @Default(PaginatedSection<ProductModel>()) PaginatedSection<ProductModel> allProducts,
+    @Default(PaginatedSection<ProductModel>()) PaginatedSection<ProductModel> bestSellers,
+    @Default(PaginatedSection<ProductModel>()) PaginatedSection<ProductModel> flashDeals,
+    @Default(PaginatedSection<ProductModel>()) PaginatedSection<ProductModel> fiftyPercentOff,
+    @Default(PaginatedSection<ProductModel>()) PaginatedSection<ProductModel> categoryProducts,
     String? errorMessage,
-    DocumentSnapshot? lastDocAll,
-    DocumentSnapshot? lastDocBestSellers,
-    DocumentSnapshot? lastDocFlashDeals,
-    DocumentSnapshot? lastDocFiftyPercentOff,
-    DocumentSnapshot? lastDocCategory,
   }) = _HomeState;
 }

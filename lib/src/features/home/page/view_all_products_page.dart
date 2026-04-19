@@ -66,17 +66,17 @@ class _ViewAllProductsPageState extends ConsumerState<ViewAllProductsPage> {
     // Dynamically watch the correct list and loading flag from the provider
     homeState.whenData((data) {
       if (widget.title == 'Best Sellers') {
-        currentProducts = data.bestSellers;
-        isFetchingMore = data.isFetchingMoreBestSellers;
+        currentProducts = data.bestSellers.items;
+        isFetchingMore = data.bestSellers.isFetchingMore;
       } else if (widget.title == 'Flash Deals') {
-        currentProducts = data.flashDeals;
-        isFetchingMore = data.isFetchingMoreFlashDeals;
+        currentProducts = data.flashDeals.items;
+        isFetchingMore = data.flashDeals.isFetchingMore;
       } else if (widget.title == '50% off') {
-        currentProducts = data.fiftyPercentOff;
-        isFetchingMore = data.isFetchingMoreFiftyPercentOff;
+        currentProducts = data.fiftyPercentOff.items;
+        isFetchingMore = data.fiftyPercentOff.isFetchingMore;
       } else {
-        currentProducts = data.categoryProducts;
-        isFetchingMore = data.isFetchingMoreCategory;
+        currentProducts = data.categoryProducts.items;
+        isFetchingMore = data.categoryProducts.isFetchingMore;
       }
     });
 

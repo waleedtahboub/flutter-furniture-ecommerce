@@ -93,9 +93,9 @@ class _HomePageState extends ConsumerState<HomePage>
       backgroundColor: Colors.white,
       body: homeState.when(
         data: (data) {
-          final bestSeller = data.bestSellers;
-          final flashDeals = data.flashDeals;
-          final isFiftyOFF = data.fiftyPercentOff;
+          final bestSeller = data.bestSellers.items;
+          final flashDeals = data.flashDeals.items;
+          final isFiftyOFF = data.fiftyPercentOff.items;
           final categories = data.categories;
           return RefreshIndicator(
             onRefresh: () async {
@@ -125,9 +125,9 @@ class _HomePageState extends ConsumerState<HomePage>
 
                   const SizedBox(height: 16),
                   AllProducts(
-                    products: data.products,
+                    products: data.allProducts.items,
 
-                    isFetchingMore: data.isFetchingMore,
+                    isFetchingMore: data.allProducts.isFetchingMore,
                   ),
                 ],
               ),

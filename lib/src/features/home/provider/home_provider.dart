@@ -41,26 +41,26 @@ class HomeNotifier extends _$HomeNotifier {
     return HomeState(
       banners: banners,
       categories: categories,
-      isLoading: false,
-
-      products: allProductsRes.products,
-      lastDocAll: allProductsRes.lastDoc,
-      hasMore: allProductsRes.lastDoc != null,
-
-
-      bestSellers: bestRes.products,
-      lastDocBestSellers: bestRes.lastDoc,
-      hasMoreBestSellers: bestRes.lastDoc != null,
-
-
-      fiftyPercentOff: fiftyRes.products,
-      lastDocFiftyPercentOff: fiftyRes.lastDoc,
-      hasMoreFiftyPercentOff: fiftyRes.lastDoc != null,
-
-  
-      flashDeals: flashDealsRes.products,
-      lastDocFlashDeals: flashDealsRes.lastDoc,
-      hasMoreFlashDeals: flashDealsRes.lastDoc != null,
+      allProducts: PaginatedSection(
+        items: allProductsRes.products,
+        lastDoc: allProductsRes.lastDoc,
+        hasMore: allProductsRes.lastDoc != null,
+      ),
+      bestSellers: PaginatedSection(
+        items: bestRes.products,
+        lastDoc: bestRes.lastDoc,
+        hasMore: bestRes.lastDoc != null,
+      ),
+      fiftyPercentOff: PaginatedSection(
+        items: fiftyRes.products,
+        lastDoc: fiftyRes.lastDoc,
+        hasMore: fiftyRes.lastDoc != null,
+      ),
+      flashDeals: PaginatedSection(
+        items: flashDealsRes.products,
+        lastDoc: flashDealsRes.lastDoc,
+        hasMore: flashDealsRes.lastDoc != null,
+      ),
     );
   }
 
@@ -68,23 +68,27 @@ class HomeNotifier extends _$HomeNotifier {
     final currentState = state.value;
 
     if (currentState == null ||
-        currentState.isFetchingMore ||
-        !currentState.hasMore) {
+        currentState.allProducts.isFetchingMore ||
+        !currentState.allProducts.hasMore) {
       return;
     }
-    state = AsyncData(currentState.copyWith(isFetchingMore: true));
+    state = AsyncData(currentState.copyWith(
+      allProducts: currentState.allProducts.copyWith(isFetchingMore: true),
+    ));
     try {
       final paginated = await ref.read(productsRepoProvider).fetchProducts(
             limit: 10,
-            startAfter: currentState.lastDocAll,
+            startAfter: currentState.allProducts.lastDoc,
           );
 
       state = AsyncData(
         currentState.copyWith(
-          products: [...currentState.products, ...paginated.products],
-          isFetchingMore: false,
-          lastDocAll: paginated.lastDoc,
-          hasMore: paginated.lastDoc != null,
+          allProducts: currentState.allProducts.copyWith(
+            items: [...currentState.allProducts.items, ...paginated.products],
+            isFetchingMore: false,
+            lastDoc: paginated.lastDoc,
+            hasMore: paginated.lastDoc != null,
+          ),
         ),
       );
     } catch (e, st) {
@@ -95,23 +99,27 @@ class HomeNotifier extends _$HomeNotifier {
     final currentState = state.value;
 
     if (currentState == null ||
-        currentState.isFetchingMoreBestSellers ||
-        !currentState.hasMoreBestSellers) {
+        currentState.bestSellers.isFetchingMore ||
+        !currentState.bestSellers.hasMore) {
       return;
     }
-    state = AsyncData(currentState.copyWith(isFetchingMoreBestSellers: true));
+    state = AsyncData(currentState.copyWith(
+      bestSellers: currentState.bestSellers.copyWith(isFetchingMore: true),
+    ));
     try {
       final paginated = await ref.read(productsRepoProvider).fetchBestseller(
             limit: 10,
-            startAfter: currentState.lastDocBestSellers,
+            startAfter: currentState.bestSellers.lastDoc,
           );
 
       state = AsyncData(
         currentState.copyWith(
-          bestSellers: [...currentState.bestSellers, ...paginated.products],
-          isFetchingMoreBestSellers: false,
-          lastDocBestSellers: paginated.lastDoc,
-          hasMoreBestSellers: paginated.lastDoc != null,
+          bestSellers: currentState.bestSellers.copyWith(
+            items: [...currentState.bestSellers.items, ...paginated.products],
+            isFetchingMore: false,
+            lastDoc: paginated.lastDoc,
+            hasMore: paginated.lastDoc != null,
+          ),
         ),
       );
     } catch (e, st) {
@@ -123,23 +131,27 @@ class HomeNotifier extends _$HomeNotifier {
     final currentState = state.value;
 
     if (currentState == null ||
-        currentState.isFetchingMoreFlashDeals ||
-        !currentState.hasMoreFlashDeals) {
+        currentState.flashDeals.isFetchingMore ||
+        !currentState.flashDeals.hasMore) {
       return;
     }
-    state = AsyncData(currentState.copyWith(isFetchingMoreFlashDeals: true));
+    state = AsyncData(currentState.copyWith(
+      flashDeals: currentState.flashDeals.copyWith(isFetchingMore: true),
+    ));
     try {
       final paginated = await ref.read(productsRepoProvider).fetchFlashDeals(
             limit: 10,
-            startAfter: currentState.lastDocFlashDeals,
+            startAfter: currentState.flashDeals.lastDoc,
           );
 
       state = AsyncData(
         currentState.copyWith(
-          flashDeals: [...currentState.flashDeals, ...paginated.products],
-          isFetchingMoreFlashDeals: false,
-          lastDocFlashDeals: paginated.lastDoc,
-          hasMoreFlashDeals: paginated.lastDoc != null,
+          flashDeals: currentState.flashDeals.copyWith(
+            items: [...currentState.flashDeals.items, ...paginated.products],
+            isFetchingMore: false,
+            lastDoc: paginated.lastDoc,
+            hasMore: paginated.lastDoc != null,
+          ),
         ),
       );
     } catch (e, st) {
@@ -151,23 +163,27 @@ class HomeNotifier extends _$HomeNotifier {
     final currentState = state.value;
 
     if (currentState == null ||
-        currentState.isFetchingMoreFiftyPercentOff ||
-        !currentState.hasMoreFiftyPercentOff) {
+        currentState.fiftyPercentOff.isFetchingMore ||
+        !currentState.fiftyPercentOff.hasMore) {
       return;
     }
-    state = AsyncData(currentState.copyWith(isFetchingMoreFiftyPercentOff: true));
+    state = AsyncData(currentState.copyWith(
+      fiftyPercentOff: currentState.fiftyPercentOff.copyWith(isFetchingMore: true),
+    ));
     try {
       final paginated = await ref.read(productsRepoProvider).fetchByPercentage(
             limit: 10,
-            startAfter: currentState.lastDocFiftyPercentOff,
+            startAfter: currentState.fiftyPercentOff.lastDoc,
           );
 
       state = AsyncData(
         currentState.copyWith(
-          fiftyPercentOff: [...currentState.fiftyPercentOff, ...paginated.products],
-          isFetchingMoreFiftyPercentOff: false,
-          lastDocFiftyPercentOff: paginated.lastDoc,
-          hasMoreFiftyPercentOff: paginated.lastDoc != null,
+          fiftyPercentOff: currentState.fiftyPercentOff.copyWith(
+            items: [...currentState.fiftyPercentOff.items, ...paginated.products],
+            isFetchingMore: false,
+            lastDoc: paginated.lastDoc,
+            hasMore: paginated.lastDoc != null,
+          ),
         ),
       );
     } catch (e, st) {
@@ -183,9 +199,11 @@ class HomeNotifier extends _$HomeNotifier {
           );
 
       state = AsyncData(state.value!.copyWith(
-        categoryProducts: result.products,
-        lastDocCategory: result.lastDoc,
-        hasMoreCategory: result.lastDoc != null,
+        categoryProducts: PaginatedSection(
+          items: result.products,
+          lastDoc: result.lastDoc,
+          hasMore: result.lastDoc != null,
+        ),
       ));
     } catch (e, st) {
       state = AsyncError(e, st);
@@ -195,27 +213,33 @@ class HomeNotifier extends _$HomeNotifier {
   Future<void> fetchMoreByCategory(String categoryName) async {
     final currentState = state.value;
     if (currentState == null ||
-        currentState.isFetchingMoreCategory ||
-        !currentState.hasMoreCategory) {
+        currentState.categoryProducts.isFetchingMore ||
+        !currentState.categoryProducts.hasMore) {
       return;
     }
 
-    state = AsyncData(currentState.copyWith(isFetchingMoreCategory: true));
+    state = AsyncData(currentState.copyWith(
+      categoryProducts: currentState.categoryProducts.copyWith(isFetchingMore: true),
+    ));
 
     try {
       final result = await ref.read(productsRepoProvider).fetchByCategory(
             categoryName: categoryName,
-            startAfter: currentState.lastDocCategory,
+            startAfter: currentState.categoryProducts.lastDoc,
           );
 
       state = AsyncData(currentState.copyWith(
-        categoryProducts: [...currentState.categoryProducts, ...result.products],
-        lastDocCategory: result.lastDoc,
-        hasMoreCategory: result.lastDoc != null,
-        isFetchingMoreCategory: false,
+        categoryProducts: currentState.categoryProducts.copyWith(
+          items: [...currentState.categoryProducts.items, ...result.products],
+          lastDoc: result.lastDoc,
+          hasMore: result.lastDoc != null,
+          isFetchingMore: false,
+        ),
       ));
     } catch (e) {
-      state = AsyncData(state.value!.copyWith(isFetchingMoreCategory: false));
+      state = AsyncData(state.value!.copyWith(
+        categoryProducts: currentState.categoryProducts.copyWith(isFetchingMore: false),
+      ));
     }
   }
 }
