@@ -13,16 +13,6 @@ import 'package:furniture_store_app/src/features/product_details_page/page/produ
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
-class ViewAllParams {
-  ViewAllParams({
-    required this.title,
-    required this.products,
-
-  });
-  final String title;
-  final List<ProductModel> products;
-
-}
 
 final myRouter = GoRouter(
   initialLocation: HomePage.routePath,
@@ -32,13 +22,10 @@ final myRouter = GoRouter(
       builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
-      path: ViewAllProductsPage.routePath,
+      path: '/view-all/:title',
       builder: (context, state) {
-        final params = state.extra as ViewAllParams;
-        return ViewAllProductsPage(
-          title: params.title,
-          products: params.products,
-        );
+        final title = state.pathParameters['title']!;
+        return ViewAllProductsPage(title: title);
       },
     ),
     GoRoute(

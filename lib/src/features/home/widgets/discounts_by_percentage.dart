@@ -9,10 +9,7 @@ import 'package:furniture_store_app/src/features/home/widgets/custom_section_car
 import 'package:go_router/go_router.dart';
 
 class DiscountsByPercentage extends ConsumerStatefulWidget {
-  const DiscountsByPercentage({
-    super.key,
-    required this.products,
-  });
+  const DiscountsByPercentage({super.key, required this.products});
   final List<ProductModel> products;
 
   @override
@@ -59,13 +56,7 @@ class _DiscountsByPercentageState extends ConsumerState<DiscountsByPercentage> {
               const Spacer(),
               TextButton(
                 onPressed: () {
-                  context.push(
-                    ViewAllProductsPage.routePath,
-                    extra: ViewAllParams(
-                      title: '50% off',
-                      products: widget.products,
-                    ),
-                  );
+                  context.push('/view-all/50% off');
                 },
                 child: Text(
                   'View all',
@@ -95,9 +86,7 @@ class _DiscountsByPercentageState extends ConsumerState<DiscountsByPercentage> {
                 );
               }
               final product = widget.products[index];
-              return CustomSectionCard(
-                product: product,
-              );
+              return CustomSectionCard(product: product);
             },
             separatorBuilder: (context, index) => const SizedBox(width: 30),
             scrollDirection: Axis.horizontal,

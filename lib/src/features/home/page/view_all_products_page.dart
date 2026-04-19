@@ -9,12 +9,11 @@ class ViewAllProductsPage extends ConsumerStatefulWidget {
   const ViewAllProductsPage({
     super.key,
     required this.title,
-    required this.products,
 
   });
 
   final String title;
-  final List<ProductModel> products;
+ 
 
   static const String routePath = '/view-all';
 
@@ -52,7 +51,6 @@ class _ViewAllProductsPageState extends ConsumerState<ViewAllProductsPage> {
       } else if (widget.title == '50% off') {
         notifier.fetchMoreFiftyPercentOff();
       } else {
-      
         notifier.fetchMoreByCategory(widget.title);
       }
     }
@@ -62,8 +60,7 @@ class _ViewAllProductsPageState extends ConsumerState<ViewAllProductsPage> {
   Widget build(BuildContext context) {
     final homeState = ref.watch(homeProvider);
 
-    // We default to the products passed initially, but update with provider data
-    List<ProductModel> currentProducts = widget.products;
+    List<ProductModel> currentProducts = [];
     bool isFetchingMore = false;
 
     // Dynamically watch the correct list and loading flag from the provider
@@ -78,7 +75,6 @@ class _ViewAllProductsPageState extends ConsumerState<ViewAllProductsPage> {
         currentProducts = data.fiftyPercentOff;
         isFetchingMore = data.isFetchingMoreFiftyPercentOff;
       } else {
-    
         currentProducts = data.categoryProducts;
         isFetchingMore = data.isFetchingMoreCategory;
       }
@@ -101,30 +97,27 @@ class _ViewAllProductsPageState extends ConsumerState<ViewAllProductsPage> {
       body: homeState.isLoading && currentProducts.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : currentProducts.isEmpty
-              ? const Center(child: Text('No products found.'))
-              : ListView.separated(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.all(16),
-                  itemCount: currentProducts.length + (isFetchingMore ? 1 : 0),
-                  separatorBuilder: (context, index) => const SizedBox(height: 16),
-                  itemBuilder: (context, index) {
-                    // Return spinner at the very bottom
-                    if (index == currentProducts.length) {
-                      return const Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
+          ? const Center(child: Text('No products found.'))
+          : ListView.separated(
+              controller: _scrollController,
+              padding: const EdgeInsets.all(16),
+              itemCount: currentProducts.length + (isFetchingMore ? 1 : 0),
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
+              itemBuilder: (context, index) {
+                // Return spinner at the very bottom
+                if (index == currentProducts.length) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
 
-                    final product = currentProducts[index];
-                    return CustomAllProducts(
-                      product: product,
-                      
-                    );
-                  },
-                ),
+                final product = currentProducts[index];
+                return CustomAllProducts(product: product);
+              },
+            ),
     );
   }
 }

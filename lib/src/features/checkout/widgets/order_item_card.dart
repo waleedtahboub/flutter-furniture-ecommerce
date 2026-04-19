@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
@@ -29,8 +30,8 @@ class OrderItemCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Image.network(
-                  cartItem.product.imageUrl,
+                child: CachedNetworkImage(
+                  imageUrl: cartItem.product.imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),

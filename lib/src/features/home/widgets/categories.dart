@@ -60,14 +60,7 @@ class Categories extends ConsumerWidget {
                       .fetchByCategory(category.title);
 
                   // 2. Fly to the View All page!
-                  context.push(
-                    ViewAllProductsPage.routePath,
-                    extra: ViewAllParams(
-                      title: category.title,
-                      products: <ProductModel>[], // Start with an empty list, the provider will fill it!
-                      
-                    ),
-                  );
+                  context.push('/view-all/${category.title}');
                 },
                 child: SizedBox(
                   width: 69,

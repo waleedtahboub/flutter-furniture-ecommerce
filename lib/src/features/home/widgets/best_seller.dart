@@ -9,10 +9,7 @@ import 'package:furniture_store_app/src/features/home/widgets/custom_section_car
 import 'package:go_router/go_router.dart';
 
 class BestSeller extends ConsumerStatefulWidget {
-  const BestSeller({
-    super.key,
-    required this.products,
-  });
+  const BestSeller({super.key, required this.products});
 
   final List<ProductModel> products;
 
@@ -61,13 +58,7 @@ class _BestSellerState extends ConsumerState<BestSeller> {
               const Spacer(),
               TextButton(
                 onPressed: () {
-                  context.push(
-                    ViewAllProductsPage.routePath,
-                    extra: ViewAllParams(
-                      title: 'Best Sellers',
-                      products: widget.products,
-                    ),
-                  );
+                  context.push('/view-all/Best Sellers');
                 },
                 child: Text(
                   'View all',
@@ -99,9 +90,7 @@ class _BestSellerState extends ConsumerState<BestSeller> {
               }
 
               final product = widget.products[index];
-              return CustomSectionCard(
-                product: product,
-              );
+              return CustomSectionCard(product: product);
             },
             separatorBuilder: (context, index) => const SizedBox(width: 30),
             scrollDirection: Axis.horizontal,
