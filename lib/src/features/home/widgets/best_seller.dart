@@ -1,16 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
-import 'package:furniture_store_app/src/features/home/models/products.dart';
-import 'package:furniture_store_app/src/features/home/page/home_page.dart';
+import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
+import 'package:go_router/go_router.dart';
 
-class BestSeller extends StatelessWidget {
-  const BestSeller({super.key, required this.favoriteCallback});
+class BestSeller extends ConsumerStatefulWidget {
+  const BestSeller({super.key, required this.products});
 
-  final ProductCallback favoriteCallback;
+  final List<ProductModel> products;
+
+  @override
+  ConsumerState<BestSeller> createState() => _BestSellerState();
+}
+
+class _BestSellerState extends ConsumerState<BestSeller> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    _scrollController.addListener(_onScroll);
+    super.initState();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
+      ref.read(homeProvider.notifier).fetchMoreBestsellers();
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final bestSellerState = ref.watch(homeProvider);
+    final isFetchingMore =
+        bestSellerState.value?.bestSellers.isFetchingMore ?? false;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -24,7 +55,9 @@ class BestSeller extends StatelessWidget {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.push('/view-all/Best Sellers');
+                },
                 child: Text(
                   'View all',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
@@ -40,16 +73,22 @@ class BestSeller extends StatelessWidget {
         SizedBox(
           height: 240,
           child: ListView.separated(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             physics: const BouncingScrollPhysics(),
-
-            itemCount: products.length,
+            controller: _scrollController,
+            itemCount: widget.products.length + (isFetchingMore ? 1 : 0),
             itemBuilder: (context, index) {
-              final product = products[index];
-              return CustomSectionCard(
-                product: product,
-                favoriteCallback: favoriteCallback,
-              );
+              if (index == widget.products.length) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+
+              final product = widget.products[index];
+              return CustomSectionCard(product: product);
             },
             separatorBuilder: (context, index) => const SizedBox(width: 30),
             scrollDirection: Axis.horizontal,

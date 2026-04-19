@@ -16,7 +16,7 @@ class ProductInformation extends StatelessWidget {
           children: [
             const SizedBox(height: 22),
             Text(
-              product.category,
+              product.categoryName,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 color: Theme.of(context).colorScheme.outline,
               ),
@@ -24,7 +24,7 @@ class ProductInformation extends StatelessWidget {
             const Spacer(),
             const Icon(Icons.star, color: AppColor.star, size: 25),
             Text(
-              product.rating,
+              product.rating.toStringAsFixed(1),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 color: Theme.of(context).colorScheme.outline,
               ),

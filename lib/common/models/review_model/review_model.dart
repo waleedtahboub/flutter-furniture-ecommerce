@@ -5,6 +5,7 @@ part 'review_model.g.dart';
 
 @freezed
 abstract class ReviewModel with _$ReviewModel {
+  @JsonSerializable(explicitToJson: true)
   factory ReviewModel({
     required String reviewerName,
     required DateTime date,

@@ -209,8 +209,8 @@ return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(explicitToJson: true)
 class _ReviewModel implements ReviewModel {
    _ReviewModel({required this.reviewerName, required this.date, required this.comment, this.rating = 0.0});
   factory _ReviewModel.fromJson(Map<String, dynamic> json) => _$ReviewModelFromJson(json);

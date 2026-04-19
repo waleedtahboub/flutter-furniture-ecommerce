@@ -1,5 +1,3 @@
-import 'package:furniture_store_app/common/resources/assets.dart';
-
 enum CategoryType {
   bedrooms(
     title: 'Bedrooms',

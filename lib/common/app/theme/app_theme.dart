@@ -3,7 +3,6 @@ import 'package:furniture_store_app/common/app/theme/app_metrics.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 
 class AppTheme {
-  // fontFamily is defined once on `light` ThemeData — no need to repeat it here.
   static ThemeData text = ThemeData(
     textTheme: const TextTheme(
       // Display — hero numbers, welcome screens
