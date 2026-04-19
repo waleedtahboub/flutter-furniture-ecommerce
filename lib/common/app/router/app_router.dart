@@ -31,8 +31,8 @@ final myRouter = GoRouter(
     GoRoute(
       path: ProductDetailsPage.routePath,
       builder: (context, state) {
-        final product = state.extra as ProductModel;
-        return ProductDetailsPage(product: product);
+        final productId = state.pathParameters['productId']!;
+        return ProductDetailsPage(productId: productId);
       },
     ),
     GoRoute(

@@ -38,7 +38,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
       ),
       child: InkWell(
         onTap: () {
-          context.push(ProductDetailsPage.routePath, extra: widget.product);
+          context.push('/product_details/${widget.product.id}');
         },
         borderRadius: BorderRadius.circular(16),
         child: Column(
