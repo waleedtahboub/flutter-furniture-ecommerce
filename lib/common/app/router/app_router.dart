@@ -1,4 +1,3 @@
-import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/src/features/auth/create_account/page/create_account_page.dart';
 import 'package:furniture_store_app/src/features/auth/login/page/login_page.dart';
 import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
