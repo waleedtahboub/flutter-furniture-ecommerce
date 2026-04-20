@@ -10,7 +10,7 @@ import 'package:furniture_store_app/src/features/product_details_page/widgets/pr
 
 class ProductDetailsPage extends ConsumerStatefulWidget {
   const ProductDetailsPage({super.key, required this.productId});
-  static const String routePath = '/product_details/:productId';
+  static const String routePath = '/product_details';
   final String productId;
   @override
   ConsumerState<ProductDetailsPage> createState() => _ProductDetailsPageState();
@@ -44,7 +44,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
               children: [
                 Column(
                   children: [
-                     HeadSection(product: product,),
+                    HeadSection(product: product),
 
                     Padding(
                       padding: const EdgeInsets.all(20.0),

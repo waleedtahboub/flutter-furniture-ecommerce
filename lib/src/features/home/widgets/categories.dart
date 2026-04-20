@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/category_model/category_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/category/page/category_page.dart';
+import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:go_router/go_router.dart';
 
@@ -56,7 +57,7 @@ class Categories extends ConsumerWidget {
                       .fetchByCategory(category.title);
 
                   // 2. Fly to the View All page!
-                  context.push('/view-all/${category.title}');
+                  context.push('${ViewAllProductsPage.routePath}/${category.title}');
                 },
                 child: SizedBox(
                   width: 69,

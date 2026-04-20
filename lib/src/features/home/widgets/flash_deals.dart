@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
 import 'package:go_router/go_router.dart';
@@ -56,7 +57,7 @@ class _FlashDealsState extends ConsumerState<FlashDeals> {
               const Spacer(),
               TextButton(
                 onPressed: () {
-                  context.push('/view-all/Flash Deals');
+                  context.push('${ViewAllProductsPage.routePath}/Flash Deals');
                 },
                 child: Text(
                   'View all',

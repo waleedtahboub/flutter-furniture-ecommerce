@@ -13,7 +13,6 @@ import 'package:furniture_store_app/src/features/product_details_page/page/produ
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
-
 final myRouter = GoRouter(
   initialLocation: HomePage.routePath,
   routes: [
@@ -22,17 +21,17 @@ final myRouter = GoRouter(
       builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
-      path: '/view-all/:title',
+      path: '${ViewAllProductsPage.routePath}/:title',
       builder: (context, state) {
         final title = state.pathParameters['title']!;
         return ViewAllProductsPage(title: title);
       },
     ),
     GoRoute(
-      path: ProductDetailsPage.routePath,
+      path: '${ProductDetailsPage.routePath}/:id',
       builder: (context, state) {
-        final productId = state.pathParameters['productId']!;
-        return ProductDetailsPage(productId: productId);
+        final id = state.pathParameters['id']!;
+        return ProductDetailsPage(productId: id);
       },
     ),
     GoRoute(

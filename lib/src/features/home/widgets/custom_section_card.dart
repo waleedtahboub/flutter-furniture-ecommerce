@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
@@ -20,7 +21,7 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push('/product_details/${widget.product.id}');
+        context.push('${ProductDetailsPage.routePath}/${widget.product.id}');
       },
       child: SizedBox(
         height: 230,
