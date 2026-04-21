@@ -8,12 +8,12 @@ class HiveService<T> {
     await Hive.initFlutter();
   }
 
-  Future<Box<T>> openBox() async {
+  Future<Box> openBox() async {
     if (Hive.isBoxOpen(_boxName)) {
       return Hive.box(_boxName);
     }
 
-    return await Hive.openBox<T>(_boxName);
+    return await Hive.openBox(_boxName);
   }
 
   Future<void> save(String key, T value) async {

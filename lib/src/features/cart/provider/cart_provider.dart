@@ -12,7 +12,7 @@ class CartProvider extends _$CartProvider {
   @override
   Future<List<CartItemModel>> build() async {
     final list = await _hiveService.get('cart_items');
-    return list ?? [];
+    return list?.cast<CartItemModel>() ?? [];
   }
 
   FutureOr<void> addItem(CartItemModel newItem) async {
