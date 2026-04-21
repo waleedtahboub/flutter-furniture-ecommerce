@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductModel {
 
- String get id; String get imageUrl; String get name; String get categoryId; String get categoryName; double get rating; double get basePrice; double get salePrice; bool get isBestseller; bool get isFlashDeal; bool get is50PercentOff;@JsonKey(includeFromJson: false, includeToJson: false) bool get isFavorite; String get description; List<ReviewModel> get reviews; List<String> get colors; DateTime get createdAt;
+@HiveField(0) String get id;@HiveField(1) String get imageUrl;@HiveField(2) String get name;@HiveField(3) String get categoryId;@HiveField(4) String get categoryName;@HiveField(5) double get rating;@HiveField(6) double get basePrice;@HiveField(7) double get salePrice;@HiveField(8) bool get isBestseller;@HiveField(9) bool get isFlashDeal;@HiveField(10) bool get is50PercentOff;@JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11) bool get isFavorite;@HiveField(12) String get description;@HiveField(13) List<ReviewModel> get reviews;@HiveField(14) List<String> get colors;@HiveField(15) DateTime get createdAt;
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ProductModelCopyWith<$Res>  {
   factory $ProductModelCopyWith(ProductModel value, $Res Function(ProductModel) _then) = _$ProductModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String imageUrl, String name, String categoryId, String categoryName, double rating, double basePrice, double salePrice, bool isBestseller, bool isFlashDeal, bool is50PercentOff,@JsonKey(includeFromJson: false, includeToJson: false) bool isFavorite, String description, List<ReviewModel> reviews, List<String> colors, DateTime createdAt
+@HiveField(0) String id,@HiveField(1) String imageUrl,@HiveField(2) String name,@HiveField(3) String categoryId,@HiveField(4) String categoryName,@HiveField(5) double rating,@HiveField(6) double basePrice,@HiveField(7) double salePrice,@HiveField(8) bool isBestseller,@HiveField(9) bool isFlashDeal,@HiveField(10) bool is50PercentOff,@JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11) bool isFavorite,@HiveField(12) String description,@HiveField(13) List<ReviewModel> reviews,@HiveField(14) List<String> colors,@HiveField(15) DateTime createdAt
 });
 
 
@@ -168,7 +168,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String imageUrl,  String name,  String categoryId,  String categoryName,  double rating,  double basePrice,  double salePrice,  bool isBestseller,  bool isFlashDeal,  bool is50PercentOff, @JsonKey(includeFromJson: false, includeToJson: false)  bool isFavorite,  String description,  List<ReviewModel> reviews,  List<String> colors,  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String id, @HiveField(1)  String imageUrl, @HiveField(2)  String name, @HiveField(3)  String categoryId, @HiveField(4)  String categoryName, @HiveField(5)  double rating, @HiveField(6)  double basePrice, @HiveField(7)  double salePrice, @HiveField(8)  bool isBestseller, @HiveField(9)  bool isFlashDeal, @HiveField(10)  bool is50PercentOff, @JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11)  bool isFavorite, @HiveField(12)  String description, @HiveField(13)  List<ReviewModel> reviews, @HiveField(14)  List<String> colors, @HiveField(15)  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductModel() when $default != null:
 return $default(_that.id,_that.imageUrl,_that.name,_that.categoryId,_that.categoryName,_that.rating,_that.basePrice,_that.salePrice,_that.isBestseller,_that.isFlashDeal,_that.is50PercentOff,_that.isFavorite,_that.description,_that.reviews,_that.colors,_that.createdAt);case _:
@@ -189,7 +189,7 @@ return $default(_that.id,_that.imageUrl,_that.name,_that.categoryId,_that.catego
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String imageUrl,  String name,  String categoryId,  String categoryName,  double rating,  double basePrice,  double salePrice,  bool isBestseller,  bool isFlashDeal,  bool is50PercentOff, @JsonKey(includeFromJson: false, includeToJson: false)  bool isFavorite,  String description,  List<ReviewModel> reviews,  List<String> colors,  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String id, @HiveField(1)  String imageUrl, @HiveField(2)  String name, @HiveField(3)  String categoryId, @HiveField(4)  String categoryName, @HiveField(5)  double rating, @HiveField(6)  double basePrice, @HiveField(7)  double salePrice, @HiveField(8)  bool isBestseller, @HiveField(9)  bool isFlashDeal, @HiveField(10)  bool is50PercentOff, @JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11)  bool isFavorite, @HiveField(12)  String description, @HiveField(13)  List<ReviewModel> reviews, @HiveField(14)  List<String> colors, @HiveField(15)  DateTime createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _ProductModel():
 return $default(_that.id,_that.imageUrl,_that.name,_that.categoryId,_that.categoryName,_that.rating,_that.basePrice,_that.salePrice,_that.isBestseller,_that.isFlashDeal,_that.is50PercentOff,_that.isFavorite,_that.description,_that.reviews,_that.colors,_that.createdAt);case _:
@@ -209,7 +209,7 @@ return $default(_that.id,_that.imageUrl,_that.name,_that.categoryId,_that.catego
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String imageUrl,  String name,  String categoryId,  String categoryName,  double rating,  double basePrice,  double salePrice,  bool isBestseller,  bool isFlashDeal,  bool is50PercentOff, @JsonKey(includeFromJson: false, includeToJson: false)  bool isFavorite,  String description,  List<ReviewModel> reviews,  List<String> colors,  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String id, @HiveField(1)  String imageUrl, @HiveField(2)  String name, @HiveField(3)  String categoryId, @HiveField(4)  String categoryName, @HiveField(5)  double rating, @HiveField(6)  double basePrice, @HiveField(7)  double salePrice, @HiveField(8)  bool isBestseller, @HiveField(9)  bool isFlashDeal, @HiveField(10)  bool is50PercentOff, @JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11)  bool isFavorite, @HiveField(12)  String description, @HiveField(13)  List<ReviewModel> reviews, @HiveField(14)  List<String> colors, @HiveField(15)  DateTime createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductModel() when $default != null:
 return $default(_that.id,_that.imageUrl,_that.name,_that.categoryId,_that.categoryName,_that.rating,_that.basePrice,_that.salePrice,_that.isBestseller,_that.isFlashDeal,_that.is50PercentOff,_that.isFavorite,_that.description,_that.reviews,_that.colors,_that.createdAt);case _:
@@ -224,37 +224,37 @@ return $default(_that.id,_that.imageUrl,_that.name,_that.categoryId,_that.catego
 
 @JsonSerializable(explicitToJson: true)
 class _ProductModel implements ProductModel {
-   _ProductModel({required this.id, required this.imageUrl, required this.name, required this.categoryId, required this.categoryName, required this.rating, required this.basePrice, required this.salePrice, this.isBestseller = false, this.isFlashDeal = false, this.is50PercentOff = false, @JsonKey(includeFromJson: false, includeToJson: false) this.isFavorite = false, required this.description, required final  List<ReviewModel> reviews, required final  List<String> colors, required this.createdAt}): _reviews = reviews,_colors = colors;
+   _ProductModel({@HiveField(0) required this.id, @HiveField(1) required this.imageUrl, @HiveField(2) required this.name, @HiveField(3) required this.categoryId, @HiveField(4) required this.categoryName, @HiveField(5) required this.rating, @HiveField(6) required this.basePrice, @HiveField(7) required this.salePrice, @HiveField(8) this.isBestseller = false, @HiveField(9) this.isFlashDeal = false, @HiveField(10) this.is50PercentOff = false, @JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11) this.isFavorite = false, @HiveField(12) required this.description, @HiveField(13) required final  List<ReviewModel> reviews, @HiveField(14) required final  List<String> colors, @HiveField(15) required this.createdAt}): _reviews = reviews,_colors = colors;
   factory _ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 
-@override final  String id;
-@override final  String imageUrl;
-@override final  String name;
-@override final  String categoryId;
-@override final  String categoryName;
-@override final  double rating;
-@override final  double basePrice;
-@override final  double salePrice;
-@override@JsonKey() final  bool isBestseller;
-@override@JsonKey() final  bool isFlashDeal;
-@override@JsonKey() final  bool is50PercentOff;
-@override@JsonKey(includeFromJson: false, includeToJson: false) final  bool isFavorite;
-@override final  String description;
+@override@HiveField(0) final  String id;
+@override@HiveField(1) final  String imageUrl;
+@override@HiveField(2) final  String name;
+@override@HiveField(3) final  String categoryId;
+@override@HiveField(4) final  String categoryName;
+@override@HiveField(5) final  double rating;
+@override@HiveField(6) final  double basePrice;
+@override@HiveField(7) final  double salePrice;
+@override@JsonKey()@HiveField(8) final  bool isBestseller;
+@override@JsonKey()@HiveField(9) final  bool isFlashDeal;
+@override@JsonKey()@HiveField(10) final  bool is50PercentOff;
+@override@JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11) final  bool isFavorite;
+@override@HiveField(12) final  String description;
  final  List<ReviewModel> _reviews;
-@override List<ReviewModel> get reviews {
+@override@HiveField(13) List<ReviewModel> get reviews {
   if (_reviews is EqualUnmodifiableListView) return _reviews;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_reviews);
 }
 
  final  List<String> _colors;
-@override List<String> get colors {
+@override@HiveField(14) List<String> get colors {
   if (_colors is EqualUnmodifiableListView) return _colors;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_colors);
 }
 
-@override final  DateTime createdAt;
+@override@HiveField(15) final  DateTime createdAt;
 
 /// Create a copy of ProductModel
 /// with the given fields replaced by the non-null parameter values.
@@ -289,7 +289,7 @@ abstract mixin class _$ProductModelCopyWith<$Res> implements $ProductModelCopyWi
   factory _$ProductModelCopyWith(_ProductModel value, $Res Function(_ProductModel) _then) = __$ProductModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String imageUrl, String name, String categoryId, String categoryName, double rating, double basePrice, double salePrice, bool isBestseller, bool isFlashDeal, bool is50PercentOff,@JsonKey(includeFromJson: false, includeToJson: false) bool isFavorite, String description, List<ReviewModel> reviews, List<String> colors, DateTime createdAt
+@HiveField(0) String id,@HiveField(1) String imageUrl,@HiveField(2) String name,@HiveField(3) String categoryId,@HiveField(4) String categoryName,@HiveField(5) double rating,@HiveField(6) double basePrice,@HiveField(7) double salePrice,@HiveField(8) bool isBestseller,@HiveField(9) bool isFlashDeal,@HiveField(10) bool is50PercentOff,@JsonKey(includeFromJson: false, includeToJson: false)@HiveField(11) bool isFavorite,@HiveField(12) String description,@HiveField(13) List<ReviewModel> reviews,@HiveField(14) List<String> colors,@HiveField(15) DateTime createdAt
 });
 
 

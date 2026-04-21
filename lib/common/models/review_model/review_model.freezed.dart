@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ReviewModel {
 
- String get reviewerName; DateTime get date; String get comment; double get rating;
+@HiveField(0) String get reviewerName;@HiveField(1) DateTime get date;@HiveField(2) String get comment;@HiveField(3) double get rating;
 /// Create a copy of ReviewModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ReviewModelCopyWith<$Res>  {
   factory $ReviewModelCopyWith(ReviewModel value, $Res Function(ReviewModel) _then) = _$ReviewModelCopyWithImpl;
 @useResult
 $Res call({
- String reviewerName, DateTime date, String comment, double rating
+@HiveField(0) String reviewerName,@HiveField(1) DateTime date,@HiveField(2) String comment,@HiveField(3) double rating
 });
 
 
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String reviewerName,  DateTime date,  String comment,  double rating)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String reviewerName, @HiveField(1)  DateTime date, @HiveField(2)  String comment, @HiveField(3)  double rating)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReviewModel() when $default != null:
 return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _:
@@ -177,7 +177,7 @@ return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String reviewerName,  DateTime date,  String comment,  double rating)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String reviewerName, @HiveField(1)  DateTime date, @HiveField(2)  String comment, @HiveField(3)  double rating)  $default,) {final _that = this;
 switch (_that) {
 case _ReviewModel():
 return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _:
@@ -197,7 +197,7 @@ return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String reviewerName,  DateTime date,  String comment,  double rating)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String reviewerName, @HiveField(1)  DateTime date, @HiveField(2)  String comment, @HiveField(3)  double rating)?  $default,) {final _that = this;
 switch (_that) {
 case _ReviewModel() when $default != null:
 return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _:
@@ -212,13 +212,13 @@ return $default(_that.reviewerName,_that.date,_that.comment,_that.rating);case _
 
 @JsonSerializable(explicitToJson: true)
 class _ReviewModel implements ReviewModel {
-   _ReviewModel({required this.reviewerName, required this.date, required this.comment, this.rating = 0.0});
+   _ReviewModel({@HiveField(0) required this.reviewerName, @HiveField(1) required this.date, @HiveField(2) required this.comment, @HiveField(3) this.rating = 0.0});
   factory _ReviewModel.fromJson(Map<String, dynamic> json) => _$ReviewModelFromJson(json);
 
-@override final  String reviewerName;
-@override final  DateTime date;
-@override final  String comment;
-@override@JsonKey() final  double rating;
+@override@HiveField(0) final  String reviewerName;
+@override@HiveField(1) final  DateTime date;
+@override@HiveField(2) final  String comment;
+@override@JsonKey()@HiveField(3) final  double rating;
 
 /// Create a copy of ReviewModel
 /// with the given fields replaced by the non-null parameter values.
@@ -253,7 +253,7 @@ abstract mixin class _$ReviewModelCopyWith<$Res> implements $ReviewModelCopyWith
   factory _$ReviewModelCopyWith(_ReviewModel value, $Res Function(_ReviewModel) _then) = __$ReviewModelCopyWithImpl;
 @override @useResult
 $Res call({
- String reviewerName, DateTime date, String comment, double rating
+@HiveField(0) String reviewerName,@HiveField(1) DateTime date,@HiveField(2) String comment,@HiveField(3) double rating
 });
 
 

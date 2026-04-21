@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
-import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 
-class CustomSectionCard extends StatefulWidget {
+class CustomSectionCard extends ConsumerStatefulWidget {
   const CustomSectionCard({super.key, required this.product});
 
   final ProductModel product;
 
   @override
-  State<CustomSectionCard> createState() => _CustomSectionCardState();
+  ConsumerState<CustomSectionCard> createState() => _CustomSectionCardState();
 }
 
-class _CustomSectionCardState extends State<CustomSectionCard> {
+class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -127,26 +128,15 @@ class _CustomSectionCardState extends State<CustomSectionCard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
-                          int existingIndex = myCartItems.indexWhere(
-                            (element) =>
-                                element.product.name == widget.product.name,
-                          );
-                          setState(() {
-                            if (existingIndex != -1) {
-                              myCartItems[existingIndex] =
-                                  myCartItems[existingIndex].copyWith(
-                                    quantity:
-                                        myCartItems[existingIndex].quantity + 1,
-                                  );
-                            } else {
-                              myCartItems.add(
+                          ref
+                              .read(cartProviderProvider.notifier)
+                              .addItem(
                                 CartItemModel(
+                                  id: widget.product.id,
                                   product: widget.product,
                                   quantity: 1,
                                 ),
                               );
-                            }
-                          });
                         },
                         child: Container(
                           height: 24,

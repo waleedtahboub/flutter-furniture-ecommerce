@@ -398,6 +398,24 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "hive_ce",
+      "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/hive_ce-2.19.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "hive_ce_flutter",
+      "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/hive_ce_flutter-2.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "hive_ce_generator",
+      "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/hive_ce_generator-1.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "hooks",
       "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/hooks-1.0.2",
       "packageUri": "lib/",
@@ -444,6 +462,12 @@
       "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/io-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "isolate_channel",
+      "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/isolate_channel-0.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "json_annotation",
@@ -954,6 +978,12 @@
       "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/yaml_edit-2.2.4",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "yaml_writer",
+      "rootUri": "file:///C:/Users/24OnLine/AppData/Local/Pub/Cache/hosted/pub.dev/yaml_writer-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "furniture_store_app",
