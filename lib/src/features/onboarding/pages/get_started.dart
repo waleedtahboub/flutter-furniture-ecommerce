@@ -34,14 +34,14 @@ class GetStarted extends StatelessWidget {
             const SizedBox(height: 620),
             ElevatedButton(
               onPressed: () {
-                context.push(CreateAccount.routePath);
+                context.go(CreateAccount.routePath);
               },
               child: const Text('Create Account'),
             ),
             const SizedBox(height: 5),
             TextButton(
               onPressed: () {
-                context.push(LoginPage.routePath);
+                context.go(LoginPage.routePath);
               },
               child: Text(
                 'Already Have an Account?',
