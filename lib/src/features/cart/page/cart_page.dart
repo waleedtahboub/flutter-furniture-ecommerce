@@ -5,7 +5,7 @@ import 'package:furniture_store_app/src/features/cart/page/filled_cart_view.dart
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
-  static const String routePath = '/cart';
+  static const String routePath = 'cart';
   @override
   State<CartPage> createState() => _CartPageState();
 }

@@ -6,6 +6,7 @@ import 'package:furniture_store_app/src/features/home/page/view_all_products_pag
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:furniture_store_app/src/features/home/widgets/custom_section_card.dart';
 import 'package:go_router/go_router.dart';
+import 'package:furniture_store_app/common/utils/extensions/build_context_extension.dart';
 
 class BestSeller extends ConsumerStatefulWidget {
   const BestSeller({super.key, required this.products});
@@ -52,16 +53,18 @@ class _BestSellerState extends ConsumerState<BestSeller> {
             children: [
               Text(
                 'Best Sellers',
-                style: Theme.of(context).textTheme.titleMedium,
+                style: context.textTheme.titleMedium,
               ),
               const Spacer(),
               TextButton(
                 onPressed: () {
-                  context.push('${ViewAllProductsPage.routePath}/Best Sellers');
+                  context.goNested(
+                    '${ViewAllProductsPage.routePath}/Best Sellers',
+                  );
                 },
                 child: Text(
                   'View all',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  style: context.textTheme.labelMedium?.copyWith(
                     decoration: TextDecoration.underline,
                     color: AppColor.primary,
                     decorationColor: AppColor.primary,

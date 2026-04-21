@@ -6,6 +6,7 @@ import 'package:furniture_store_app/src/features/category/page/category_page.dar
 import 'package:furniture_store_app/src/features/home/page/view_all_products_page.dart';
 import 'package:furniture_store_app/src/features/home/provider/home_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:furniture_store_app/common/utils/extensions/build_context_extension.dart';
 
 class Categories extends ConsumerWidget {
   const Categories({super.key, required this.categories});
@@ -21,7 +22,7 @@ class Categories extends ConsumerWidget {
             children: [
               Text(
                 'Categories ',
-                style: Theme.of(context).textTheme.titleMedium,
+                style: context.textTheme.titleMedium,
               ),
               const Spacer(),
               TextButton(
@@ -30,7 +31,7 @@ class Categories extends ConsumerWidget {
                 },
                 child: Text(
                   'View all',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  style: context.textTheme.labelMedium?.copyWith(
                     decoration: TextDecoration.underline,
                     color: AppColor.primary,
                     decorationColor: AppColor.primary,
@@ -51,13 +52,13 @@ class Categories extends ConsumerWidget {
               final category = categories[index];
               return InkWell(
                 onTap: () {
-                  // 1. Tell the database to start searching for this category
                   ref
                       .read(homeProvider.notifier)
                       .fetchByCategory(category.title);
 
-                  // 2. Fly to the View All page!
-                  context.push('${ViewAllProductsPage.routePath}/${category.title}');
+                  context.goNested(
+                    '${ViewAllProductsPage.routePath}/${category.title}',
+                  );
                 },
                 child: SizedBox(
                   width: 69,
@@ -75,7 +76,7 @@ class Categories extends ConsumerWidget {
                         height: 40,
                         child: Text(
                           category.title,
-                          style: Theme.of(context).textTheme.titleSmall,
+                          style: context.textTheme.titleSmall,
                           maxLines: 2,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.fade,

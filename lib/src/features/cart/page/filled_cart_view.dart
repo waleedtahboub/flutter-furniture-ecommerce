@@ -5,6 +5,7 @@ import 'package:furniture_store_app/src/features/cart/widgets/cart_item_card.dar
 import 'package:furniture_store_app/src/features/checkout/page/checkout_page.dart';
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 import 'package:furniture_store_app/src/features/checkout/utils/checkout_calculator.dart';
+import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
 import 'package:go_router/go_router.dart';
 
 class FilledCartView extends StatefulWidget {
@@ -44,7 +45,7 @@ class _FilledCartViewState extends State<FilledCartView> {
                           },
                           onDecrement: () {
                             if (myCartItems.isEmpty) {
-                              Navigator.pop(context);
+                              context.pop();
                             }
                             setState(() {
                               final cartItem = myCartItems[index];
@@ -100,7 +101,7 @@ class _FilledCartViewState extends State<FilledCartView> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              context.push(CheckoutPage.routePath);
+              context.go('/${CartPage.routePath}/${CheckoutPage.routePath}');
             },
             child: const Text('Proceed to Checkout'),
           ),

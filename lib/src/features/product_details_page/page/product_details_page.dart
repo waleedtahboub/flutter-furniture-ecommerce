@@ -7,10 +7,11 @@ import 'package:furniture_store_app/src/features/product_details_page/widgets/ra
 import 'package:furniture_store_app/src/features/product_details_page/widgets/color_section.dart';
 import 'package:furniture_store_app/src/features/product_details_page/widgets/head_section.dart';
 import 'package:furniture_store_app/src/features/product_details_page/widgets/product_information.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductDetailsPage extends ConsumerStatefulWidget {
   const ProductDetailsPage({super.key, required this.productId});
-  static const String routePath = '/product_details';
+  static const String routePath = 'product_details';
   final String productId;
   @override
   ConsumerState<ProductDetailsPage> createState() => _ProductDetailsPageState();
@@ -34,7 +35,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
             elevation: 0,
             leading: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                context.pop();
               },
               icon: const Icon(Icons.arrow_back_ios_new, size: 20),
             ),
@@ -76,7 +77,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                                   quantity: oldItem.quantity + 1,
                                 );
                               } else {
-                                // 3. We didn't find it! Make a brand new wrapper and push it.
+
                                 myCartItems.add(
                                   CartItemModel(product: product, quantity: 1),
                                 );

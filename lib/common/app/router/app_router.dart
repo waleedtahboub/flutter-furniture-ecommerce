@@ -11,28 +11,19 @@ import 'package:furniture_store_app/src/features/onboarding/pages/on_boarding_pa
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:furniture_store_app/src/features/profile/page/profile_page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final myRouter = GoRouter(
+  navigatorKey: _rootNavigatorKey,
   initialLocation: HomePage.routePath,
   routes: [
     GoRoute(
       path: LoginPage.routePath,
       builder: (context, state) => const LoginPage(),
     ),
-    GoRoute(
-      path: '${ViewAllProductsPage.routePath}/:title',
-      builder: (context, state) {
-        final title = state.pathParameters['title']!;
-        return ViewAllProductsPage(title: title);
-      },
-    ),
-    GoRoute(
-      path: '${ProductDetailsPage.routePath}/:id',
-      builder: (context, state) {
-        final id = state.pathParameters['id']!;
-        return ProductDetailsPage(productId: id);
-      },
-    ),
+
     GoRoute(
       path: CreateAccount.routePath,
       builder: (context, state) => const CreateAccount(),
@@ -48,11 +39,6 @@ final myRouter = GoRouter(
       builder: (context, state) => const GetStarted(),
     ),
 
-    GoRoute(
-      path: CheckoutPage.routePath,
-      builder: (context, state) => const CheckoutPage(),
-    ),
-
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return MainShellScaffold(navigationShell: navigationShell);
@@ -63,6 +49,34 @@ final myRouter = GoRouter(
             GoRoute(
               path: HomePage.routePath,
               builder: (context, state) => const HomePage(),
+              routes: [
+                GoRoute(
+                  path: 'product_details/:id',
+                  parentNavigatorKey: _rootNavigatorKey,
+                  builder: (context, state) {
+                    final id = state.pathParameters['id']!;
+                    return ProductDetailsPage(productId: id);
+                  },
+                ),
+                GoRoute(
+                  path: '${ViewAllProductsPage.routePath}/:title',
+                  parentNavigatorKey: _rootNavigatorKey,
+                  routes: [
+                    GoRoute(
+                      path: 'product_details/:id',
+                      parentNavigatorKey: _rootNavigatorKey,
+                      builder: (context, state) {
+                        final id = state.pathParameters['id']!;
+                        return ProductDetailsPage(productId: id);
+                      },
+                    ),
+                  ],
+                  builder: (context, state) {
+                    final title = state.pathParameters['title']!;
+                    return ViewAllProductsPage(title: title);
+                  },
+                ),
+              ],
             ),
           ],
         ),
@@ -70,6 +84,26 @@ final myRouter = GoRouter(
           routes: [
             GoRoute(
               path: CategoryPage.routePath,
+              routes: [
+                GoRoute(
+                  path: '${ViewAllProductsPage.routePath}/:title',
+                  parentNavigatorKey: _rootNavigatorKey,
+                  routes: [
+                    GoRoute(
+                      path: 'product_details/:id',
+                      parentNavigatorKey: _rootNavigatorKey,
+                      builder: (context, state) {
+                        final id = state.pathParameters['id']!;
+                        return ProductDetailsPage(productId: id);
+                      },
+                    ),
+                  ],
+                  builder: (context, state) {
+                    final title = state.pathParameters['title']!;
+                    return ViewAllProductsPage(title: title);
+                  },
+                ),
+              ],
               builder: (context, state) => const CategoryPage(),
             ),
           ],
@@ -79,6 +113,13 @@ final myRouter = GoRouter(
             GoRoute(
               path: CartPage.routePath,
               builder: (context, state) => const CartPage(),
+              routes: [
+                GoRoute(
+                  path: CheckoutPage.routePath,
+                  parentNavigatorKey: _rootNavigatorKey,
+                  builder: (context, state) => const CheckoutPage(),
+                ),
+              ],
             ),
           ],
         ),

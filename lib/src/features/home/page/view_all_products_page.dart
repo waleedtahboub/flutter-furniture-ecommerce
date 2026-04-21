@@ -15,7 +15,7 @@ class ViewAllProductsPage extends ConsumerStatefulWidget {
   final String title;
  
 
-  static const String routePath = '/view-all';
+  static const String routePath = 'view-all';
 
   @override
   ConsumerState<ViewAllProductsPage> createState() =>
