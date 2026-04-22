@@ -74,3 +74,6 @@ final authRepoProvider = Provider<AuthRepo>((ref) {
     FirebaseFirestore.instance,
   );
 });
+final userProvider = StreamProvider<User?>((ref) {
+  return FirebaseAuth.instance.authStateChanges();
+});
