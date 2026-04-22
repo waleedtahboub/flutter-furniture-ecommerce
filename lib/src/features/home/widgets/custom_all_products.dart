@@ -3,8 +3,8 @@ import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dar
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
-import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
+import 'package:furniture_store_app/common/utils/extensions/build_context_extension.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:furniture_store_app/src/features/home/widgets/product_badge.dart';
 import 'package:furniture_store_app/src/features/cart/my_cart.dart';
@@ -28,9 +28,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(
-              13,
-            ), // 13 is ~0.05 opacity in 0-255 scale
+            color: Colors.black.withAlpha(13),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -38,7 +36,10 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
       ),
       child: InkWell(
         onTap: () {
-          context.push(ProductDetailsPage.routePath, extra: widget.product);
+          context.navigateToProductDetails(
+            widget.product.id,
+            ProductDetailsPage.routePath,
+          );
         },
         borderRadius: BorderRadius.circular(16),
         child: Column(
@@ -146,7 +147,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                     children: [
                       Text(
                         widget.product.categoryName.toUpperCase(),
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        style: context.textTheme.labelSmall?.copyWith(
                           color: AppColor.onSecondary,
                           letterSpacing: 1.2,
                           fontWeight: FontWeight.bold,
@@ -162,7 +163,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                           const SizedBox(width: 4),
                           Text(
                             widget.product.rating.toStringAsFixed(1),
-                            style: Theme.of(context).textTheme.labelMedium,
+                            style: context.textTheme.labelMedium,
                           ),
                         ],
                       ),
@@ -171,7 +172,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                   const SizedBox(height: 8),
                   Text(
                     widget.product.name,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    style: context.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 1,
@@ -190,7 +191,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                               AppCurrencyFormatter.format(
                                 widget.product.basePrice,
                               ),
-                              style: Theme.of(context).textTheme.bodySmall
+                              style: context.textTheme.bodySmall
                                   ?.copyWith(
                                     color: AppColor.onSecondary,
                                     decoration: TextDecoration.lineThrough,
@@ -200,7 +201,7 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                             AppCurrencyFormatter.format(
                               widget.product.salePrice,
                             ),
-                            style: Theme.of(context).textTheme.titleLarge
+                            style: context.textTheme.titleLarge
                                 ?.copyWith(
                                   color: AppColor.primary,
                                   fontWeight: FontWeight.bold,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_store_app/common/extensions/string_extension.dart';
+import 'package:furniture_store_app/common/utils/extensions/string_extension.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 
 class ColorSection extends StatefulWidget {
