@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
-import 'package:furniture_store_app/src/features/cart/my_cart.dart';
+import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dart';
 import 'package:furniture_store_app/src/features/product_details_page/products/provider/product_details_provider.dart';
 import 'package:furniture_store_app/src/features/product_details_page/widgets/rating_section.dart';
 import 'package:furniture_store_app/src/features/product_details_page/widgets/color_section.dart';
@@ -56,32 +56,26 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
 
                           const SizedBox(height: 20),
 
-                          ColorSection(product: product),
-                          RatingSection(product: product),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      style: const ButtonStyle(alignment: Alignment.center),
-                      onPressed: isAdded == true
-                          ? null
-                          : () async {
-                              int existingIndex = myCartItems.indexWhere(
-                                (wrapper) =>
-                                    wrapper.product.name == product.name,
+                      ColorSection(product: product),
+                      RatingSection(product: product),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: const ButtonStyle(alignment: Alignment.center),
+                  onPressed: isAdded == true
+                      ? null
+                      : () async {
+                          ref
+                              .read(cartProviderProvider.notifier)
+                              .addItem(
+                                CartItemModel(
+                                  id: product.id,
+                                  product: product,
+                                  quantity: 1,
+                                ),
                               );
-                              if (existingIndex != -1) {
-                                final oldItem = myCartItems[existingIndex];
-                                myCartItems[existingIndex] = oldItem.copyWith(
-                                  quantity: oldItem.quantity + 1,
-                                );
-                              } else {
-
-                                myCartItems.add(
-                                  CartItemModel(product: product, quantity: 1),
-                                );
-                              }
 
                               setState(() {
                                 isAdded = true;

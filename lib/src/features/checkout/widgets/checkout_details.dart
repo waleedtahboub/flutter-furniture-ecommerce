@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
 
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
-import 'package:furniture_store_app/src/features/cart/my_cart.dart';
+import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dart';
 import 'package:furniture_store_app/src/features/checkout/utils/checkout_calculator.dart';
 
-class CheckoutDetails extends StatelessWidget {
+class CheckoutDetails extends ConsumerWidget {
   const CheckoutDetails({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cartList = ref.watch(cartProviderProvider).value ?? [];
+    final total = ref.watch(cartTotalProvider);
+
     return Column(
       children: [
         Row(
@@ -23,7 +27,7 @@ class CheckoutDetails extends StatelessWidget {
             const Spacer(),
             Text(
               AppCurrencyFormatter.format(
-                CheckoutCalculator.originalTotal(myCartItems),
+                CheckoutCalculator.originalTotal(cartList),
               ),
 
               style: Theme.of(
@@ -44,7 +48,7 @@ class CheckoutDetails extends StatelessWidget {
             const Spacer(),
             Text(
               AppCurrencyFormatter.format(
-                CheckoutCalculator.discount(myCartItems),
+                CheckoutCalculator.discount(cartList),
               ),
 
               style: Theme.of(
@@ -84,9 +88,7 @@ class CheckoutDetails extends StatelessWidget {
             const Spacer(),
             Text(
               AppCurrencyFormatter.format(
-                CheckoutCalculator.tax(
-                  CheckoutCalculator.subtotal(myCartItems),
-                ),
+                CheckoutCalculator.tax(CheckoutCalculator.subtotal(cartList)),
               ),
               style: Theme.of(
                 context,
@@ -95,23 +97,21 @@ class CheckoutDetails extends StatelessWidget {
           ],
         ),
         const Divider(
-          color: AppColor.dragHandleColor, // Or any gray color
+          color: AppColor.dragHandleColor,
           thickness: 1,
-          height: 40, // The total space the divider takes including padding
+          height: 40,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text('Total ', style: Theme.of(context).textTheme.titleMedium),
             Text(
-              '(${myCartItems.fold(0, (sum, item) => sum + item.quantity)} items)',
+              '(${cartList.fold(0, (sum, item) => sum + item.quantity)} items)',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const Spacer(),
             Text(
-              AppCurrencyFormatter.format(
-                (CheckoutCalculator.total(myCartItems)),
-              ),
+              AppCurrencyFormatter.format(total),
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ],

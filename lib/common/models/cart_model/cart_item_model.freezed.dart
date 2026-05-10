@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CartItemModel {
 
- ProductModel get product; int get quantity;
+@HiveField(0) String get id;@HiveField(1) ProductModel get product;@HiveField(2) int get quantity;
 /// Create a copy of CartItemModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CartItemModelCopyWith<CartItemModel> get copyWith => _$CartItemModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartItemModel&&(identical(other.product, product) || other.product == product)&&(identical(other.quantity, quantity) || other.quantity == quantity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.product, product) || other.product == product)&&(identical(other.quantity, quantity) || other.quantity == quantity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,product,quantity);
+int get hashCode => Object.hash(runtimeType,id,product,quantity);
 
 @override
 String toString() {
-  return 'CartItemModel(product: $product, quantity: $quantity)';
+  return 'CartItemModel(id: $id, product: $product, quantity: $quantity)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CartItemModelCopyWith<$Res>  {
   factory $CartItemModelCopyWith(CartItemModel value, $Res Function(CartItemModel) _then) = _$CartItemModelCopyWithImpl;
 @useResult
 $Res call({
- ProductModel product, int quantity
+@HiveField(0) String id,@HiveField(1) ProductModel product,@HiveField(2) int quantity
 });
 
 
@@ -65,9 +65,10 @@ class _$CartItemModelCopyWithImpl<$Res>
 
 /// Create a copy of CartItemModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? product = null,Object? quantity = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? product = null,Object? quantity = null,}) {
   return _then(_self.copyWith(
-product: null == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,product: null == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
 as ProductModel,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -163,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProductModel product,  int quantity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@HiveField(0)  String id, @HiveField(1)  ProductModel product, @HiveField(2)  int quantity)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CartItemModel() when $default != null:
-return $default(_that.product,_that.quantity);case _:
+return $default(_that.id,_that.product,_that.quantity);case _:
   return orElse();
 
 }
@@ -184,10 +185,10 @@ return $default(_that.product,_that.quantity);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProductModel product,  int quantity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@HiveField(0)  String id, @HiveField(1)  ProductModel product, @HiveField(2)  int quantity)  $default,) {final _that = this;
 switch (_that) {
 case _CartItemModel():
-return $default(_that.product,_that.quantity);case _:
+return $default(_that.id,_that.product,_that.quantity);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -204,10 +205,10 @@ return $default(_that.product,_that.quantity);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProductModel product,  int quantity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@HiveField(0)  String id, @HiveField(1)  ProductModel product, @HiveField(2)  int quantity)?  $default,) {final _that = this;
 switch (_that) {
 case _CartItemModel() when $default != null:
-return $default(_that.product,_that.quantity);case _:
+return $default(_that.id,_that.product,_that.quantity);case _:
   return null;
 
 }
@@ -219,11 +220,12 @@ return $default(_that.product,_that.quantity);case _:
 @JsonSerializable()
 
 class _CartItemModel implements CartItemModel {
-   _CartItemModel({required this.product, required this.quantity});
+   _CartItemModel({@HiveField(0) required this.id, @HiveField(1) required this.product, @HiveField(2) required this.quantity});
   factory _CartItemModel.fromJson(Map<String, dynamic> json) => _$CartItemModelFromJson(json);
 
-@override final  ProductModel product;
-@override final  int quantity;
+@override@HiveField(0) final  String id;
+@override@HiveField(1) final  ProductModel product;
+@override@HiveField(2) final  int quantity;
 
 /// Create a copy of CartItemModel
 /// with the given fields replaced by the non-null parameter values.
@@ -238,16 +240,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartItemModel&&(identical(other.product, product) || other.product == product)&&(identical(other.quantity, quantity) || other.quantity == quantity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.product, product) || other.product == product)&&(identical(other.quantity, quantity) || other.quantity == quantity));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,product,quantity);
+int get hashCode => Object.hash(runtimeType,id,product,quantity);
 
 @override
 String toString() {
-  return 'CartItemModel(product: $product, quantity: $quantity)';
+  return 'CartItemModel(id: $id, product: $product, quantity: $quantity)';
 }
 
 
@@ -258,7 +260,7 @@ abstract mixin class _$CartItemModelCopyWith<$Res> implements $CartItemModelCopy
   factory _$CartItemModelCopyWith(_CartItemModel value, $Res Function(_CartItemModel) _then) = __$CartItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- ProductModel product, int quantity
+@HiveField(0) String id,@HiveField(1) ProductModel product,@HiveField(2) int quantity
 });
 
 
@@ -275,9 +277,10 @@ class __$CartItemModelCopyWithImpl<$Res>
 
 /// Create a copy of CartItemModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? product = null,Object? quantity = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? product = null,Object? quantity = null,}) {
   return _then(_CartItemModel(
-product: null == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,product: null == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
 as ProductModel,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int,
   ));

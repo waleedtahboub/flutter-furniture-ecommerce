@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
 import 'package:furniture_store_app/common/utils/extensions/build_context_extension.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:furniture_store_app/src/features/home/widgets/product_badge.dart';
-import 'package:furniture_store_app/src/features/cart/my_cart.dart';
 
-class CustomAllProducts extends StatefulWidget {
+class CustomAllProducts extends ConsumerStatefulWidget {
   const CustomAllProducts({super.key, required this.product});
 
   final ProductModel product;
 
   @override
-  State<CustomAllProducts> createState() => _CustomSectionCardState();
+  ConsumerState<CustomAllProducts> createState() => _CustomSectionCardState();
 }
 
-class _CustomSectionCardState extends State<CustomAllProducts> {
+class _CustomSectionCardState extends ConsumerState<CustomAllProducts> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -213,26 +214,15 @@ class _CustomSectionCardState extends State<CustomAllProducts> {
                       // Add to Cart Button
                       InkWell(
                         onTap: () {
-                          int existingIndex = myCartItems.indexWhere(
-                            (element) =>
-                                element.product.id == widget.product.id,
-                          );
-                          setState(() {
-                            if (existingIndex != -1) {
-                              myCartItems[existingIndex] =
-                                  myCartItems[existingIndex].copyWith(
-                                    quantity:
-                                        myCartItems[existingIndex].quantity + 1,
-                                  );
-                            } else {
-                              myCartItems.add(
+                          ref
+                              .read(cartProviderProvider.notifier)
+                              .addItem(
                                 CartItemModel(
+                                  id: widget.product.id,
                                   product: widget.product,
                                   quantity: 1,
                                 ),
                               );
-                            }
-                          });
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
