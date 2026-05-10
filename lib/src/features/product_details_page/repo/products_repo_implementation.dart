@@ -149,6 +149,15 @@ class ProductsRepoImplementation implements ProductsRepo {
     final lastDoc = snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
     return PaginatedProducts(products: flashDealsProducts, lastDoc: lastDoc);
   }
+
+  @override
+  Future<ProductModel?> fetchProductById(String id) async {
+    final doc = await _collection.doc(id).get();
+    if (doc.exists && doc.data() != null) {
+      return ProductModel.fromJson(doc.data()!);
+    }
+    return null;
+  }
 }
 
 @Riverpod(keepAlive: true)

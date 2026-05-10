@@ -5,6 +5,8 @@ import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart'
 import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dart';
 import 'package:furniture_store_app/src/features/cart/widgets/cart_item_card.dart';
 import 'package:furniture_store_app/src/features/checkout/page/checkout_page.dart';
+import 'package:furniture_store_app/src/features/checkout/utils/checkout_calculator.dart';
+import 'package:furniture_store_app/src/features/cart/page/cart_page.dart';
 import 'package:go_router/go_router.dart';
 
 class FilledCartView extends ConsumerStatefulWidget {
@@ -91,7 +93,7 @@ class _FilledCartViewState extends ConsumerState<FilledCartView> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              context.push(CheckoutPage.routePath);
+              context.go('/${CartPage.routePath}/${CheckoutPage.routePath}');
             },
             child: const Text('Proceed to Checkout'),
           ),

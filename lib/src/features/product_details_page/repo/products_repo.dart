@@ -36,4 +36,6 @@ abstract class ProductsRepo {
     int limit = 10,
     DocumentSnapshot? startAfter,
   });
+
+  Future<ProductModel?>fetchProductById(String id);
 }

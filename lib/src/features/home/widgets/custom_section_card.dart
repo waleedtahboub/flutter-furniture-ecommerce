@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furniture_store_app/common/models/cart_model/cart_item_model.dart';
 import 'package:furniture_store_app/common/models/product_model/product_model.dart';
 import 'package:furniture_store_app/common/resources/app_color.dart';
+import 'package:furniture_store_app/common/utils/extensions/build_context_extension.dart';
 import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dart';
 import 'package:furniture_store_app/src/features/product_details_page/page/product_details_page.dart';
-import 'package:go_router/go_router.dart';
 import 'package:furniture_store_app/common/utils/formatters/app_formatters.dart';
 
 class CustomSectionCard extends ConsumerStatefulWidget {
@@ -22,7 +22,10 @@ class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(ProductDetailsPage.routePath, extra: widget.product);
+        context.navigateToProductDetails(
+          widget.product.id,
+          ProductDetailsPage.routePath,
+        );
       },
       child: SizedBox(
         height: 230,
@@ -68,7 +71,7 @@ class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
                           size: 20,
                           color: widget.product.isFavorite
                               ? Colors.red
-                              : Theme.of(context).colorScheme.onSecondary,
+                              : context.colorScheme.onSecondary,
                         ),
                       ),
                     ),
@@ -88,14 +91,14 @@ class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
                       const SizedBox(height: 22),
                       Text(
                         widget.product.categoryName,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: context.textTheme.bodyMedium,
                       ),
                       const Spacer(),
                       const Icon(Icons.star, color: AppColor.star, size: 18),
 
                       Text(
                         widget.product.rating.toStringAsFixed(1),
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: context.textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
@@ -104,7 +107,7 @@ class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
                   const SizedBox(height: 10),
                   Text(
                     widget.product.name,
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: context.textTheme.titleSmall,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
@@ -113,11 +116,11 @@ class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
                     children: [
                       Text(
                         AppCurrencyFormatter.format(widget.product.salePrice),
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: context.textTheme.titleMedium,
                       ),
                       Text(
                         AppCurrencyFormatter.format(widget.product.basePrice),
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        style: context.textTheme.bodyMedium?.copyWith(
                           color: AppColor.onSecondary,
                           decoration: TextDecoration.lineThrough,
                           decorationThickness: 2,
@@ -142,7 +145,7 @@ class _CustomSectionCardState extends ConsumerState<CustomSectionCard> {
                           height: 24,
                           width: 24,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: context.colorScheme.primary,
                             borderRadius: BorderRadius.circular(18),
                           ),
                           child: const Icon(

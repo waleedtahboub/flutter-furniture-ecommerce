@@ -6,7 +6,7 @@ import 'package:furniture_store_app/src/features/cart/provider/cart_provider.dar
 
 class CartPage extends ConsumerStatefulWidget {
   const CartPage({super.key});
-  static const String routePath = '/cart';
+  static const String routePath = 'cart';
   @override
   ConsumerState<CartPage> createState() => _CartPageState();
 }

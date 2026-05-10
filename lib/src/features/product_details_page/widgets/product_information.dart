@@ -46,7 +46,7 @@ class ProductInformation extends StatelessWidget {
         Row(
           children: [
             Text(
-              AppCurrencyFormatter.format(product.basePrice),
+              AppCurrencyFormatter.format(product.salePrice),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: 24,
@@ -54,7 +54,7 @@ class ProductInformation extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              AppCurrencyFormatter.format(product.salePrice),
+              AppCurrencyFormatter.format(product.basePrice),
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 decoration: TextDecoration.lineThrough,
                 decorationThickness: 2,
